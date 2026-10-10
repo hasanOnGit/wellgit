@@ -1,0 +1,86 @@
+---
+import Icon from '@ui/icons/Icon.astro';
+
+// Content for the section title and subtitle
+const title = 'Engineering Discipline. Practical Innovation.';
+const subTitle =
+  'We design digital solutions around actual business needs rather than forcing every challenge into the same technology stack. We consider future maintenance, integration needs, performance, and scalability from the beginning.';
+
+const features = [
+  {
+    borderClasses: 'md:border-l md:border-r',
+    gradientClasses: 'bg-linear-to-l/oklch from-teal-200 to-transparent',
+    icon: 'cursorRays',
+    heading: 'Built for Real Requirements',
+    description:
+      'We design solutions around actual business needs rather than forcing every problem into the same technology stack. Every architecture is chosen for stability and fit.',
+  },
+  {
+    borderClasses: 'border-b border-t md:border-b-0',
+    gridClasses: 'md:col-start-2 md:col-end-3',
+    gradientClasses: 'bg-linear-to-t/oklch from-teal-200 to-transparent',
+    icon: 'cog',
+    heading: 'Software Meets AI',
+    description:
+      'We identify practical opportunities where automation and AI can meaningfully improve workflows, while keeping reliability, security, and maintainability in focus.',
+  },
+  {
+    borderClasses: 'md:border-l md:border-r md:border-t',
+    gridClasses: 'md:col-end-4',
+    gradientClasses: 'bg-linear-to-tl/oklch from-teal-200 to-transparent',
+    icon: 'puzzle',
+    heading: 'Transparent Collaboration',
+    description:
+      'We work with clients through clear requirements, agreed milestones, documented decisions, and visible progress from discovery through post-launch handover.',
+  },
+];
+---
+
+<section
+  class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 md:py-14 lg:px-8 lg:py-20"
+>
+  <div
+    class="grid grid-flow-row-dense grid-cols-1 md:grid-cols-3 md:grid-rows-2"
+  >
+    {/* Section container for the title and subtitle */}
+    <div
+      class="mx-auto max-w-lg pb-5 text-center md:col-span-2 lg:mx-0 lg:flex-auto lg:text-left"
+    >
+      <h2
+        class="text-2xl font-semibold tracking-tight text-balance text-slate-800 md:text-3xl md:leading-tight"
+      >
+        {title}
+      </h2>
+      <p
+        class="mt-6 text-start text-lg/8 text-pretty text-slate-700 sm:text-center md:text-start"
+      >
+        {subTitle}
+      </p>
+    </div>
+
+    {/* Feature Cards */}
+    {
+      features &&
+        features.map(feature => (
+          <div
+            class={`group relative mx-auto flex flex-col border-dashed border-slate-200 py-10 ${feature.borderClasses} ${feature.gridClasses || ''}`}
+          >
+            <div
+              class={`group pointer-events-none absolute inset-0 h-full w-full ${feature.gradientClasses} opacity-0 transition duration-300 group-hover:opacity-100`}
+            />
+            <div class="relative z-10 mb-4 px-10">
+              <Icon name={feature.icon} class="size-6 text-teal-700 transition-colors duration-300 group-hover:text-teal-600" />
+            </div>
+            <div class="relative z-10 mb-2 px-10 text-lg font-semibold">
+              <span class="inline-block text-balance text-slate-800 transition duration-300 group-hover:translate-x-2">
+                {feature.heading}
+              </span>
+            </div>
+            <p class="z-10 max-w-sm px-4 text-sm text-pretty text-slate-700 sm:max-w-lg md:mx-auto">
+              {feature.description}
+            </p>
+          </div>
+        ))
+    }
+  </div>
+</section>

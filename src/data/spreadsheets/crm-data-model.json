@@ -1,0 +1,5 @@
+{
+  "title": "CRM & Customer Operations Data Model",
+  "description": "Entity relationship schema for multi-tenant customer management, contact hierarchies, activity feeds, and role-based access control.",
+  "url": "/contact"
+}

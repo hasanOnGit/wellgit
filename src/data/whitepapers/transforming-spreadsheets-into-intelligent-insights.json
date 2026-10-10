@@ -1,0 +1,7 @@
+{
+  "title": "Event-Driven Architecture and Asynchronous Processing",
+  "description": "Engineering distributed systems using Apache Kafka, idempotent event handlers, the transactional outbox pattern, and CQRS architectures for resilient enterprise workflows.",
+  "readLink": "/platform",
+  "btnTitle": "Consult Engineering Squad",
+  "btnLink": "/contact"
+}

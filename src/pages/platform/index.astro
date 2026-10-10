@@ -1,0 +1,373 @@
+---
+export const prerender = true;
+import BaseLayout from '@layout/BaseLayout.astro';
+import Diagram from '@common/Diagram.astro';
+import Icon from '@ui/icons/Icon.astro';
+import type { WithContext, Thing } from 'schema-dts';
+import { Image } from 'astro:assets';
+import image_1 from '@images/toolbar.webp';
+
+const platform = {
+  title: 'Architected for Scale. Engineered for Intelligence.',
+  description:
+    'Explore the software architecture, application technologies, and intelligent systems Wellbit uses to deliver modern digital solutions.',
+};
+
+const video =
+  'https://vyclk3sx0z.ufs.sh/f/hv6ttNERWpXuOGj0KhIPk5MLw0bimBlYnq6Vd2NfSJW9gCQU';
+
+const automatedDataProcessing = {
+  title: 'Unified Integration & Workflow Orchestration',
+  description:
+    'Effortlessly connect disparate data sources, internal databases, third-party APIs, and cloud services into unified, automated operational pipelines without technical debt.',
+  features: [
+    'Connect external services and APIs with resilient, typed interfaces',
+    'Deploy autonomous AI agents and automated business approval workflows',
+    'Build high-concurrency microservices with reliable queue management',
+  ],
+};
+
+const smartAnalytics = {
+  title: 'Modern Application Architecture',
+  description:
+    'Maintainable services, well-defined APIs, appropriate data models, and asynchronous processing designed for long-term operational stability.',
+};
+
+const securityCompliance = {
+  title: 'Security and Reliability',
+  description:
+    'Authentication, authorization, input validation, secure transport, secret management, logging, backups, and operational monitoring integrated into every build.',
+};
+
+const ctaData = {
+  title: 'Build Your Next High-Performance Platform',
+  description:
+    'Partner with Wellbit Technologies to accelerate your digital transformation, automate operations, and scale your engineering roadmap.',
+  buttons: [
+    {
+      text: "Let's Discuss Your Project",
+      link: '/contact',
+      style: 'bg-btn-gradient text-white hover:bg-teal-700 shadow-xs font-semibold',
+    },
+    {
+      text: 'Explore Delivery Models',
+      link: '/downloads/license-options',
+      style:
+        'bg-white border border-slate-200 text-slate-800 hover:text-teal-600 shadow-2xs font-semibold',
+    },
+  ],
+};
+
+const cloudSecurity = [
+  'TypeScript',
+  'JavaScript',
+  'Python',
+  'Node.js',
+  'React',
+  'Astro',
+  'Next.js',
+  'Tailwind CSS',
+];
+
+const identityAccessManagement = [
+  'PostgreSQL',
+  'MySQL',
+  'MongoDB',
+  'Redis',
+  'Docker',
+  'Kubernetes',
+  'AWS Cloud',
+  'Google Cloud',
+];
+
+const threatDetection = [
+  'FastAPI',
+  'Terraform',
+  'REST & GraphQL',
+  'Microservices',
+  'CI/CD Pipelines',
+  'Async Processing',
+  'Vector DBs',
+  'Role-Based Auth',
+];
+
+// SEO metadata for the page
+const seo = {
+  title: 'Technology & Engineering Capabilities | Wellbit Technologies',
+  description:
+    'Explore the software architecture, application technologies, and intelligent systems Wellbit uses to deliver modern digital solutions.',
+};
+
+// Schema.org metadata for SEO
+const schema: WithContext<Thing> = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  inLanguage: 'en-US',
+  '@id': Astro.url.href,
+  url: Astro.url.href,
+  name: 'Technology & Engineering Capabilities | Wellbit Technologies',
+  description:
+    'Explore the software architecture, application technologies, and intelligent systems Wellbit uses to deliver modern digital solutions.',
+  isPartOf: {
+    '@type': 'WebSite',
+    url: `${Astro.site}`,
+    name: 'Wellbit Technologies',
+    description:
+      'Engineering Intelligence. Building Possibilities. Custom software, AI solutions, and digital systems.',
+  },
+};
+---
+
+<BaseLayout seo={seo} schema={schema}>
+  <section class="mx-auto max-w-[85rem] px-4 pt-48 pb-12 sm:px-6 lg:px-8">
+    <div class="max-w-7xl">
+      <div class="mx-auto max-w-2xl lg:mx-0">
+        <h1
+          class="text-4xl text-balance text-slate-800 sm:text-5xl md:text-6xl lg:text-7xl"
+        >
+          {platform.title}
+        </h1>
+        <p
+          class="mt-8 text-lg font-medium text-pretty text-slate-700 sm:text-xl/8"
+        >
+          {platform.description}
+        </p>
+      </div>
+
+      <div class="relative m-auto w-full pt-16 sm:w-[90%]">
+        <div
+          class="via-off-white to-off-white pointer-events-none absolute inset-x-0 -bottom-2 z-10 hidden h-1/3 w-full bg-linear-to-b/oklch from-transparent sm:block"
+        >
+        </div>
+        <div class="aspect-video">
+          <video
+            autoplay
+            loop
+            muted
+            playsinline
+            preload="metadata"
+            class="aspect-auto rounded-xl"
+          >
+            <source src={video} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="mx-auto max-w-[85rem] border-b border-dashed border-slate-400 px-4 py-10 sm:px-6 md:py-14 lg:px-8 lg:py-20"
+  >
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div>
+        <h2
+          class="text-2xl font-semibold tracking-tight text-balance text-slate-800 md:text-3xl md:leading-tight"
+        >
+          {automatedDataProcessing.title}
+        </h2>
+        <p class="mt-6 max-w-3xl text-lg/8 text-pretty text-slate-700">
+          {automatedDataProcessing.description}
+        </p>
+        <div class="mt-8 flex flex-col gap-4">
+          {
+            automatedDataProcessing.features.map(feature => (
+              <div class="flex items-center gap-2">
+                <Icon name="checkCircle" class="text-teal-700" />
+                <p class="text-slate-600">{feature}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+      <div
+        class="relative flex flex-col items-center justify-center gap-8 rounded-xl p-6 md:flex-row lg:gap-16"
+      >
+        <Diagram />
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="mx-auto max-w-[85rem] border-b border-dashed border-slate-400 px-4 py-10 sm:px-6 md:py-14 lg:px-8 lg:py-20"
+  >
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div class="order-last md:order-first">
+        <Image src={image_1} alt="Toolbar" class="rounded-xl shadow-lg" />
+      </div>
+      <div class="text-end">
+        <h2
+          class="text-2xl font-semibold tracking-tight text-balance text-slate-800 md:text-3xl md:leading-tight"
+        >
+          {smartAnalytics.title}
+        </h2>
+        <p class="mt-6 max-w-3xl text-lg/8 text-pretty text-slate-700">
+          {smartAnalytics.description}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 md:py-14 lg:px-8 lg:py-20"
+  >
+    <div
+      class="mt-2 grid grid-cols-1 gap-4 md:grid-cols-2 md:justify-items-end"
+    >
+      <div>
+        <h2
+          class="text-2xl font-semibold tracking-tight text-balance text-slate-800 md:text-3xl md:leading-tight"
+        >
+          {securityCompliance.title}
+        </h2>
+        <p class="mt-6 max-w-3xl text-lg/8 text-pretty text-slate-700">
+          {securityCompliance.description}
+        </p>
+      </div>
+
+      <div class="h-full w-full">
+        <div
+          class="relative flex h-full flex-col justify-center rounded-lg py-8 ring-white/15"
+        >
+          <div class="group flex flex-row overflow-hidden p-2">
+            <div
+              class="animate-scroll flex w-max min-w-full shrink-0 flex-row flex-nowrap justify-around gap-5 [--duration:30s]"
+              aria-hidden="true"
+            >
+              {/* Original items */}
+              {
+                cloudSecurity.map(item => (
+                  <div class="flex items-center gap-5 rounded-md bg-white px-4 py-2 text-slate-700 shadow-md ring-1 ring-white/15">
+                    {item}
+                  </div>
+                ))
+              }
+
+              {/* Duplicated items for seamless scroll */}
+              {
+                cloudSecurity.map(item => (
+                  <div class="flex items-center gap-5 rounded-md bg-white px-4 py-2 text-slate-700 shadow-md ring-1 ring-white/15">
+                    {item}
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+
+          <div class="group flex flex-row overflow-hidden p-2">
+            <div
+              class="animate-scroll flex w-max min-w-full shrink-0 flex-row flex-nowrap justify-around gap-5 [--direction:reverse] [--duration:40s]"
+              aria-hidden="true"
+            >
+              {/* Original items */}
+              {
+                identityAccessManagement.map(item => (
+                  <div class="flex items-center gap-5 rounded-md bg-white px-4 py-2 text-slate-700 shadow-md ring-1 ring-white/15">
+                    {item}
+                  </div>
+                ))
+              }
+
+              {/* Duplicated items for seamless scroll */}
+              {
+                identityAccessManagement.map(item => (
+                  <div class="flex items-center gap-5 rounded-md bg-white px-4 py-2 text-slate-700 shadow-md ring-1 ring-white/15">
+                    {item}
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+          <div class="group flex flex-row overflow-hidden p-2">
+            <div
+              class="animate-scroll flex w-max min-w-full shrink-0 flex-row flex-nowrap justify-around gap-5 [--duration:20s]"
+              aria-hidden="true"
+            >
+              {/* Original items */}
+              {
+                threatDetection.map(item => (
+                  <div class="flex items-center gap-5 rounded-md bg-white px-4 py-2 text-slate-700 shadow-md ring-1 ring-white/15">
+                    {item}
+                  </div>
+                ))
+              }
+
+              {/* Duplicated items for seamless scroll */}
+              {
+                threatDetection.map(item => (
+                  <div class="flex items-center gap-5 rounded-md bg-white px-4 py-2 text-slate-700 shadow-md ring-1 ring-white/15">
+                    {item}
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+
+          <div
+            class="from-off-white pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r"
+          >
+          </div>
+          <div
+            class="from-off-white pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l"
+          >
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[85rem] px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
+    <div
+      class="group relative isolate overflow-hidden rounded-3xl bg-section-gradient border border-slate-200 p-5 sm:p-11 shadow-xs"
+    >
+      <div
+        class="group to-white pointer-events-none absolute inset-0 -top-[10%] h-[120%] w-full rounded-xl bg-gradient-to-r from-teal-100/50 via-transparent to-white opacity-0 transition duration-1000 group-hover:opacity-100"
+      >
+      </div>
+      <div class="svgBlock mx-auto max-w-7xl">
+        <div class="relative z-5 mx-auto text-center">
+          <h2
+            class="text-2xl font-semibold tracking-tight text-balance text-slate-800 md:text-3xl md:leading-tight"
+          >
+            {ctaData.title}
+          </h2>
+          <p
+            class="mx-auto mt-6 max-w-3xl text-lg/8 text-pretty text-slate-700"
+          >
+            {ctaData.description}
+          </p>
+          <div
+            class="mx-auto mt-8 flex max-w-3xl flex-col gap-4 sm:flex-row sm:justify-center"
+          >
+            {
+              ctaData.buttons.map(button => (
+                <a
+                  href={button.link}
+                  class={`mx-auto flex w-full items-center justify-center rounded-lg px-3.5 py-2.5 text-center text-sm font-semibold transition duration-300 focus:outline-hidden sm:w-1/2 ${button.style}`}
+                >
+                  {button.text}
+                </a>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .svgBlock::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url(/guilloche.svg);
+      background-repeat: repeat;
+      background-position: right top;
+      background-size: 20px, 20px;
+      opacity: 0.075;
+      background-clip: padding-box;
+      mask-image: linear-gradient(270deg, rgb(0, 0, 0), rgba(0, 0, 0, 0));
+      pointer-events: none;
+    }
+  </style>
+</BaseLayout>

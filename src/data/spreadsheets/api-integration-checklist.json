@@ -1,0 +1,5 @@
+{
+  "title": "API Integration & Contract Specification",
+  "description": "Comprehensive specification checklist covering OAuth2 flows, webhook idempotency, rate limiting, and failure retry backoff models.",
+  "url": "/contact"
+}

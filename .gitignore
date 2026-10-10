@@ -1,0 +1,26 @@
+# Build and Output
+dist/
+.vercel/
+.astro/
+
+# Dependencies
+node_modules/
+
+# Local databases & state
+.data/
+*.sqlite
+*.sqlite-journal
+*.db
+*.db-journal
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# OS & Logs
+.DS_Store
+Thumbs.db
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*

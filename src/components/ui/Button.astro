@@ -1,0 +1,49 @@
+---
+import { twMerge } from 'tailwind-merge';
+const { type, href, rel, target, variant, className, id } = Astro.props;
+
+export interface Props {
+  type?: 'button' | 'submit' | 'reset';
+  href?: string;
+  rel?: string;
+  target?: '_self' | '_blank' | '_parent' | '_top';
+  variant?: 'primary' | 'secondary' | 'tertiary';
+  className?: string;
+  id?: string;
+}
+
+const variants = {
+  primary:
+    'bg-btn-gradient hover:bg-teal-700 active:bg-teal-700 text-white shadow-sm shadow-blue-500/20 hover:shadow-md hover:shadow-blue-500/30 font-semibold tracking-wide border border-transparent',
+  secondary:
+    'bg-white hover:bg-slate-100 border border-slate-200 hover:border-teal-400 text-slate-800 hover:text-teal-600 font-semibold shadow-xs hover:shadow-sm',
+  tertiary:
+    'bg-teal-50 hover:bg-teal-100 text-teal-600 font-semibold border border-transparent',
+};
+---
+
+{
+  href ? (
+    <a
+      id={id}
+      href={href}
+      target={target}
+      rel={rel}
+      class={twMerge(
+        `rounded-full px-7 py-3 text-center text-sm font-semibold transition-all duration-300 focus:outline-hidden ${variants[variant ?? 'primary']} ${className || ''}`
+      )}
+    >
+      <slot />
+    </a>
+  ) : (
+    <button
+      id={id}
+      type={type || 'button'}
+      class={twMerge(
+        `rounded-full px-7 py-3 text-center text-sm font-semibold transition-all duration-300 focus:outline-hidden ${variants[variant ?? 'primary']} ${className || ''}`
+      )}
+    >
+      <slot />
+    </button>
+  )
+}

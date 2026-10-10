@@ -1,0 +1,120 @@
+---
+// Interactive SVG Architectural Diagram for CRM & Customer Operations Platforms
+---
+
+<svg
+  viewBox="0 0 600 400"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  class="w-full h-auto select-none"
+  aria-label="CRM & Customer Operations Architecture Diagram"
+>
+  <defs>
+    <linearGradient id="crmCardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#f8fbff" />
+    </linearGradient>
+    <linearGradient id="crmCoreGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f1f7ff" />
+      <stop offset="100%" stop-color="#eaf3ff" />
+    </linearGradient>
+    <linearGradient id="crmGraphGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1768E8" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#1768E8" stop-opacity="0.0" />
+    </linearGradient>
+    <filter id="crmDropShadow" x="-10%" y="-10%" width="120%" height="125%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0b1730" flood-opacity="0.06" />
+    </filter>
+  </defs>
+
+  {/* Background Pattern Grid */}
+  <pattern id="crmGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+    <circle cx="2" cy="2" r="1" fill="#d7e5f7" opacity="0.6" />
+  </pattern>
+  <rect width="600" height="400" rx="16" fill="#f8fbff" />
+  <rect width="600" height="400" rx="16" fill="url(#crmGrid)" />
+
+  {/* Connectors */}
+  <path d="M155 120 H 195" stroke="#1768E8" stroke-width="2" />
+  <path d="M155 240 H 195" stroke="#b9d9ff" stroke-width="2" stroke-dasharray="3 3" />
+  <path d="M410 180 H 445" stroke="#1768E8" stroke-width="2" />
+
+  {/* LEFT COLUMN: Customer Ingestion & Enrichment */}
+  {/* Box 1: Inbound Lead Intake */}
+  <g filter="url(#crmDropShadow)">
+    <rect x="25" y="85" width="130" height="70" rx="10" fill="url(#crmCardGrad)" stroke="#d7e5f7" stroke-width="1.5" />
+    <rect x="37" y="97" width="22" height="22" rx="6" fill="#e4f1ff" />
+    <circle cx="48" cy="104" r="3.5" stroke="#1768E8" stroke-width="1.4" />
+    <path d="M42 114 C42 111.5 44.5 110 48 110 C51.5 110 54 111.5 54 114" stroke="#1768E8" stroke-width="1.4" />
+    <text x="66" y="107" font-family="'DM Sans', sans-serif" font-size="11" font-weight="700" fill="#0b1730">Lead Capture</text>
+    <text x="37" y="135" font-family="'Work Sans', sans-serif" font-size="9" fill="#52647d">Omnichannel Ingestion</text>
+    <circle cx="145" cy="95" r="3" fill="#10b981" />
+  </g>
+
+  {/* Box 2: Account Enrichment */}
+  <g filter="url(#crmDropShadow)">
+    <rect x="25" y="205" width="130" height="70" rx="10" fill="url(#crmCardGrad)" stroke="#d7e5f7" stroke-width="1.5" />
+    <rect x="37" y="217" width="22" height="22" rx="6" fill="#e4f1ff" />
+    <path d="M43 232 L48 223 L53 232 Z" stroke="#1768E8" stroke-width="1.4" stroke-linejoin="round" />
+    <text x="66" y="227" font-family="'DM Sans', sans-serif" font-size="11" font-weight="700" fill="#0b1730">Enrichment</text>
+    <text x="37" y="255" font-family="'Work Sans', sans-serif" font-size="9" fill="#52647d">Firmographics & History</text>
+    <circle cx="145" cy="215" r="3" fill="#10b981" />
+  </g>
+
+  {/* CENTER CONTAINER: Automated Pipeline State Machine */}
+  <g filter="url(#crmDropShadow)">
+    <rect x="185" y="55" width="235" height="290" rx="16" fill="url(#crmCoreGrad)" stroke="#b9d9ff" stroke-width="2" />
+
+    {/* Header */}
+    <rect x="200" y="70" width="205" height="26" rx="13" fill="#ffffff" stroke="#d7e5f7" stroke-width="1" />
+    <circle cx="212" cy="83" r="4" fill="#1768E8" />
+    <text x="224" y="87" font-family="'DM Sans', sans-serif" font-size="10" font-weight="700" fill="#0b1730">PIPELINE AUTOMATION ENGINE</text>
+
+    {/* Stage Sequence Pills */}
+    <rect x="200" y="110" width="205" height="38" rx="8" fill="#ffffff" stroke="#d7e5f7" stroke-width="1" />
+    <text x="210" y="125" font-family="'DM Sans', sans-serif" font-size="9.5" font-weight="700" fill="#1768E8">Pipeline Progression</text>
+    <text x="210" y="139" font-family="'Work Sans', sans-serif" font-size="8.5" fill="#52647d">Prospect ➔ Qualified ➔ Contract</text>
+
+    {/* Automated Rule 1: SLA Trigger */}
+    <rect x="200" y="158" width="205" height="48" rx="8" fill="#ffffff" stroke="#d7e5f7" stroke-width="1" />
+    <circle cx="212" cy="175" r="4" fill="#f59e0b" />
+    <text x="224" y="176" font-family="'DM Sans', sans-serif" font-size="10" font-weight="700" fill="#0b1730">Task Routing & SLA Reminders</text>
+    <text x="224" y="193" font-family="'Work Sans', sans-serif" font-size="8.5" fill="#52647d">Auto-assign leads within &lt;5 mins</text>
+
+    {/* Automated Rule 2: Webhook Trigger */}
+    <rect x="200" y="216" width="205" height="48" rx="8" fill="#ffffff" stroke="#d7e5f7" stroke-width="1" />
+    <circle cx="212" cy="233" r="4" fill="#10b981" />
+    <text x="224" y="234" font-family="'DM Sans', sans-serif" font-size="10" font-weight="700" fill="#0b1730">Bi-Directional ERP Sync</text>
+    <text x="224" y="251" font-family="'Work Sans', sans-serif" font-size="8.5" fill="#52647d">Stripe, Accounting & Inventory</text>
+
+    {/* Status Footer */}
+    <rect x="210" y="278" width="185" height="24" rx="6" fill="#1768E8" />
+    <text x="302" y="294" text-anchor="middle" font-family="'Work Sans', sans-serif" font-size="9" font-weight="600" fill="#ffffff">Active Deals in Flow: 1,480</text>
+  </g>
+
+  {/* RIGHT COLUMN: Operational Telemetry & Dashboards */}
+  <g filter="url(#crmDropShadow)">
+    {/* Mini Dashboard Widget */}
+    <rect x="440" y="75" width="135" height="135" rx="12" fill="url(#crmCardGrad)" stroke="#d7e5f7" stroke-width="1.5" />
+    <rect x="452" y="87" width="22" height="22" rx="6" fill="#e4f1ff" />
+    <path d="M457 98 L462 93 L466 97 L471 90" stroke="#1768E8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="480" y="97" font-family="'DM Sans', sans-serif" font-size="10.5" font-weight="700" fill="#0b1730">Live Telemetry</text>
+    <text x="452" y="125" font-family="'DM Sans', sans-serif" font-size="16" font-weight="800" fill="#1768E8">84.2%</text>
+    <text x="452" y="138" font-family="'Work Sans', sans-serif" font-size="8.5" fill="#52647d">Deal Velocity Rate</text>
+
+    {/* Sparkline curve */}
+    <path d="M452 170 Q 470 155, 490 162 T 530 148 L 560 142" stroke="#10b981" stroke-width="2" fill="none" />
+    <path d="M452 170 Q 470 155, 490 162 T 530 148 L 560 142 V 195 H 452 Z" fill="url(#crmGraphGrad)" />
+    <circle cx="560" cy="142" r="3" fill="#10b981" />
+  </g>
+
+  {/* Bottom Right Card: Action Queue */}
+  <g filter="url(#crmDropShadow)">
+    <rect x="440" y="230" width="135" height="85" rx="10" fill="url(#crmCardGrad)" stroke="#d7e5f7" stroke-width="1.5" />
+    <rect x="452" y="242" width="22" height="22" rx="6" fill="#e4f1ff" />
+    <path d="M457 253 H 469 M457 257 H 465" stroke="#1768E8" stroke-width="1.4" stroke-linecap="round" />
+    <text x="480" y="252" font-family="'DM Sans', sans-serif" font-size="10.5" font-weight="700" fill="#0b1730">Activity Feed</text>
+    <text x="452" y="280" font-family="'Work Sans', sans-serif" font-size="8.5" fill="#0b1730">34 Proposals Out</text>
+    <text x="452" y="295" font-family="'Work Sans', sans-serif" font-size="8.5" font-weight="600" fill="#10b981">● 0 SLA Breaches</text>
+  </g>
+</svg>

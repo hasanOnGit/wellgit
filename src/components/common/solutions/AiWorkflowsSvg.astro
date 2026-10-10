@@ -1,0 +1,147 @@
+---
+// Interactive SVG Architectural Diagram for AI-Powered Business Workflows
+---
+
+<svg
+  viewBox="0 0 600 400"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  class="w-full h-auto select-none"
+  aria-label="AI-Powered Business Workflows Architecture Diagram"
+>
+  <defs>
+    {/* Gradients */}
+    <linearGradient id="aiCardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#f8fbff" />
+    </linearGradient>
+    <linearGradient id="aiCoreGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f1f7ff" />
+      <stop offset="100%" stop-color="#e2eeff" />
+    </linearGradient>
+    <linearGradient id="aiBlueGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1768E8" />
+      <stop offset="100%" stop-color="#3896F5" />
+    </linearGradient>
+    <linearGradient id="aiSuccessGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ecfdf5" />
+      <stop offset="100%" stop-color="#d1fae5" />
+    </linearGradient>
+    <filter id="aiDropShadow" x="-10%" y="-10%" width="120%" height="125%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0b1730" flood-opacity="0.06" />
+    </filter>
+  </defs>
+
+  {/* Background Pattern Grid */}
+  <pattern id="aiGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+    <circle cx="2" cy="2" r="1" fill="#d7e5f7" opacity="0.6" />
+  </pattern>
+  <rect width="600" height="400" rx="16" fill="#f8fbff" />
+  <rect width="600" height="400" rx="16" fill="url(#aiGrid)" />
+
+  {/* Connection Paths (Background Bus) */}
+  <path d="M150 110 H 220" stroke="#b9d9ff" stroke-width="2" stroke-dasharray="4 4" />
+  <path d="M150 200 H 220" stroke="#b9d9ff" stroke-width="2" stroke-dasharray="4 4" />
+  <path d="M150 290 H 220" stroke="#b9d9ff" stroke-width="2" stroke-dasharray="4 4" />
+  <path d="M380 155 H 450" stroke="#1768E8" stroke-width="2" />
+  <path d="M380 250 H 450" stroke="#3896F5" stroke-width="2" stroke-dasharray="3 3" />
+
+  {/* Connector Dots */}
+  <circle cx="220" cy="110" r="4" fill="#1768E8" />
+  <circle cx="220" cy="200" r="4" fill="#1768E8" />
+  <circle cx="220" cy="290" r="4" fill="#1768E8" />
+  <circle cx="450" cy="155" r="4" fill="#10b981" />
+  <circle cx="450" cy="250" r="4" fill="#f59e0b" />
+
+  {/* LEFT COLUMN: Data & Trigger Ingestion */}
+  {/* Box 1: Document Intake */}
+  <g filter="url(#aiDropShadow)">
+    <rect x="25" y="75" width="125" height="70" rx="10" fill="url(#aiCardGrad)" stroke="#d7e5f7" stroke-width="1.5" />
+    <rect x="37" y="87" width="22" height="22" rx="6" fill="#e4f1ff" />
+    <path d="M43 93 H 53 M43 98 H 50 M43 103 H 47" stroke="#1768E8" stroke-width="1.5" stroke-linecap="round" />
+    <text x="67" y="97" font-family="'DM Sans', sans-serif" font-size="11" font-weight="700" fill="#0b1730">Document IDP</text>
+    <text x="37" y="125" font-family="'Work Sans', sans-serif" font-size="9" fill="#52647d">Invoices, PDFs & Forms</text>
+    <circle cx="138" cy="85" r="3" fill="#10b981" />
+  </g>
+
+  {/* Box 2: API & Event Ingestion */}
+  <g filter="url(#aiDropShadow)">
+    <rect x="25" y="165" width="125" height="70" rx="10" fill="url(#aiCardGrad)" stroke="#d7e5f7" stroke-width="1.5" />
+    <rect x="37" y="177" width="22" height="22" rx="6" fill="#e4f1ff" />
+    <path d="M43 188 L48 183 L53 188 M48 183 V193" stroke="#1768E8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="67" y="187" font-family="'DM Sans', sans-serif" font-size="11" font-weight="700" fill="#0b1730">System Events</text>
+    <text x="37" y="215" font-family="'Work Sans', sans-serif" font-size="9" fill="#52647d">Webhooks & Message Bus</text>
+    <circle cx="138" cy="175" r="3" fill="#10b981" />
+  </g>
+
+  {/* Box 3: Enterprise Knowledge */}
+  <g filter="url(#aiDropShadow)">
+    <rect x="25" y="255" width="125" height="70" rx="10" fill="url(#aiCardGrad)" stroke="#d7e5f7" stroke-width="1.5" />
+    <rect x="37" y="267" width="22" height="22" rx="6" fill="#e4f1ff" />
+    <ellipse cx="48" cy="275" rx="6" ry="2.5" stroke="#1768E8" stroke-width="1.2" />
+    <path d="M42 275 V283 C42 284.5 44.7 286 48 286 C51.3 286 54 284.5 54 283 V275" stroke="#1768E8" stroke-width="1.2" />
+    <text x="67" y="277" font-family="'DM Sans', sans-serif" font-size="11" font-weight="700" fill="#0b1730">Private RAG</text>
+    <text x="37" y="305" font-family="'Work Sans', sans-serif" font-size="9" fill="#52647d">Vector DB Knowledge</text>
+    <circle cx="138" cy="265" r="3" fill="#10b981" />
+  </g>
+
+  {/* CENTER CONTAINER: Autonomous Agent Orchestrator */}
+  <g filter="url(#aiDropShadow)">
+    <rect x="200" y="55" width="190" height="290" rx="16" fill="url(#aiCoreGrad)" stroke="#b9d9ff" stroke-width="2" />
+
+    {/* Header Badge */}
+    <rect x="215" y="70" width="160" height="26" rx="13" fill="#ffffff" stroke="#d7e5f7" stroke-width="1" />
+    <circle cx="227" cy="83" r="4" fill="#1768E8" />
+    <text x="238" y="87" font-family="'DM Sans', sans-serif" font-size="10" font-weight="700" fill="#0b1730">WELLBIT AGENT CORE</text>
+
+    {/* Stage 1: Tool Execution Router */}
+    <rect x="215" y="110" width="160" height="48" rx="8" fill="#ffffff" stroke="#d7e5f7" stroke-width="1" />
+    <text x="228" y="127" font-family="'DM Sans', sans-serif" font-size="10" font-weight="700" fill="#1768E8">1. Context & Tool Router</text>
+    <text x="228" y="143" font-family="'Work Sans', sans-serif" font-size="9" fill="#52647d">Structured schemas & schema locks</text>
+
+    {/* Step Flow Arrow */}
+    <path d="M295 158 V 170" stroke="#1768E8" stroke-width="1.5" stroke-linecap="round" />
+    <polygon points="292,168 295,173 298,168" fill="#1768E8" />
+
+    {/* Stage 2: Multi-Agent Reasoning */}
+    <rect x="215" y="174" width="160" height="52" rx="8" fill="#ffffff" stroke="#d7e5f7" stroke-width="1" />
+    <text x="228" y="191" font-family="'DM Sans', sans-serif" font-size="10" font-weight="700" fill="#0b1730">2. Agent Evaluation Loop</text>
+    <text x="228" y="206" font-family="'Work Sans', sans-serif" font-size="9" fill="#52647d">FastAPI & Python Workers</text>
+    <text x="228" y="218" font-family="'Work Sans', sans-serif" font-size="8.5" font-weight="600" fill="#1768E8">Confidence Threshold: 98.4%</text>
+
+    {/* Step Flow Arrow */}
+    <path d="M295 226 V 238" stroke="#1768E8" stroke-width="1.5" stroke-linecap="round" />
+    <polygon points="292,236 295,241 298,236" fill="#1768E8" />
+
+    {/* Stage 3: Verification & Guardrails Gate */}
+    <rect x="215" y="242" width="160" height="48" rx="8" fill="#ffffff" stroke="#1768E8" stroke-width="1.2" />
+    <text x="228" y="259" font-family="'DM Sans', sans-serif" font-size="10" font-weight="700" fill="#10b981">3. Deterministic Guardrails</text>
+    <text x="228" y="275" font-family="'Work Sans', sans-serif" font-size="9" fill="#52647d">Hallucination check & output audit</text>
+
+    {/* Active Telemetry Chip */}
+    <rect x="235" y="304" width="120" height="22" rx="6" fill="#1768E8" />
+    <text x="295" y="318" text-anchor="middle" font-family="'Work Sans', sans-serif" font-size="9" font-weight="600" fill="#ffffff">Latency: 142ms • Safe</text>
+  </g>
+
+  {/* RIGHT COLUMN: Production Outcomes */}
+  {/* Box 1: Automated Production Action */}
+  <g filter="url(#aiDropShadow)">
+    <rect x="440" y="120" width="135" height="75" rx="10" fill="url(#aiSuccessGrad)" stroke="#a7f3d0" stroke-width="1.5" />
+    <rect x="452" y="132" width="22" height="22" rx="6" fill="#10b981" />
+    <path d="M457 143 L461 147 L469 139" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="480" y="142" font-family="'DM Sans', sans-serif" font-size="11" font-weight="700" fill="#065f46">Automated Action</text>
+    <text x="452" y="168" font-family="'Work Sans', sans-serif" font-size="8.5" fill="#047857">ERP / Database Update</text>
+    <text x="452" y="180" font-family="'Work Sans', sans-serif" font-size="8.5" font-weight="600" fill="#059669">Zero Manual Touch</text>
+  </g>
+
+  {/* Box 2: Human-in-the-Loop Queue */}
+  <g filter="url(#aiDropShadow)">
+    <rect x="440" y="215" width="135" height="75" rx="10" fill="url(#aiCardGrad)" stroke="#fcd34d" stroke-width="1.5" />
+    <rect x="452" y="227" width="22" height="22" rx="6" fill="#fef3c7" />
+    <circle cx="463" cy="235" r="3" stroke="#d97706" stroke-width="1.5" />
+    <path d="M457 245 C457 242 460 240 463 240 C466 240 469 242 469 245" stroke="#d97706" stroke-width="1.5" />
+    <text x="480" y="237" font-family="'DM Sans', sans-serif" font-size="11" font-weight="700" fill="#92400e">Human-In-Loop</text>
+    <text x="452" y="263" font-family="'Work Sans', sans-serif" font-size="8.5" fill="#52647d">Exception Escalation</text>
+    <text x="452" y="275" font-family="'Work Sans', sans-serif" font-size="8.5" font-weight="600" fill="#d97706">Review Queue & Audit Log</text>
+  </g>
+</svg>

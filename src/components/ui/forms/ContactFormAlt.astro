@@ -1,0 +1,184 @@
+---
+const formStrings = {
+  name: 'Your Name',
+  email: 'Work Email Address',
+  company: 'Company / Organization',
+  message: 'Project Scope & Requirements',
+  submit: 'Request Proposal',
+  serviceLabel: 'Primary Focus Area',
+  services: [
+    'Custom Software Development',
+    'AI Solutions & Agents',
+    'Workflow Automation',
+    'CRM & Business Portals',
+    'HR & Enterprise Applications',
+    'Cloud & API Integration',
+    'Application Modernization',
+    'Engineering Support',
+    'Technical Consulting',
+    'Other',
+  ],
+};
+---
+
+<form id="quote-form" class="p-4" method="POST" action="/api/contact">
+  <div class="space-y-4">
+    {/* Name input field */}
+    <div class="relative">
+      <input
+        type="text"
+        name="name"
+        id="input-alt-name"
+        class="peer block w-full rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-800 not-placeholder-shown:pt-6 not-placeholder-shown:pb-2 placeholder:text-transparent autofill:pt-6 autofill:pb-2 focus:border-teal-600 focus:bg-white focus:pt-6 focus:pb-2 focus:ring-2 focus:ring-teal-600/20 focus:outline-hidden transition-all duration-200"
+        placeholder={formStrings.name}
+        required
+        aria-labelledby="input-alt-name-label"
+      />
+      <label
+        id="input-alt-name-label"
+        for="input-alt-name"
+        class="pointer-events-none absolute start-0 top-0 h-full truncate border border-transparent p-4 text-slate-500 transition duration-100 ease-in-out peer-not-placeholder-shown:-translate-y-1.5 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-slate-600 peer-focus:-translate-y-1.5 peer-focus:text-xs peer-focus:text-teal-600 peer-disabled:pointer-events-none peer-disabled:opacity-50"
+        >{formStrings.name}</label
+      >
+    </div>
+
+    {/* Company input field */}
+    <div class="relative">
+      <input
+        type="text"
+        name="company"
+        id="input-alt-company"
+        class="peer block w-full rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-800 not-placeholder-shown:pt-6 not-placeholder-shown:pb-2 placeholder:text-transparent autofill:pt-6 autofill:pb-2 focus:border-teal-600 focus:bg-white focus:pt-6 focus:pb-2 focus:ring-2 focus:ring-teal-600/20 focus:outline-hidden transition-all duration-200"
+        placeholder={formStrings.company}
+        aria-labelledby="input-alt-company-label"
+      />
+      <label
+        id="input-alt-company-label"
+        for="input-alt-company"
+        class="pointer-events-none absolute start-0 top-0 h-full truncate border border-transparent p-4 text-slate-500 transition duration-100 ease-in-out peer-not-placeholder-shown:-translate-y-1.5 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-slate-600 peer-focus:-translate-y-1.5 peer-focus:text-xs peer-focus:text-teal-600 peer-disabled:pointer-events-none peer-disabled:opacity-50"
+        >{formStrings.company}</label
+      >
+    </div>
+
+    {/* Email input field */}
+    <div class="relative">
+      <input
+        type="email"
+        name="email"
+        id="input-alt-email"
+        class="peer block w-full rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-800 not-placeholder-shown:pt-6 not-placeholder-shown:pb-2 placeholder:text-transparent autofill:pt-6 autofill:pb-2 focus:border-teal-600 focus:bg-white focus:pt-6 focus:pb-2 focus:ring-2 focus:ring-teal-600/20 focus:outline-hidden transition-all duration-200"
+        placeholder={formStrings.email}
+        required
+        aria-labelledby="input-alt-email-label"
+      />
+      <label
+        id="input-alt-email-label"
+        for="input-alt-email"
+        class="pointer-events-none absolute start-0 top-0 h-full truncate border border-transparent p-4 text-slate-500 transition duration-100 ease-in-out peer-not-placeholder-shown:-translate-y-1.5 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-slate-600 peer-focus:-translate-y-1.5 peer-focus:text-xs peer-focus:text-teal-600 peer-disabled:pointer-events-none peer-disabled:opacity-50"
+        >{formStrings.email}</label
+      >
+    </div>
+
+    {/* Service focus select field */}
+    <div class="relative">
+      <select
+        id="input-alt-service"
+        name="service"
+        class="peer block w-full rounded-xl border border-slate-200 bg-slate-50 p-4 pe-9 text-sm text-slate-800 not-placeholder-shown:pt-6 not-placeholder-shown:pb-2 autofill:pt-6 autofill:pb-2 focus:border-teal-600 focus:bg-white focus:ring-2 focus:ring-teal-600/20 transition-all duration-200"
+        required
+        aria-labelledby="input-alt-service-label"
+      >
+        {formStrings.services.map(type => <option value={type}>{type}</option>)}
+      </select>
+      <label
+        for="input-alt-service"
+        id="input-alt-service-label"
+        class="pointer-events-none absolute start-0 top-0 h-full truncate border border-transparent p-4 transition duration-100 ease-in-out peer-not-placeholder-shown:-translate-y-1.5 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-slate-500 peer-focus:-translate-y-1.5 peer-focus:text-xs peer-focus:text-teal-600 peer-disabled:pointer-events-none peer-disabled:opacity-50"
+        >{formStrings.serviceLabel}</label
+      >
+    </div>
+
+    {/* Message textarea field */}
+    <div class="relative">
+      <textarea
+        name="message"
+        id="input-message"
+        rows="4"
+        class="peer block w-full rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-800 not-placeholder-shown:pt-6 not-placeholder-shown:pb-2 placeholder:text-transparent autofill:pt-6 autofill:pb-2 focus:border-teal-600 focus:bg-white focus:pt-6 focus:pb-2 focus:ring-2 focus:ring-teal-600/20 focus:outline-hidden transition-all duration-200"
+        placeholder={formStrings.message}
+        required
+        aria-labelledby="input-alt-message-label"></textarea>
+      <label
+        id="input-alt-message-label"
+        for="input-message"
+        class="pointer-events-none absolute start-0 top-0 h-full truncate border border-transparent p-4 text-slate-500 transition duration-100 ease-in-out peer-not-placeholder-shown:-translate-y-1.5 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-slate-600 peer-focus:-translate-y-1.5 peer-focus:text-xs peer-focus:text-teal-600 peer-disabled:pointer-events-none peer-disabled:opacity-50"
+        >{formStrings.message}</label
+      >
+    </div>
+  </div>
+
+  {/* Status message container */}
+  <div id="quote-status" class="hidden mt-4 rounded-lg p-3 text-sm font-medium" role="alert"></div>
+
+  {/* Submit button */}
+  <div class="mt-8">
+    <button
+      type="submit"
+      id="quote-submit-btn"
+      class="inline-flex items-center justify-center rounded-full bg-btn-gradient px-8 py-3 text-sm font-semibold text-white shadow-sm shadow-blue-500/20 transition-all duration-300 hover:bg-teal-700 hover:shadow-md hover:shadow-blue-500/30 focus:bg-teal-700 focus:outline-hidden disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
+    >
+      <span id="quote-btn-text">{formStrings.submit}</span>
+    </button>
+  </div>
+</form>
+
+<script>
+  const form = document.getElementById('quote-form') as HTMLFormElement | null;
+  const statusDiv = document.getElementById('quote-status');
+  const submitBtn = document.getElementById('quote-submit-btn') as HTMLButtonElement | null;
+  const btnText = document.getElementById('quote-btn-text');
+
+  if (form && statusDiv && submitBtn && btnText) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      statusDiv.className = 'hidden mt-4 rounded-lg p-3 text-sm font-medium';
+      statusDiv.textContent = '';
+      submitBtn.disabled = true;
+      btnText.textContent = 'Submitting Proposal...';
+
+      const formData = new FormData(form);
+      const payload = {
+        name: formData.get('name'),
+        company: formData.get('company'),
+        email: formData.get('email'),
+        service: formData.get('service'),
+        message: formData.get('message'),
+      };
+
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+
+        const data = await res.json();
+
+        if (res.ok && data.success) {
+          statusDiv.className = 'mt-4 rounded-lg p-3 text-sm font-medium bg-teal-500/10 text-teal-800 border border-teal-500/20';
+          statusDiv.textContent = data.message;
+          form.reset();
+        } else {
+          statusDiv.className = 'mt-4 rounded-lg p-3 text-sm font-medium bg-red-500/10 text-red-700 border border-red-500/20';
+          statusDiv.textContent = data.error || 'Failed to submit proposal request. Please try again.';
+        }
+      } catch (err) {
+        statusDiv.className = 'mt-4 rounded-lg p-3 text-sm font-medium bg-red-500/10 text-red-700 border border-red-500/20';
+        statusDiv.textContent = 'An error occurred. Please contact us directly at contact@wellbit.in.';
+      } finally {
+        submitBtn.disabled = false;
+        btnText.textContent = 'Request Proposal';
+      }
+    });
+  }
+</script>

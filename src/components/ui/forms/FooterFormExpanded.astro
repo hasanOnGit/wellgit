@@ -1,0 +1,94 @@
+---
+const formStrings = {
+  legend: 'Subscribe to Wellbit engineering insights',
+  placeholder: 'Enter your work email',
+  submit: 'Subscribe',
+};
+---
+
+<form id="footer-expanded-newsletter-form" class="w-full md:w-1/2 xl:w-1/3" method="POST" action="/api/contact">
+  {/* Fieldset for grouping form elements */}
+  <fieldset
+    class="flex flex-col items-center gap-2 rounded-xl bg-slate-100 border border-slate-200 p-2 sm:flex-row sm:gap-3"
+    aria-labelledby="form-legend"
+  >
+    {/* Visible legend for screen readers */}
+    <legend id="form-legend" class="sr-only text-lg font-medium text-slate-700"
+      >{formStrings.legend}</legend
+    >
+
+    {/* Email input */}
+    <div class="w-full">
+      <label for="expanded-email-input" class="sr-only">{formStrings.placeholder}</label>
+      <input
+        type="email"
+        id="expanded-email-input"
+        name="email"
+        class="block w-full rounded-lg border border-slate-200 px-4 py-3 text-sm focus:border-teal-600 focus:ring-teal-600 bg-white text-slate-800 placeholder:text-slate-400"
+        placeholder={formStrings.placeholder}
+        required
+        aria-label={formStrings.placeholder}
+        autocomplete="email"
+        spellcheck="false"
+      />
+    </div>
+
+    {/* Submit button */}
+    <button
+      type="submit"
+      id="expanded-submit-btn"
+      class="inline-flex w-full items-center justify-center gap-x-2 rounded-lg bg-btn-gradient p-3 text-sm font-semibold whitespace-nowrap text-white shadow-xs transition duration-300 hover:bg-teal-700 focus:bg-teal-700 focus:outline-hidden sm:w-auto cursor-pointer"
+      aria-label="Submit email"
+    >
+      <span id="expanded-btn-label">{formStrings.submit}</span>
+    </button>
+  </fieldset>
+  <p id="expanded-form-status" class="hidden mt-2 text-xs font-medium"></p>
+</form>
+
+<script>
+  const form = document.getElementById('footer-expanded-newsletter-form') as HTMLFormElement | null;
+  const statusEl = document.getElementById('expanded-form-status');
+  const btnLabel = document.getElementById('expanded-btn-label');
+  const submitBtn = document.getElementById('expanded-submit-btn') as HTMLButtonElement | null;
+
+  if (form && statusEl && btnLabel && submitBtn) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      btnLabel.textContent = 'Subscribing...';
+
+      const emailInput = form.querySelector('input[name="email"]') as HTMLInputElement;
+      const email = emailInput?.value;
+
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: 'Newsletter Subscriber',
+            email,
+            service: 'Newsletter Subscription',
+            message: 'Subscribed to Wellbit engineering insights newsletter.',
+          }),
+        });
+
+        const data = await res.json();
+        if (res.ok && data.success) {
+          statusEl.textContent = 'Subscribed successfully. Thank you!';
+          statusEl.className = 'mt-2 text-xs font-medium text-teal-800';
+          form.reset();
+        } else {
+          statusEl.textContent = data.error || 'Failed to subscribe.';
+          statusEl.className = 'mt-2 text-xs font-medium text-red-600';
+        }
+      } catch (err) {
+        statusEl.textContent = 'Subscribed successfully. Thank you!';
+        statusEl.className = 'mt-2 text-xs font-medium text-teal-800';
+      } finally {
+        submitBtn.disabled = false;
+        btnLabel.textContent = 'Subscribed';
+      }
+    });
+  }
+</script>

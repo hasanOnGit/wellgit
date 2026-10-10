@@ -1,0 +1,35 @@
+---
+import Icon from '@ui/icons/Icon.astro';
+const { company, email, secondaryEmail, website, location } = Astro.props;
+---
+
+<div>
+  <h3 class="font-semibold text-slate-700">Contact & Inquiries</h3>
+  <ul class="mt-3 space-y-2 text-sm text-slate-600">
+    <li class="font-medium text-slate-800">{company || 'Wellbit Technologies'}</li>
+    <li>{location || 'Global Engineering & Client Delivery'}</li>
+    <li class="flex items-center gap-x-2">
+      <Icon name="email" class="size-4 shrink-0 text-teal-700" />
+      <a
+        href={`mailto:${email || 'contact@wellbit.in'}`}
+        class="transition-colors duration-300 hover:text-teal-800">{email || 'contact@wellbit.in'}</a
+      >
+    </li>
+    {secondaryEmail && (
+      <li class="flex items-center gap-x-2">
+        <Icon name="email" class="size-4 shrink-0 text-slate-400" />
+        <a
+          href={`mailto:${secondaryEmail}`}
+          class="transition-colors duration-300 hover:text-teal-800 text-xs text-slate-500">{secondaryEmail}</a
+        >
+      </li>
+    )}
+    <li class="flex items-center gap-x-2">
+      <Icon name="world" class="size-4 shrink-0 text-teal-700" />
+      <a
+        href="https://wellbit.in"
+        class="transition-colors duration-300 hover:text-teal-800">{website || 'wellbit.in'}</a
+      >
+    </li>
+  </ul>
+</div>

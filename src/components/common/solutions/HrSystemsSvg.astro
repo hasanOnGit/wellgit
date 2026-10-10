@@ -1,0 +1,134 @@
+---
+// Interactive SVG Architectural Diagram for HR & Internal Management Systems
+---
+
+<svg
+  viewBox="0 0 600 400"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  class="w-full h-auto select-none"
+  aria-label="HR and Internal Management Systems Architecture Diagram"
+>
+  <defs>
+    <linearGradient id="hrCardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#f8fbff" />
+    </linearGradient>
+    <linearGradient id="hrCoreGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f1f7ff" />
+      <stop offset="100%" stop-color="#eaf3ff" />
+    </linearGradient>
+    <linearGradient id="hrShieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1768E8" />
+      <stop offset="100%" stop-color="#1057CC" />
+    </linearGradient>
+    <filter id="hrDropShadow" x="-10%" y="-10%" width="120%" height="125%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0b1730" flood-opacity="0.06" />
+    </filter>
+  </defs>
+
+  {/* Background Pattern Grid */}
+  <pattern id="hrGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+    <circle cx="2" cy="2" r="1" fill="#d7e5f7" opacity="0.6" />
+  </pattern>
+  <rect width="600" height="400" rx="16" fill="#f8fbff" />
+  <rect width="600" height="400" rx="16" fill="url(#hrGrid)" />
+
+  {/* Interconnecting Lines */}
+  <path d="M150 110 H 200" stroke="#1768E8" stroke-width="2" />
+  <path d="M150 200 H 200" stroke="#1768E8" stroke-width="2" />
+  <path d="M150 290 H 200" stroke="#b9d9ff" stroke-width="2" stroke-dasharray="3 3" />
+  <path d="M410 160 H 450" stroke="#1768E8" stroke-width="2" />
+  <path d="M410 260 H 450" stroke="#10b981" stroke-width="2" />
+
+  {/* LEFT COLUMN: Role-Based Access Hierarchy (RBAC) */}
+  {/* Level 1: Employee Self-Service */}
+  <g filter="url(#hrDropShadow)">
+    <rect x="25" y="75" width="125" height="70" rx="10" fill="url(#hrCardGrad)" stroke="#d7e5f7" stroke-width="1.5" />
+    <rect x="37" y="87" width="22" height="22" rx="6" fill="#e4f1ff" />
+    <circle cx="48" cy="94" r="3.5" stroke="#1768E8" stroke-width="1.4" />
+    <path d="M42 104 C42 101.5 44.5 100 48 100 C51.5 100 54 101.5 54 104" stroke="#1768E8" stroke-width="1.4" />
+    <text x="67" y="97" font-family="'DM Sans', sans-serif" font-size="11" font-weight="700" fill="#0b1730">Employee Role</text>
+    <text x="37" y="125" font-family="'Work Sans', sans-serif" font-size="8.5" fill="#52647d">Leaves, Claims & Portal</text>
+    <circle cx="138" cy="85" r="3" fill="#10b981" />
+  </g>
+
+  {/* Level 2: Manager Level */}
+  <g filter="url(#hrDropShadow)">
+    <rect x="25" y="165" width="125" height="70" rx="10" fill="url(#hrCardGrad)" stroke="#d7e5f7" stroke-width="1.5" />
+    <rect x="37" y="177" width="22" height="22" rx="6" fill="#e4f1ff" />
+    <path d="M43 192 L48 183 L53 192 Z" stroke="#1768E8" stroke-width="1.4" stroke-linejoin="round" />
+    <text x="67" y="187" font-family="'DM Sans', sans-serif" font-size="11" font-weight="700" fill="#0b1730">Manager Role</text>
+    <text x="37" y="215" font-family="'Work Sans', sans-serif" font-size="8.5" fill="#52647d">Tier-1 Team Approvals</text>
+    <circle cx="138" cy="175" r="3" fill="#10b981" />
+  </g>
+
+  {/* Level 3: HR & Super Admin */}
+  <g filter="url(#hrDropShadow)">
+    <rect x="25" y="255" width="125" height="70" rx="10" fill="url(#hrCardGrad)" stroke="#d7e5f7" stroke-width="1.5" />
+    <rect x="37" y="267" width="22" height="22" rx="6" fill="#1768E8" />
+    <path d="M43 277 L48 272 L53 277 M48 272 V282" stroke="#ffffff" stroke-width="1.4" stroke-linecap="round" />
+    <text x="67" y="277" font-family="'DM Sans', sans-serif" font-size="11" font-weight="700" fill="#0b1730">Admin & HR</text>
+    <text x="37" y="305" font-family="'Work Sans', sans-serif" font-size="8.5" fill="#52647d">Policy & Org Directory</text>
+    <circle cx="138" cy="265" r="3" fill="#10b981" />
+  </g>
+
+  {/* CENTER CONTAINER: Dynamic Approval Hierarchy Engine */}
+  <g filter="url(#hrDropShadow)">
+    <rect x="190" y="55" width="230" height="290" rx="16" fill="url(#hrCoreGrad)" stroke="#b9d9ff" stroke-width="2" />
+
+    {/* Header */}
+    <rect x="205" y="70" width="200" height="26" rx="13" fill="#ffffff" stroke="#d7e5f7" stroke-width="1" />
+    <circle cx="217" cy="83" r="4" fill="#1768E8" />
+    <text x="229" y="87" font-family="'DM Sans', sans-serif" font-size="9.5" font-weight="700" fill="#0b1730">APPROVAL ROUTING ENGINE</text>
+
+    {/* Stage 1: Request Initiation */}
+    <rect x="205" y="110" width="200" height="48" rx="8" fill="#ffffff" stroke="#d7e5f7" stroke-width="1" />
+    <text x="218" y="127" font-family="'DM Sans', sans-serif" font-size="10" font-weight="700" fill="#1768E8">1. Submission & Policy Check</text>
+    <text x="218" y="142" font-family="'Work Sans', sans-serif" font-size="8.5" fill="#52647d">Automated quota & balance validation</text>
+
+    {/* Connector Arrow */}
+    <path d="M305 158 V 170" stroke="#1768E8" stroke-width="1.5" stroke-linecap="round" />
+    <polygon points="302,168 305,173 308,168" fill="#1768E8" />
+
+    {/* Stage 2: Multi-Tier Escalation */}
+    <rect x="205" y="174" width="200" height="52" rx="8" fill="#ffffff" stroke="#d7e5f7" stroke-width="1" />
+    <text x="218" y="191" font-family="'DM Sans', sans-serif" font-size="10" font-weight="700" fill="#0b1730">2. Hierarchical Escalation</text>
+    <text x="218" y="206" font-family="'Work Sans', sans-serif" font-size="8.5" fill="#52647d">Lead ➔ Manager ➔ Finance / VP</text>
+    <text x="218" y="218" font-family="'Work Sans', sans-serif" font-size="8.5" font-weight="600" fill="#10b981">Auto-escalate on SLA expiry</text>
+
+    {/* Connector Arrow */}
+    <path d="M305 226 V 238" stroke="#1768E8" stroke-width="1.5" stroke-linecap="round" />
+    <polygon points="302,236 305,241 308,236" fill="#1768E8" />
+
+    {/* Stage 3: Execution & Cryptographic Hash */}
+    <rect x="205" y="242" width="200" height="48" rx="8" fill="#ffffff" stroke="#1768E8" stroke-width="1.2" />
+    <text x="218" y="259" font-family="'DM Sans', sans-serif" font-size="10" font-weight="700" fill="#10b981">3. Immutable Sign-Off</text>
+    <text x="218" y="274" font-family="'Work Sans', sans-serif" font-size="8.5" fill="#52647d">Audit hash generated & stored</text>
+
+    {/* Footer status chip */}
+    <rect x="220" y="304" width="170" height="22" rx="6" fill="#1768E8" />
+    <text x="305" y="318" text-anchor="middle" font-family="'Work Sans', sans-serif" font-size="8.5" font-weight="600" fill="#ffffff">SSO / SAML 2.0 • Active</text>
+  </g>
+
+  {/* RIGHT COLUMN: Governance & Audit Trail */}
+  {/* Box 1: Immutable Audit Trail */}
+  <g filter="url(#hrDropShadow)">
+    <rect x="440" y="115" width="135" height="85" rx="10" fill="url(#hrCardGrad)" stroke="#d7e5f7" stroke-width="1.5" />
+    <rect x="452" y="127" width="22" height="22" rx="6" fill="#e4f1ff" />
+    <path d="M457 138 H 469 M457 142 H 465" stroke="#1768E8" stroke-width="1.4" stroke-linecap="round" />
+    <text x="480" y="137" font-family="'DM Sans', sans-serif" font-size="10.5" font-weight="700" fill="#0b1730">Audit Trail</text>
+    <text x="452" y="165" font-family="'Work Sans', sans-serif" font-size="8.5" fill="#52647d">Tamper-Proof Logs</text>
+    <text x="452" y="179" font-family="'Work Sans', sans-serif" font-size="8.5" font-weight="600" fill="#10b981">100% Traceable</text>
+  </g>
+
+  {/* Box 2: Secure Database */}
+  <g filter="url(#hrDropShadow)">
+    <rect x="440" y="220" width="135" height="85" rx="10" fill="url(#hrCardGrad)" stroke="#a7f3d0" stroke-width="1.5" />
+    <rect x="452" y="232" width="22" height="22" rx="6" fill="#10b981" />
+    <path d="M457 243 L461 247 L469 239" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="480" y="242" font-family="'DM Sans', sans-serif" font-size="10.5" font-weight="700" fill="#065f46">Security Pass</text>
+    <text x="452" y="270" font-family="'Work Sans', sans-serif" font-size="8.5" fill="#047857">AES-256 Encryption</text>
+    <text x="452" y="284" font-family="'Work Sans', sans-serif" font-size="8.5" font-weight="600" fill="#059669">Zero-Trust Protected</text>
+  </g>
+</svg>

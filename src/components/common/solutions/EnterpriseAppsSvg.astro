@@ -1,0 +1,124 @@
+---
+// Interactive SVG Architectural Diagram for Enterprise Web Applications
+---
+
+<svg
+  viewBox="0 0 600 400"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  class="w-full h-auto select-none"
+  aria-label="Enterprise Web Applications Architecture Diagram"
+>
+  <defs>
+    <linearGradient id="webCardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#f8fbff" />
+    </linearGradient>
+    <linearGradient id="webCoreGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f1f7ff" />
+      <stop offset="100%" stop-color="#eaf3ff" />
+    </linearGradient>
+    <filter id="webDropShadow" x="-10%" y="-10%" width="120%" height="125%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0b1730" flood-opacity="0.06" />
+    </filter>
+  </defs>
+
+  {/* Background Pattern Grid */}
+  <pattern id="webGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+    <circle cx="2" cy="2" r="1" fill="#d7e5f7" opacity="0.6" />
+  </pattern>
+  <rect width="600" height="400" rx="16" fill="#f8fbff" />
+  <rect width="600" height="400" rx="16" fill="url(#webGrid)" />
+
+  {/* Vertical Bus Connectors */}
+  <path d="M110 115 V 155" stroke="#b9d9ff" stroke-width="2" stroke-dasharray="3 3" />
+  <path d="M300 115 V 155" stroke="#1768E8" stroke-width="2" />
+  <path d="M490 115 V 155" stroke="#b9d9ff" stroke-width="2" stroke-dasharray="3 3" />
+
+  <path d="M300 280 V 315" stroke="#1768E8" stroke-width="2" />
+
+  {/* LAYER 1: High-Velocity Frontends (Top) */}
+  <g filter="url(#webDropShadow)">
+    {/* Web Client */}
+    <rect x="40" y="50" width="140" height="65" rx="10" fill="url(#webCardGrad)" stroke="#d7e5f7" stroke-width="1.5" />
+    <rect x="52" y="62" width="22" height="22" rx="6" fill="#e4f1ff" />
+    <rect x="56" y="66" width="14" height="10" rx="2" stroke="#1768E8" stroke-width="1.4" />
+    <line x1="56" y1="78" x2="70" y2="78" stroke="#1768E8" stroke-width="1.4" />
+    <text x="82" y="73" font-family="'DM Sans', sans-serif" font-size="11" font-weight="700" fill="#0b1730">React & Astro</text>
+    <text x="82" y="86" font-family="'Work Sans', sans-serif" font-size="9" fill="#1768E8">Sub-second SSR</text>
+    <text x="52" y="103" font-family="'Work Sans', sans-serif" font-size="8.5" fill="#52647d">Desktop & High DPI</text>
+  </g>
+
+  <g filter="url(#webDropShadow)">
+    {/* Enterprise Portal (Center Primary) */}
+    <rect x="210" y="42" width="180" height="73" rx="12" fill="url(#webCardGrad)" stroke="#1768E8" stroke-width="1.8" />
+    <rect x="224" y="55" width="24" height="24" rx="7" fill="#1768E8" />
+    <path d="M230 67 L234 71 L242 63" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="256" y="67" font-family="'DM Sans', sans-serif" font-size="12" font-weight="700" fill="#0b1730">Next.js Platform</text>
+    <text x="256" y="81" font-family="'Work Sans', sans-serif" font-size="9.5" font-weight="600" fill="#10b981">● Live Telemetry</text>
+    <text x="224" y="103" font-family="'Work Sans', sans-serif" font-size="9" fill="#52647d">Multi-tenant role-based workspace</text>
+  </g>
+
+  <g filter="url(#webDropShadow)">
+    {/* Mobile Client */}
+    <rect x="420" y="50" width="140" height="65" rx="10" fill="url(#webCardGrad)" stroke="#d7e5f7" stroke-width="1.5" />
+    <rect x="432" y="62" width="22" height="22" rx="6" fill="#e4f1ff" />
+    <rect x="438" y="66" width="10" height="14" rx="2" stroke="#1768E8" stroke-width="1.4" />
+    <circle cx="443" cy="77" r="1" fill="#1768E8" />
+    <text x="462" y="73" font-family="'DM Sans', sans-serif" font-size="11" font-weight="700" fill="#0b1730">PWA & Mobile</text>
+    <text x="462" y="86" font-family="'Work Sans', sans-serif" font-size="9" fill="#1768E8">Offline caching</text>
+    <text x="432" y="103" font-family="'Work Sans', sans-serif" font-size="8.5" fill="#52647d">Responsive layouts</text>
+  </g>
+
+  {/* LAYER 2: Application Services Layer (Middle Container) */}
+  <g filter="url(#webDropShadow)">
+    <rect x="40" y="155" width="520" height="125" rx="14" fill="url(#webCoreGrad)" stroke="#b9d9ff" stroke-width="1.5" />
+
+    {/* Section Badge */}
+    <rect x="55" y="168" width="180" height="22" rx="6" fill="#ffffff" stroke="#d7e5f7" stroke-width="1" />
+    <text x="65" y="183" font-family="'DM Sans', sans-serif" font-size="9.5" font-weight="700" fill="#0b1730">SECURE API & BACKEND SERVICES</text>
+
+    {/* Metric Badge */}
+    <rect x="420" y="168" width="125" height="22" rx="6" fill="#1768E8" />
+    <text x="482" y="182" text-anchor="middle" font-family="'Work Sans', sans-serif" font-size="9" font-weight="600" fill="#ffffff">99.99% Availability</text>
+
+    {/* Subservice 1: Typed Gateway */}
+    <rect x="55" y="200" width="150" height="65" rx="8" fill="#ffffff" stroke="#d7e5f7" stroke-width="1" />
+    <text x="68" y="218" font-family="'DM Sans', sans-serif" font-size="10.5" font-weight="700" fill="#1768E8">Typed API Gateway</text>
+    <text x="68" y="233" font-family="'Work Sans', sans-serif" font-size="9" fill="#0b1730">FastAPI & Node.js</text>
+    <text x="68" y="248" font-family="'Work Sans', sans-serif" font-size="8.5" fill="#52647d">JWT, RBAC & Rate limits</text>
+
+    {/* Subservice 2: Microservices / Modular Core */}
+    <rect x="225" y="200" width="150" height="65" rx="8" fill="#ffffff" stroke="#d7e5f7" stroke-width="1" />
+    <text x="238" y="218" font-family="'DM Sans', sans-serif" font-size="10.5" font-weight="700" fill="#1768E8">Modular Core Engine</text>
+    <text x="238" y="233" font-family="'Work Sans', sans-serif" font-size="9" fill="#0b1730">Event-Driven Services</text>
+    <text x="238" y="248" font-family="'Work Sans', sans-serif" font-size="8.5" fill="#52647d">Zero Technical Debt</text>
+
+    {/* Subservice 3: Async Queue */}
+    <rect x="395" y="200" width="150" height="65" rx="8" fill="#ffffff" stroke="#d7e5f7" stroke-width="1" />
+    <text x="408" y="218" font-family="'DM Sans', sans-serif" font-size="10.5" font-weight="700" fill="#1768E8">Async Worker Queue</text>
+    <text x="408" y="233" font-family="'Work Sans', sans-serif" font-size="9" fill="#0b1730">Redis & BullMQ</text>
+    <text x="408" y="248" font-family="'Work Sans', sans-serif" font-size="8.5" fill="#52647d">Background batch jobs</text>
+  </g>
+
+  {/* LAYER 3: Resilient Data & Cloud Storage (Bottom) */}
+  <g filter="url(#webDropShadow)">
+    {/* PostgreSQL DB */}
+    <rect x="60" y="315" width="220" height="60" rx="10" fill="url(#webCardGrad)" stroke="#d7e5f7" stroke-width="1.5" />
+    <rect x="72" y="325" width="24" height="24" rx="6" fill="#e4f1ff" />
+    <ellipse cx="84" cy="332" rx="7" ry="3" stroke="#1768E8" stroke-width="1.4" />
+    <path d="M77 332 V342 C77 344 80 346 84 346 C88 346 91 344 91 342 V332" stroke="#1768E8" stroke-width="1.4" />
+    <text x="105" y="337" font-family="'DM Sans', sans-serif" font-size="11" font-weight="700" fill="#0b1730">PostgreSQL High-Availability</text>
+    <text x="105" y="352" font-family="'Work Sans', sans-serif" font-size="9" fill="#52647d">Primary + Replicas • Auto Backups</text>
+  </g>
+
+  <g filter="url(#webDropShadow)">
+    {/* Cloud Infra / Docker */}
+    <rect x="320" y="315" width="220" height="60" rx="10" fill="url(#webCardGrad)" stroke="#d7e5f7" stroke-width="1.5" />
+    <rect x="332" y="325" width="24" height="24" rx="6" fill="#e4f1ff" />
+    <rect x="336" y="332" width="16" height="12" rx="2" stroke="#1768E8" stroke-width="1.4" />
+    <path d="M336 337 H352" stroke="#1768E8" stroke-width="1.2" />
+    <text x="365" y="337" font-family="'DM Sans', sans-serif" font-size="11" font-weight="700" fill="#0b1730">Docker & Kubernetes</text>
+    <text x="365" y="352" font-family="'Work Sans', sans-serif" font-size="9" fill="#52647d">AWS / GCP • Multi-Region Scaling</text>
+  </g>
+</svg>

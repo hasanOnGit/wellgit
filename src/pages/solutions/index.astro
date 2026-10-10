@@ -1,0 +1,484 @@
+---
+export const prerender = true;
+import BaseLayout from '@layout/BaseLayout.astro';
+import Icon from '@ui/icons/Icon.astro';
+import Button from '@ui/Button.astro';
+import type { WithContext, Thing } from 'schema-dts';
+
+import AiWorkflowsSvg from '@common/solutions/AiWorkflowsSvg.astro';
+import EnterpriseAppsSvg from '@common/solutions/EnterpriseAppsSvg.astro';
+import CrmOperationsSvg from '@common/solutions/CrmOperationsSvg.astro';
+import HrSystemsSvg from '@common/solutions/HrSystemsSvg.astro';
+
+const seo = {
+  title: 'Enterprise & AI Solutions | Wellbit Technologies',
+  description:
+    'Explore Wellbit Technologies solutions: AI-powered business workflows, enterprise web applications, CRM operations platforms, and internal HR management systems.',
+};
+
+const schema: WithContext<Thing> = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  inLanguage: 'en-US',
+  '@id': Astro.url.href,
+  url: Astro.url.href,
+  name: 'Wellbit Technologies Solutions',
+  description:
+    'Tailored software engineering and practical AI solutions designed for enterprise scalability, operational efficiency, and long-term maintainability.',
+  isPartOf: {
+    '@type': 'WebSite',
+    url: `${Astro.site}`,
+    name: 'Wellbit Technologies',
+  },
+};
+
+const solutions = [
+  {
+    id: 'ai-workflows',
+    badge: 'INTELLIGENT AUTOMATION',
+    title: 'AI-Powered Business Workflows',
+    headline: 'Deterministic, Safe Agent Pipelines for Core Operations',
+    description:
+      'We design and deploy practical AI workflows that eliminate repetitive cognitive friction and manual bottlenecks. From multi-agent task execution to structured document intelligence and contextual knowledge retrieval, our AI systems are engineered with strict verification boundaries and human oversight.',
+    features: [
+      {
+        title: 'Autonomous Process Agents',
+        description: 'Multi-step agent loops equipped with secure API tools, structured validation gates, and fallback logic.',
+      },
+      {
+        title: 'Intelligent Document Processing (IDP)',
+        description: 'Automated extraction, classification, and validation from invoices, contracts, forms, and PDFs.',
+      },
+      {
+        title: 'Enterprise RAG & Semantic Search',
+        description: 'Contextual knowledge retrieval over proprietary databases using hybrid search and reranking.',
+      },
+      {
+        title: 'Human-in-the-Loop Safeguards',
+        description: 'Configurable confidence thresholds, exception escalation queues, and complete audit trails.',
+      },
+    ],
+    techStack: ['Python', 'FastAPI', 'LangChain / LlamaIndex', 'Vector DBs (Qdrant/pgvector)', 'OpenAI / Anthropic', 'Redis Queues'],
+    impact: 'Reduces operational turnaround from hours to seconds while maintaining deterministic audit compliance.',
+  },
+  {
+    id: 'enterprise-apps',
+    badge: 'FULL-STACK ENGINEERING',
+    title: 'Enterprise Web Applications',
+    headline: 'High-Performance, Fault-Tolerant Digital Platforms',
+    description:
+      'Modern businesses require web applications that stay fast, responsive, and maintainable under increasing data volume and concurrent traffic. We engineer clean, typed full-stack architectures with modular codebases, resilient database modeling, and cloud-native scalability.',
+    features: [
+      {
+        title: 'High-Throughput Backend Services',
+        description: 'Typed APIs, asynchronous worker queues, and event-driven microservices engineered for high concurrency.',
+      },
+      {
+        title: 'Responsive & Accessible Frontends',
+        description: 'Built with React, Next.js, and Astro featuring instant interactions, crisp UI states, and strict a11y.',
+      },
+      {
+        title: 'Scalable Database Architecture',
+        description: 'Optimized schema design, connection pooling, and caching across PostgreSQL, MySQL, and Redis.',
+      },
+      {
+        title: 'Cloud-Native Infrastructure',
+        description: 'Fully containerized deployments with Docker, Kubernetes, CI/CD automated test gates, and continuous monitoring.',
+      },
+    ],
+    techStack: ['TypeScript', 'Node.js', 'React', 'Next.js', 'PostgreSQL', 'Docker / K8s', 'Tailwind CSS'],
+    impact: 'Sub-second page response times, 99.9% architectural availability, and zero vendor lock-in codebases.',
+  },
+  {
+    id: 'crm-operations',
+    badge: 'OPERATIONS TELEMETRY',
+    title: 'CRM & Customer Operations Platforms',
+    headline: 'Unified Client Lifecycles Without SaaS Overhead',
+    description:
+      'Generic off-the-shelf CRMs often introduce unnecessary complexity, rigid licensing costs, and disconnected data silos. Wellbit builds bespoke customer operations systems perfectly tailored to your exact business logic, customer journeys, pipeline stages, and reporting telemetry.',
+    features: [
+      {
+        title: 'Complete Lifecycle Tracking',
+        description: 'Single source of truth tracking accounts, interactions, deals, contracts, and communication histories.',
+      },
+      {
+        title: 'Automated Pipeline Routing',
+        description: 'Rule-based lead qualification, stage transition automation, task dispatch, and SLA reminders.',
+      },
+      {
+        title: 'Real-Time Operational Dashboards',
+        description: 'Live performance telemetry, conversion funnels, rep productivity metrics, and custom data exports.',
+      },
+      {
+        title: 'Omnichannel & System Sync',
+        description: 'Bidirectional sync with payment processors, transactional email, messaging gateways, and ERP tools.',
+      },
+    ],
+    techStack: ['TypeScript', 'Tailwind UI', 'WebSockets', 'REST / GraphQL', 'PostgreSQL', 'Redis', 'Analytics Engines'],
+    impact: 'Eliminates repetitive data re-entry, shortens deal velocity, and provides executive visibility into operational metrics.',
+  },
+  {
+    id: 'hr-systems',
+    badge: 'ORGANIZATIONAL TOOLING',
+    title: 'HR & Internal Management Systems',
+    headline: 'Secure Portals, Dynamic Hierarchies & Operational Control',
+    description:
+      'Empower internal teams and streamline administrative workflows with custom enterprise management portals. We engineer secure employee directories, multi-tier approval hierarchies, asset tracking, and compliance audit logs built around your organizational structure.',
+    features: [
+      {
+        title: 'Granular Role-Based Access (RBAC)',
+        description: 'Fine-grained permissions and authentication isolating sensitive payroll, HR, and managerial records.',
+      },
+      {
+        title: 'Multi-Level Approval Hierarchies',
+        description: 'Dynamic routing for leave requests, expense disbursements, requisitions, and contract sign-offs.',
+      },
+      {
+        title: 'Employee Self-Service Portals',
+        description: 'Centralized hubs for onboarding, asset allocation, attendance, documentation, and company announcements.',
+      },
+      {
+        title: 'Immutable Audit Logging',
+        description: 'Detailed compliance trails recording administrative edits, permission changes, and security events.',
+      },
+    ],
+    techStack: ['OAuth2 / SSO', 'PostgreSQL', 'TypeScript', 'Node.js', 'React', 'Encrypted Storage', 'Audit Sinks'],
+    impact: 'Centralizes organizational knowledge, automates administrative bottlenecks, and protects corporate data.',
+  },
+];
+
+const comparisonCriteria = [
+  {
+    aspect: 'Primary Focus',
+    ai: 'Cognitive automation, RAG & agent task execution',
+    web: 'High-concurrency user platforms & API backends',
+    crm: 'Client lifecycle, pipeline tracking & telemetry',
+    hr: 'Internal teams, approval hierarchies & RBAC portals',
+  },
+  {
+    aspect: 'Core Tech Stack',
+    ai: 'Python, FastAPI, Vector DBs, LLM APIs',
+    web: 'TypeScript, Node.js, React/Next.js, Postgres',
+    crm: 'Full-stack TypeScript, WebSockets, Redis',
+    hr: 'OAuth2/SSO, Role-Based Access, Audit logging',
+  },
+  {
+    aspect: 'Integration Scope',
+    ai: 'Document repositories, internal knowledge & tools',
+    web: 'Payment gateways, third-party APIs, cloud queues',
+    crm: 'Communication channels, ERPs, telemetry sinks',
+    hr: 'Directory services, payroll systems, cloud storage',
+  },
+  {
+    aspect: 'Code Ownership',
+    ai: '100% Client Ownership (Models, Prompts & Code)',
+    web: '100% Client Ownership (Full Repository Transfer)',
+    crm: '100% Client Ownership (No per-seat SaaS tax)',
+    hr: '100% Client Ownership (Self-hosted or Private Cloud)',
+  },
+];
+---
+
+<BaseLayout seo={seo} schema={schema}>
+  {/* Hero Section */}
+  <section class="relative isolate overflow-hidden bg-hero-gradient pt-40 pb-16 md:pt-48 md:pb-24 border-b border-slate-200/80">
+    <div class="mx-auto max-w-[85rem] px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-3xl text-center">
+        <span
+          class="inline-flex items-center gap-1.5 rounded-full border border-teal-300 bg-teal-100/70 px-4 py-1.5 text-xs font-semibold text-teal-800 tracking-wide uppercase"
+        >
+          <Icon name="cog" class="size-3.5 text-teal-700" />
+          Enterprise & AI Solutions
+        </span>
+        <h1 class="mt-6 text-4xl font-bold tracking-tight text-slate-800 sm:text-5xl md:text-6xl text-balance">
+          Tailored Technology Solutions Built for Real-World Impact
+        </h1>
+        <p class="mt-6 text-lg font-medium text-slate-600 sm:text-xl leading-relaxed text-pretty">
+          From practical AI workflows to high-concurrency enterprise web platforms, CRM operations, and internal tools—we engineer dependable software built around your workflows and owned entirely by your business.
+        </p>
+
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+          <Button
+            href="#ai-workflows"
+            variant="primary"
+            className="py-3 px-6 text-sm font-semibold shadow-sm"
+          >
+            Explore Solution Pillars
+          </Button>
+          <Button
+            href="/contact"
+            variant="secondary"
+            className="py-3 px-6 text-sm font-semibold border-slate-300 hover:border-teal-400"
+          >
+            Discuss Your Requirements
+          </Button>
+        </div>
+      </div>
+
+      {/* Interactive Quick-Nav Pills */}
+      <div class="mt-14 max-w-4xl mx-auto">
+        <div class="p-2 rounded-2xl bg-white/80 backdrop-blur-md border border-slate-200/90 shadow-sm grid grid-cols-2 md:grid-cols-4 gap-2">
+          <a
+            href="#ai-workflows"
+            class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-slate-700 hover:text-teal-700 hover:bg-slate-100 transition text-center"
+          >
+            <Icon name="brain" class="size-4 text-teal-600 shrink-0" />
+            <span>AI Workflows</span>
+          </a>
+          <a
+            href="#enterprise-apps"
+            class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-slate-700 hover:text-teal-700 hover:bg-slate-100 transition text-center"
+          >
+            <Icon name="puzzle" class="size-4 text-teal-600 shrink-0" />
+            <span>Web Applications</span>
+          </a>
+          <a
+            href="#crm-operations"
+            class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-slate-700 hover:text-teal-700 hover:bg-slate-100 transition text-center"
+          >
+            <Icon name="presentationChart" class="size-4 text-teal-600 shrink-0" />
+            <span>CRM & Operations</span>
+          </a>
+          <a
+            href="#hr-systems"
+            class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-slate-700 hover:text-teal-700 hover:bg-slate-100 transition text-center"
+          >
+            <Icon name="portfolio" class="size-4 text-teal-600 shrink-0" />
+            <span>HR & Portals</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Solutions Deep-Dive Sections */}
+  <section class="py-20 md:py-28 bg-white">
+    <div class="mx-auto max-w-[85rem] px-4 sm:px-6 lg:px-8 space-y-24 md:space-y-36">
+      {
+        solutions.map((item, index) => (
+          <div
+            id={item.id}
+            class="scroll-mt-28 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center"
+          >
+            {/* Text & Feature Details */}
+            <div
+              class={`lg:col-span-6 space-y-6 ${
+                index % 2 === 1 ? 'lg:order-2' : 'lg:order-1'
+              }`}
+            >
+              <div class="inline-flex items-center gap-2 rounded-full border border-teal-200 bg-teal-50 px-3.5 py-1 text-xs font-semibold text-teal-800 uppercase tracking-wider">
+                <span class="size-1.5 rounded-full bg-teal-600"></span>
+                {item.badge}
+              </div>
+
+              <div>
+                <h2 class="text-3xl font-bold tracking-tight text-slate-800 sm:text-4xl">
+                  {item.title}
+                </h2>
+                <p class="mt-2 text-lg font-medium text-teal-700">
+                  {item.headline}
+                </p>
+                <p class="mt-4 text-slate-600 leading-relaxed text-sm sm:text-base">
+                  {item.description}
+                </p>
+              </div>
+
+              {/* 4 Feature Items */}
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                {item.features.map(feat => (
+                  <div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50/50 hover:bg-slate-50 hover:border-teal-300 transition">
+                    <div class="flex items-start gap-2.5">
+                      <Icon name="checkCircle" class="size-4 text-teal-600 shrink-0 mt-0.5" />
+                      <div>
+                        <h4 class="text-sm font-semibold text-slate-800">
+                          {feat.title}
+                        </h4>
+                        <p class="mt-1 text-xs text-slate-500 leading-normal">
+                          {feat.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Tech Badges */}
+              <div class="pt-2">
+                <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
+                  Key Technologies & Frameworks:
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  {item.techStack.map(tech => (
+                    <span class="inline-flex items-center rounded-md bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-700 border border-slate-200">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Impact Callout */}
+              <div class="rounded-xl border border-teal-200 bg-teal-50/80 p-4 text-xs sm:text-sm text-slate-700 flex items-start gap-3">
+                <Icon name="lightbulb" class="size-5 text-teal-700 shrink-0 mt-0.5" />
+                <div>
+                  <strong class="font-semibold text-slate-800">Measurable Value:</strong> {item.impact}
+                </div>
+              </div>
+            </div>
+
+            {/* Visual Architecture Preview with SVGs */}
+            <div
+              class={`lg:col-span-6 ${
+                index % 2 === 1 ? 'lg:order-1' : 'lg:order-2'
+              }`}
+            >
+              <div class="relative rounded-3xl border border-slate-200 bg-section-gradient p-3 sm:p-5 shadow-sm group hover:border-teal-400 hover:shadow-md transition duration-500">
+                <div class="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-2xs">
+                  {item.id === 'ai-workflows' && <AiWorkflowsSvg />}
+                  {item.id === 'enterprise-apps' && <EnterpriseAppsSvg />}
+                  {item.id === 'crm-operations' && <CrmOperationsSvg />}
+                  {item.id === 'hr-systems' && <HrSystemsSvg />}
+                </div>
+                <div class="mt-4 flex items-center justify-between px-2 text-xs text-slate-500 font-medium">
+                  <span class="inline-flex items-center gap-1.5">
+                    <span class="size-2 rounded-full bg-teal-500 animate-pulse"></span>
+                    Interactive SVG Architecture
+                  </span>
+                  <a
+                    href="/contact"
+                    class="inline-flex items-center gap-1 font-semibold text-teal-600 hover:text-teal-700 transition"
+                  >
+                    Scope This Solution
+                    <Icon name="chevronRight" class="size-3" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  {/* Cross-Solution Capability Comparison Matrix */}
+  <section class="py-20 bg-section-gradient border-t border-slate-200">
+    <div class="mx-auto max-w-[85rem] px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-3xl text-center mb-12">
+        <span
+          class="inline-flex items-center gap-1.5 rounded-full border border-teal-300 bg-teal-100/70 px-3.5 py-1 text-xs font-semibold text-teal-800 uppercase tracking-wide"
+        >
+          Capability Architecture
+        </span>
+        <h2 class="mt-4 text-3xl font-bold tracking-tight text-slate-800 sm:text-4xl">
+          Engineered for Enterprise Requirements
+        </h2>
+        <p class="mt-3 text-base text-slate-600">
+          Compare core parameters across our four solution disciplines. Every deployment includes 100% code ownership and full infrastructure control.
+        </p>
+      </div>
+
+      <div class="overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-xs">
+        <table class="w-full min-w-[680px] divide-y divide-slate-200 text-left text-sm">
+          <thead class="bg-slate-50 text-xs font-semibold text-slate-700 uppercase tracking-wider">
+            <tr>
+              <th scope="col" class="py-4 px-6">Capability Dimension</th>
+              <th scope="col" class="py-4 px-6 text-teal-700">AI Workflows</th>
+              <th scope="col" class="py-4 px-6 text-teal-700">Web Applications</th>
+              <th scope="col" class="py-4 px-6 text-teal-700">CRM Operations</th>
+              <th scope="col" class="py-4 px-6 text-teal-700">HR & Internal</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 font-normal text-slate-600">
+            {
+              comparisonCriteria.map((row, idx) => (
+                <tr class={idx % 2 === 0 ? 'bg-white' : 'bg-slate-50/40'}>
+                  <td class="py-4 px-6 font-semibold text-slate-800 whitespace-nowrap">
+                    {row.aspect}
+                  </td>
+                  <td class="py-4 px-6 text-xs sm:text-sm">{row.ai}</td>
+                  <td class="py-4 px-6 text-xs sm:text-sm">{row.web}</td>
+                  <td class="py-4 px-6 text-xs sm:text-sm">{row.crm}</td>
+                  <td class="py-4 px-6 text-xs sm:text-sm">{row.hr}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  {/* Why Wellbit Solutions - 4 Differentiators */}
+  <section class="py-20 bg-white border-t border-slate-200">
+    <div class="mx-auto max-w-[85rem] px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="card">
+          <div class="size-10 rounded-xl bg-teal-100 flex items-center justify-center text-teal-600 mb-4">
+            <Icon name="badge" class="size-5" />
+          </div>
+          <h3 class="text-base font-semibold text-slate-800">100% Code & IP Ownership</h3>
+          <p class="mt-2 text-xs sm:text-sm text-slate-500 leading-relaxed">
+            All repositories, documentation, deployment scripts, and artifacts belong to you with no ongoing licensing traps or lock-in.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="size-10 rounded-xl bg-teal-100 flex items-center justify-center text-teal-600 mb-4">
+            <Icon name="cog" class="size-5" />
+          </div>
+          <h3 class="text-base font-semibold text-slate-800">Disciplined Engineering</h3>
+          <p class="mt-2 text-xs sm:text-sm text-slate-500 leading-relaxed">
+            Typed languages, automated CI test suites, explicit API contracts, and modular software boundaries built to scale.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="size-10 rounded-xl bg-teal-100 flex items-center justify-center text-teal-600 mb-4">
+            <Icon name="brain" class="size-5" />
+          </div>
+          <h3 class="text-base font-semibold text-slate-800">Practical & Safe AI</h3>
+          <p class="mt-2 text-xs sm:text-sm text-slate-500 leading-relaxed">
+            We focus on measurable utility and verification boundaries. No hallucination-prone shortcuts or AI buzzwords.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="size-10 rounded-xl bg-teal-100 flex items-center justify-center text-teal-600 mb-4">
+            <Icon name="chatBubble" class="size-5" />
+          </div>
+          <h3 class="text-base font-semibold text-slate-800">Direct Senior Access</h3>
+          <p class="mt-2 text-xs sm:text-sm text-slate-500 leading-relaxed">
+            Collaborate directly with senior architects and developers who build and maintain your code with radical transparency.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Conversion CTA */}
+  <section class="py-20 bg-cta-gradient border-t border-slate-200">
+    <div class="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold tracking-tight text-slate-800 sm:text-4xl">
+        Have a Project or Operational Challenge?
+      </h2>
+      <p class="mx-auto mt-4 max-w-2xl text-base sm:text-lg text-slate-700 leading-relaxed">
+        Let's discuss your technical roadmap, evaluate your requirements, and determine the optimal engineering approach for your business.
+      </p>
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+        <Button
+          href="/contact"
+          variant="primary"
+          className="py-3 px-8 text-sm font-semibold shadow-sm"
+        >
+          Start a Project Conversation
+        </Button>
+        <Button
+          href="/downloads/license-options"
+          variant="secondary"
+          className="py-3 px-8 text-sm font-semibold bg-white border-slate-300 hover:border-teal-400"
+        >
+          Explore Delivery Models
+        </Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

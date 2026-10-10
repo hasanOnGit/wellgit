@@ -1,0 +1,35 @@
+---
+import Button from '@ui/Button.astro';
+
+// Content for the section title and subtitle
+const title = 'Have a Business Challenge Worth Solving?';
+const subTitle =
+  "Tell us what you're building, improving, or automating. Let's explore the right technical approach for your goals.";
+
+// Call-to-action configuration for the primary button
+const primaryCTA = { text: 'Start a Project Conversation', href: '/contact' };
+---
+
+<section
+  class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 md:py-14 lg:px-8 lg:py-20"
+>
+  <div class="relative overflow-hidden rounded-3xl bg-cta-gradient border border-slate-200 p-10 sm:p-16 text-center shadow-xs">
+    <div class="mx-auto max-w-3xl">
+      <h2 class="text-3xl font-bold tracking-tight text-balance text-slate-800 sm:text-4xl md:text-5xl">
+        {title}
+      </h2>
+      <p class="mx-auto mt-4 max-w-2xl text-lg/8 text-pretty text-slate-600">
+        {subTitle}
+      </p>
+      <div class="mt-8 flex justify-center">
+        <Button
+          href={primaryCTA.href}
+          variant="primary"
+          className="px-8 py-3.5 text-base font-semibold shadow-md shadow-blue-500/20"
+        >
+          {primaryCTA.text}
+        </Button>
+      </div>
+    </div>
+  </div>
+</section>

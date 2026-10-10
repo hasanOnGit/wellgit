@@ -1,0 +1,90 @@
+---
+import BaseLayout from '@layout/BaseLayout.astro';
+import Icon from '@ui/icons/Icon.astro';
+import { getCollection } from 'astro:content';
+
+const whitepapers = await getCollection('whitepapers');
+
+export const pageContent = {
+  pageTitle: 'Technical Whitepapers & Architecture Briefs',
+  actionLabel: 'Explore Details',
+};
+---
+
+<BaseLayout
+  title="Technical Whitepapers | Wellbit Technologies"
+  description="Explore technical whitepapers, architecture blueprints, and system design specifications from Wellbit Technologies."
+>
+  <section class="bg-hero-gradient">
+    <div class="mx-auto max-w-[85rem] px-4 pt-48 pb-12 sm:px-6 lg:px-8">
+    <div class="max-w-7xl">
+      <div class="mx-auto max-w-3xl lg:mx-0">
+        <h1
+          class="text-4xl text-balance text-slate-800 sm:text-5xl md:text-6xl lg:text-7xl"
+        >
+          {pageContent.pageTitle}
+        </h1>
+        <p class="mt-4 text-lg text-slate-600">
+          In-depth architectural guides, engineering frameworks, and production patterns developed by Wellbit Technologies.
+        </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section
+    class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 md:py-14 lg:px-8 lg:py-20"
+  >
+    <div class="grid grid-cols-1 sm:grid-cols-2">
+      {
+        whitepapers.map((paper, index) => {
+          const totalItems = whitepapers.length;
+          const itemsPerRow = 2;
+
+          const isLastRow =
+            Math.ceil((index + 1) / itemsPerRow) ===
+            Math.ceil(totalItems / itemsPerRow);
+
+          const isFirstInRow = index % itemsPerRow === 0;
+
+          const borderRight = isFirstInRow ? 'sm:border-r' : '';
+          const borderBottom = isLastRow ? '' : 'border-b';
+
+          return (
+            <div
+              class={`border-dashed border-slate-300 p-6 ${borderRight} ${borderBottom} flex flex-col justify-between`}
+            >
+              <div>
+                <h2 class="text-xl font-semibold text-slate-800">
+                  {paper.data.title}
+                </h2>
+                <p class="mt-4 text-slate-600 leading-relaxed text-sm md:text-base">{paper.data.description}</p>
+              </div>
+              <div class="mt-8 flex flex-wrap items-center gap-4">
+                {paper.data.readLink && (
+                  <a
+                    href={paper.data.readLink}
+                    class="group inline-flex items-center border-b-2 border-slate-400 pb-1 text-sm font-medium text-slate-700 transition-colors duration-300 hover:border-teal-600 hover:text-teal-800 focus:outline-hidden"
+                  >
+                    {pageContent.actionLabel}
+                    <Icon
+                      name="newWindow"
+                      class="ms-2 size-4 text-slate-700 transition duration-300 group-hover:text-teal-800"
+                    />
+                  </a>
+                )}
+                {paper.data.btnLink && (
+                  <a
+                    href={paper.data.btnLink}
+                    class="inline-flex items-center rounded-lg bg-btn-gradient px-4 py-2 text-sm font-semibold text-white shadow-xs transition-colors duration-300 hover:bg-teal-700 focus:outline-hidden"
+                  >
+                    {paper.data.btnTitle}
+                  </a>
+                )}
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </section>
+</BaseLayout>

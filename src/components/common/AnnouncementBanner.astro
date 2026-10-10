@@ -1,0 +1,32 @@
+---
+import Icon from '@ui/icons/Icon.astro';
+
+const text = 'Wellbit Technologies';
+const linkText = 'Custom Software, AI & Digital Solutions';
+const linkHref = '/platform';
+---
+
+<div class="flex justify-center">
+  <div class="rounded-full bg-white/90 border border-slate-200/90 shadow-xs hover:border-teal-400 hover:shadow-sm transition-all duration-300">
+    <a
+      href={linkHref}
+      class="group flex h-9 w-fit items-center justify-center gap-0 rounded-full transition duration-300"
+      aria-label=`${text} - ${linkText}`
+    >
+      <div
+        class="flex h-full w-fit items-center gap-2 rounded-full bg-btn-gradient px-3.5 shadow-xs"
+      >
+        <span class="text-xs font-semibold text-white tracking-wide">{text}</span>
+      </div>
+      <div
+        class="hidden h-full w-fit items-center justify-center gap-2 px-3.5 sm:flex"
+      >
+        <span
+          class="text-xs font-medium text-slate-700 transition duration-300 group-hover:text-teal-700"
+          >{linkText}</span
+        >
+        <Icon name="chevronRight" class="size-3.5 text-slate-400 group-hover:text-teal-700 group-hover:translate-x-0.5 transition-all duration-200" />
+      </div>
+    </a>
+  </div>
+</div>

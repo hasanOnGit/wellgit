@@ -1,0 +1,98 @@
+---
+import { Image } from 'astro:assets';
+import image_1 from '@images/toolbar.webp';
+import image_2 from '@images/graph.webp';
+import image_3 from '@images/dashboard.webp';
+
+// Content for the section title and subtitle
+const title = 'Technology Built Around Your Business';
+const subTitle =
+  'From modern software platforms to intelligent automation, we engineer practical solutions designed around your workflows, users, and long-term goals.';
+
+// Features list for displaying the key highlights
+const features = [
+  {
+    title: 'Custom Software Engineering',
+    description:
+      'Build tailored applications, reliable backend systems, and maintainable software that adapts to your business requirements.',
+    image: image_1,
+    class:
+      'content-center border-b border-dashed border-slate-200 py-5 sm:col-span-2 sm:p-5',
+    alignment: 'mx-auto mt-10 rounded-xl shadow-lg sm:w-[75%]',
+  },
+  {
+    title: 'AI Solutions & Intelligent Agents',
+    description:
+      'Integrate language models, intelligent assistants, knowledge retrieval, and AI-powered workflows into real business processes.',
+    image: image_2,
+    class: 'content-center py-5 sm:row-start-2 sm:p-5 sm:py-10',
+    alignment:
+      'ml-auto mr-auto mt-10 w-[65%] rounded-xl shadow-lg sm:ml-0 sm:w-[45%]',
+  },
+  {
+    title: 'Business Applications & Portals',
+    description:
+      'Create CRM platforms, HR portals, internal dashboards, and workflow systems that simplify everyday operations.',
+    image: image_3,
+    class:
+      'content-center border-t border-dashed border-slate-200 py-5 sm:row-span-2 sm:row-start-2 sm:border-l sm:border-t-0 sm:p-5 sm:text-right',
+    alignment: 'ml-auto mr-auto mt-10 w-[80%] rounded-xl shadow-lg sm:mr-0',
+  },
+  {
+    title: 'Cloud, APIs & Integration',
+    class: 'content-center border-t border-dashed border-slate-200 py-5 sm:p-5',
+    moreFeatures: [
+      'Connect existing systems and third-party services with dependable, secure APIs',
+      'Modernize application architecture for improved stability, maintainability, and scale',
+      'Deploy containerized cloud services with continuous delivery and automated monitoring',
+      'Design structured data models and caching pipelines for responsive data access',
+    ],
+  },
+];
+---
+
+<div class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 md:py-14 lg:px-8 lg:py-20">
+  {/* Section container for the title and subtitle */}
+  <div class="mx-auto mb-10 max-w-2xl text-center lg:mb-14">
+    <h2
+      class="text-2xl font-semibold text-balance text-slate-800 md:text-3xl md:leading-tight"
+    >
+      {title}
+    </h2>
+    <p class="mt-3 text-pretty text-slate-600">
+      {subTitle}
+    </p>
+  </div>
+
+  <div
+    class="mx-auto grid max-w-[85rem] px-4 pb-10 sm:grid-cols-2 sm:grid-rows-3 sm:px-6 lg:px-8 lg:pb-14"
+  >
+    {
+      features.map(feature => (
+        <div class={`${feature.class}`}>
+          <h3 class="text-2xl font-bold text-slate-700">{feature.title}</h3>
+
+          <p class="mt-2 text-base/6 text-slate-600">
+            <Fragment set:html={feature.description || ''} />
+          </p>
+
+          {feature.image && (
+            <Image
+              class={`${feature.alignment || ''}`}
+              src={feature.image}
+              alt={feature.title}
+            />
+          )}
+
+          {feature.moreFeatures && (
+            <ul class="mt-4 ml-4 w-4/5 list-inside list-disc space-y-2 text-base/6 text-slate-600 marker:text-teal-600">
+              {feature.moreFeatures.map(item => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          )}
+        </div>
+      ))
+    }
+  </div>
+</div>

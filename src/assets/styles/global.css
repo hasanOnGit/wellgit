@@ -1,0 +1,121 @@
+@import 'tailwindcss';
+
+/* Preline UI */
+@source '../../../node_modules/preline/dist/*.js';
+@import '../../../node_modules/preline/variants.css';
+
+/* Plugins */
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+
+@theme {
+  /* Reset default colors */
+  --color-*: initial;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-off-white: #ffffff;
+
+  /* Finalized Wellbit Icy Blue Design System Tokens */
+  --color-brand-blue: #1768e8;
+  --color-brand-hover: #1057cc;
+  --color-navy: #0b1730;
+  --color-body: #52647d;
+  --color-icy-blue: #dceeff;
+  --color-pale-blue: #f1f7ff;
+  --color-border-blue: #d7e5f7;
+  --color-sky-highlight: #b9d9ff;
+
+  /* Slate Scale (Deep Navy Headings, Refined Body, Blue-Tinted Borders) */
+  --color-slate-50: #f8fbff;
+  --color-slate-100: #f1f7ff;  /* Pale blue */
+  --color-slate-200: #d7e5f7;  /* Blue-tinted border */
+  --color-slate-300: #b9d9ff;  /* Soft sky highlight */
+  --color-slate-400: #8ba5c4;
+  --color-slate-500: #687f9d;
+  --color-slate-600: #52647d;  /* Body text */
+  --color-slate-700: #334460;
+  --color-slate-800: #0b1730;  /* Deep navy headings */
+  --color-slate-900: #071024;
+  --color-slate-950: #040916;
+
+  /* Teal Scale Mapped to Finalized Icy Blue Palette for Seamless Component Harmony */
+  --color-teal-50: #f1f7ff;   /* Pale blue */
+  --color-teal-100: #e4f1ff;  /* Soft icy blue */
+  --color-teal-200: #dceeff;  /* Icy blue */
+  --color-teal-300: #cfe5ff;  /* Soft sky blue */
+  --color-teal-400: #b9d9ff;  /* Soft sky highlight */
+  --color-teal-500: #3896f5;  /* Accent blue */
+  --color-teal-600: #1768e8;  /* Brand blue */
+  --color-teal-700: #1057cc;  /* Brand hover */
+  --color-teal-800: #0b1730;  /* Deep navy */
+  --color-teal-900: #071024;
+  --color-teal-950: #040916;
+
+  --color-blue-500: #1768e8;
+  --color-blue-600: #1057cc;
+}
+
+@theme inline {
+  --animate-scroll: scroll var(--duration, 40s) var(--direction, forwards)
+    linear infinite;
+
+  /* Typography */
+  --font-dm-sans: 'DM Sans', sans-serif;
+  --font-work-sans: 'Work Sans', sans-serif;
+
+  @keyframes scroll {
+    to {
+      transform: translate(calc(-50% - 0.5rem));
+    }
+  }
+}
+
+/* Central Gradient Utility Classes */
+@utility bg-hero-gradient {
+  background: linear-gradient(180deg, #dceeff 0%, #eaf5ff 48%, #ffffff 100%);
+}
+
+@utility bg-section-gradient {
+  background: linear-gradient(135deg, #f1f7ff 0%, #ffffff 60%, #eaf3ff 100%);
+}
+
+@utility bg-cta-gradient {
+  background: linear-gradient(135deg, #e4f1ff 0%, #cfe5ff 100%);
+}
+
+@utility bg-btn-gradient {
+  background: linear-gradient(135deg, #1768e8 0%, #3896f5 100%);
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-slate-200, #d7e5f7);
+  }
+
+  body {
+    @apply font-work-sans text-slate-600 bg-white;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  .dm-sans {
+    @apply font-dm-sans text-slate-800;
+  }
+
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@utility card {
+  @apply relative z-10 flex h-full flex-col border border-slate-200 bg-white rounded-2xl p-4 shadow-xs hover:border-teal-400 hover:shadow-md transition-all duration-300 md:p-6;
+}

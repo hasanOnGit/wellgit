@@ -1,0 +1,5 @@
+{
+  "title": "Application Monitoring & Telemetry Specification",
+  "description": "Standardized metric dictionary and Grafana dashboard layout covering HTTP latency, database connection pools, queue depths, and error rates.",
+  "url": "/contact"
+}

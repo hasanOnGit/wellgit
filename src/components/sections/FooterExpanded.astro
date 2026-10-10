@@ -1,0 +1,142 @@
+---
+import FooterFormExpanded from '@ui/forms/FooterFormExpanded.astro';
+
+// Import data for dynamic rendering
+import { featuresMenu } from '@utils/megaMenu/features';
+import { platformMenu } from '@utils/megaMenu/platform';
+import { supportMenu } from '@utils/megaMenu/support';
+
+// Props for customization
+const companyName = 'Wellbit Technologies';
+const companyDescription =
+  'Wellbit Technologies engineers custom software, autonomous AI agent pipelines, business workflow automation, and robust web applications for forward-thinking enterprises.';
+
+const contactFormDescription =
+  'Subscribe to receive technical teardowns, architecture patterns, and engineering insights.';
+
+// Dynamic date for copyright display
+const copyrightYear = new Date().getFullYear();
+
+// Tagline
+const tagline = 'Engineering Intelligence. Building Possibilities.';
+---
+
+<footer
+  class="mt-auto w-full bg-gradient-to-t from-slate-100 via-white to-white pb-10 border-t border-slate-200"
+>
+  <div class="mx-auto mt-auto w-full max-w-[85rem] px-4 pb-10 sm:px-6 lg:px-8">
+    <hr class="mb-10 border-slate-200" />
+
+    <div class="mb-10 grid grid-cols-2 gap-6 md:grid-cols-4 lg:grid-cols-5">
+      {/* Company Information */}
+      <div class="col-span-full self-start xl:col-span-2">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 focus:opacity-80 focus:outline-hidden"
+          aria-label="{companyName} Homepage"
+        >
+          <img
+            src="/logo-wellbit-dark.png"
+            alt="Wellbit Technologies"
+            class="h-8 w-auto"
+            loading="lazy"
+          />
+        </a>
+        <p class="mt-4 text-pretty text-slate-600 lg:w-5/12 xl:w-10/12 text-sm leading-relaxed">
+          {companyDescription}
+        </p>
+      </div>
+
+      {/* Services Links */}
+      <div>
+        <h3 class="font-semibold text-slate-700">Services</h3>
+        <div class="mt-3 text-sm">
+          <ul class="space-y-3">
+            {
+              featuresMenu
+                .flatMap(feature => feature.items)
+                .map(item => (
+                  <li>
+                    <a class="text-sm text-slate-600 transition hover:text-teal-700" href={item.href}>
+                      {item.title}
+                    </a>
+                  </li>
+                ))
+            }
+          </ul>
+        </div>
+      </div>
+
+      {/* Solutions Links */}
+      <div>
+        <h3 class="font-semibold text-slate-700">Solutions</h3>
+        <div class="mt-3 text-sm">
+          <ul class="space-y-3">
+            {
+              platformMenu.map(platform => (
+                <li>
+                  <a class="text-sm text-slate-600 transition hover:text-teal-700" href={platform.href}>
+                    {platform.title}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+
+      {/* Resources Links */}
+      <div>
+        <h3 class="font-semibold text-slate-700">Resources</h3>
+        <div class="mt-3 text-sm">
+          <ul class="space-y-3">
+            {
+              supportMenu
+                .flatMap(support => support.items)
+                .map(item => (
+                  <li>
+                    <a class="text-sm text-slate-600 transition hover:text-teal-700" href={item.href}>
+                      {item.title}
+                    </a>
+                  </li>
+                ))
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    {/* Divider before subscription form section */}
+    <hr class="my-10 border-slate-200" />
+
+    {/* Email Subscription Form */}
+    <div
+      class="flex w-full flex-col items-start justify-between md:flex-row md:items-center md:gap-x-5"
+    >
+      <div class="mb-5 md:mb-0 md:w-1/2">
+        <h3 class="font-semibold text-slate-700">Stay Updated with Engineering Insights</h3>
+        <p class="mt-2 text-sm text-slate-500">
+          {contactFormDescription}
+        </p>
+      </div>
+      <FooterFormExpanded />
+    </div>
+
+    {/* Divider before footer's bottom section */}
+    <hr class="mt-10 mb-5 border-slate-200" />
+
+    <div
+      class="grid gap-y-2 sm:flex sm:items-center sm:justify-between sm:gap-y-0"
+    >
+      {/* Copyright */}
+      <p class="text-sm text-slate-500">
+        &copy; {copyrightYear} {companyName}. All rights reserved.
+      </p>
+
+      {/* Tagline */}
+      <p class="text-sm font-medium text-teal-800">
+        {tagline}
+      </p>
+    </div>
+  </div>
+</footer>

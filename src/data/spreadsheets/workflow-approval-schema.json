@@ -1,0 +1,5 @@
+{
+  "title": "Multi-Tier Workflow Approval Schema",
+  "description": "State machine definition and JSON schema for business process approvals, conditional escalation triggers, and audit logging.",
+  "url": "/contact"
+}

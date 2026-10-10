@@ -1,0 +1,472 @@
+---
+export const prerender = true;
+import BaseLayout from '@layout/BaseLayout.astro';
+import Icon from '@ui/icons/Icon.astro';
+import Button from '@ui/Button.astro';
+import type { WithContext, Thing } from 'schema-dts';
+
+// SEO metadata for the page
+const seo = {
+  title: 'About Wellbit Technologies | Engineering Intelligence & Modern Software',
+  description:
+    'Wellbit Technologies is an engineering-first technology company building dependable custom software, practical AI workflows, enterprise web applications, and internal digital platforms.',
+};
+
+// Schema.org metadata for SEO
+const schema: WithContext<Thing> = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  inLanguage: 'en-US',
+  '@id': Astro.url.href,
+  url: Astro.url.href,
+  name: 'About Wellbit Technologies',
+  description:
+    'Wellbit Technologies helps businesses design, build, integrate, and scale reliable digital systems using custom software and practical AI.',
+  isPartOf: {
+    '@type': 'WebSite',
+    url: `${Astro.site}`,
+    name: 'Wellbit Technologies',
+    description:
+      'Engineering Intelligence. Building Possibilities. Custom software, AI solutions, and digital systems.',
+  },
+};
+
+const differentiators = [
+  {
+    icon: 'badge',
+    title: '100% Code & IP Ownership',
+    description:
+      'You retain full legal ownership of all source code, schemas, and configurations. Zero proprietary runtime locks or licensing fees.',
+  },
+  {
+    icon: 'cog',
+    title: 'Modern Stack Discipline',
+    description:
+      'We build with type-safe, battle-tested technologies: TypeScript, Python, PostgreSQL, and cloud-native architectures.',
+  },
+  {
+    icon: 'brain',
+    title: 'Practical, Deterministic AI',
+    description:
+      'We reject ungrounded AI hype in favor of structured agent pipelines, document intelligence, RAG, and strict human verification.',
+  },
+  {
+    icon: 'portfolio',
+    title: 'Direct Senior Engineering',
+    description:
+      'Work directly with senior software architects and engineers who understand system design, business logic, and production stability.',
+  },
+];
+
+const principles = [
+  {
+    tag: 'Principle 01',
+    title: 'Engineering-Led Mindset',
+    subtitle: 'Disciplined Architecture Over Hasty Shortcuts',
+    description:
+      'We approach software engineering as an enduring craft. Every system we build is designed with clean boundaries, comprehensive automated tests, typed APIs, and modular architectures that remain maintainable years after launch.',
+  },
+  {
+    tag: 'Principle 02',
+    title: 'Practical AI Application',
+    subtitle: 'Measurable Utility Over Speculative Hype',
+    description:
+      'We deploy artificial intelligence strictly where it solves concrete operational bottlenecks—such as unstructured document extraction, contextual knowledge retrieval, and multi-step agent orchestration with human-in-the-loop validation.',
+  },
+  {
+    tag: 'Principle 03',
+    title: 'Maintainable Systems',
+    subtitle: 'Built to Be Owned and Evolved by Your Team',
+    description:
+      'We write readable, well-documented code with automated CI/CD pipelines and infrastructure as code. When our engagement concludes, your in-house engineers can comfortably inspect, extend, and deploy the system without friction.',
+  },
+  {
+    tag: 'Principle 04',
+    title: 'Radical Transparency',
+    subtitle: 'Honest Scoping, Open Repositories & Working Demos',
+    description:
+      'We do not hide behind vague milestones or opaque status reports. You receive continuous Git access, weekly working software demonstrations, direct engineering communication, and transparent timeline evaluations throughout the engagement.',
+  },
+];
+
+const methodologyStages = [
+  {
+    step: '01',
+    phase: 'Discovery & System Modeling',
+    focus: 'Understanding Domain Logic & Technical Blueprints',
+    description:
+      'We begin by analyzing your exact operational workflows, legacy data constraints, and business goals. We formulate typed schema models, define API contracts, and evaluate integration risks before writing a single line of production code.',
+    deliverables: ['System Architecture Blueprint', 'Entity-Relationship Schemas', 'Milestone Scoping & Risk Assessment'],
+  },
+  {
+    step: '02',
+    phase: 'Iterative Sprint Delivery',
+    focus: 'Bi-Weekly Agile Sprints with Working Software',
+    description:
+      'We build iteratively in transparent 1-to-2 week sprints. Automated CI test suites, typed contracts, and preview environments ensure every incremental feature is thoroughly vetted, functional, and demonstrable.',
+    deliverables: ['Live Staging Environments', 'Weekly Sprint Demos', 'Automated Unit & Integration Test Suites'],
+  },
+  {
+    step: '03',
+    phase: 'Security & Production Hardening',
+    focus: 'Zero-Trust Security, Load Testing & Telemetry',
+    description:
+      'Before going live, the platform undergoes comprehensive hardening: role-based access control (RBAC), secret isolation, OWASP vulnerability audits, stress/concurrency testing, and centralized logging and alerting sinks.',
+    deliverables: ['Security & Compliance Audit', 'Load & Concurrency Benchmark', 'Observability & Alerting Dashboards'],
+  },
+  {
+    step: '04',
+    phase: 'Handover & Continuous Evolution',
+    focus: 'Complete Code Transfer & Long-Term Retainers',
+    description:
+      'We execute a comprehensive knowledge transfer, providing complete Git repositories, Dockerfiles, and deployment runbooks. We offer ongoing engineering retainers for teams needing dedicated maintenance or roadmap expansion.',
+    deliverables: ['100% Source Code Transfer', 'Deployment & CI/CD Runbooks', 'Optional SLA Maintenance Retainers'],
+  },
+];
+
+const coreDisciplines = [
+  {
+    icon: 'cog',
+    title: 'Custom Software Engineering',
+    description:
+      'High-performance backend services, resilient distributed architectures, event-driven microservices, and modular software platforms built for long-term scalability.',
+    stack: ['TypeScript', 'Node.js', 'Python', 'PostgreSQL', 'Redis'],
+  },
+  {
+    icon: 'brain',
+    title: 'AI Solutions & Intelligent Agents',
+    description:
+      'Autonomous multi-agent execution, document intelligence (IDP), contextual RAG knowledge retrieval, and custom AI tools with deterministic validation boundaries.',
+    stack: ['FastAPI', 'LangChain / LlamaIndex', 'Vector DBs', 'OpenAI / Claude', 'Celery / Redis'],
+  },
+  {
+    icon: 'puzzle',
+    title: 'Enterprise Web Applications',
+    description:
+      'Modern, highly responsive full-stack applications with sub-second page loads, rigorous accessibility, typed API interfaces, and resilient client-state management.',
+    stack: ['React', 'Next.js', 'Astro', 'Tailwind CSS', 'TypeScript'],
+  },
+  {
+    icon: 'presentationChart',
+    title: 'CRM & Customer Operations',
+    description:
+      'Custom customer relationship hubs, automated pipeline routing, team performance telemetry, SLA reminders, and unified analytics without SaaS licensing overhead.',
+    stack: ['TypeScript', 'WebSockets', 'REST / GraphQL', 'PostgreSQL', 'Telemetry Sinks'],
+  },
+  {
+    icon: 'portfolio',
+    title: 'HR & Internal Management Portals',
+    description:
+      'Secure enterprise portals featuring fine-grained role-based access (RBAC), dynamic approval hierarchies, asset tracking, and immutable compliance audit trails.',
+    stack: ['OAuth2 / SSO', 'Role-Based Access', 'PostgreSQL', 'Node.js', 'React'],
+  },
+  {
+    icon: 'dataBase',
+    title: 'Cloud Architecture & Modernization',
+    description:
+      'Cloud-native container orchestration, migration of legacy monoliths, database performance tuning, third-party API adapters, and CI/CD automation.',
+    stack: ['Docker', 'Kubernetes', 'AWS', 'GCP', 'Terraform', 'GitHub Actions'],
+  },
+];
+
+const faqs = [
+  {
+    question: 'How does Wellbit handle Intellectual Property (IP) and source code ownership?',
+    answer:
+      'You retain 100% legal ownership of all intellectual property, source code, database schemas, prompt engineering, configurations, and documentation produced during our engagement. There are zero licensing traps, per-seat recurring software taxes, or proprietary runtime lock-ins.',
+  },
+  {
+    question: 'What is Wellbit’s philosophy on adopting Artificial Intelligence?',
+    answer:
+      'We believe in practical, deterministic AI. We do not build speculative chatbots that hallucinate; we build specialized agent pipelines with structured inputs, schema-validated outputs, explicit confidence scoring, and human-in-the-loop review queues. AI must provide measurable ROI and operational efficiency.',
+  },
+  {
+    question: 'How do you ensure maintainability and eliminate technical debt?',
+    answer:
+      'By enforcing strict typing (TypeScript and typed Python), modular software boundaries, comprehensive automated test suites (unit, integration, and E2E), strict linting standards, and clear API documentation. When your engagement concludes, any skilled software engineer can inspect and maintain the codebase immediately.',
+  },
+  {
+    question: 'Can you integrate with our existing legacy systems, databases, and third-party tools?',
+    answer:
+      'Yes. Most enterprise initiatives require integrating with existing relational databases (PostgreSQL, MySQL, SQL Server, Oracle) or legacy internal services. We build resilient adapter layers, queue-backed synchronization, and modern REST/GraphQL interfaces that bridge systems without risking live operational data.',
+  },
+  {
+    question: 'What does communication and sprint collaboration look like during a project?',
+    answer:
+      'We work in transparent 1-to-2 week sprints. Clients have complete visibility into our sprint backlogs, staging environments, and Git repositories. You receive weekly working software demonstrations, written milestone summaries, and direct, unfiltered communication channels with our engineering team.',
+  },
+];
+---
+
+<BaseLayout seo={seo} schema={schema}>
+  {/* Hero Section */}
+  <section class="relative isolate overflow-hidden bg-hero-gradient pt-40 pb-16 md:pt-48 md:pb-24 border-b border-slate-200/80">
+    <div class="mx-auto max-w-[85rem] px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-3xl text-center">
+        <span
+          class="inline-flex items-center gap-1.5 rounded-full border border-teal-300 bg-teal-100/70 px-4 py-1.5 text-xs font-semibold text-teal-800 tracking-wide uppercase"
+        >
+          <Icon name="badge" class="size-3.5 text-teal-700" />
+          About Wellbit Technologies
+        </span>
+
+        <h1 class="mt-6 text-4xl font-bold tracking-tight text-slate-800 sm:text-5xl md:text-6xl text-balance">
+          Engineering Intelligence. <br class="hidden sm:inline" />Building Possibilities.
+        </h1>
+
+        <p class="mt-6 text-lg font-medium text-slate-600 sm:text-xl leading-relaxed text-pretty">
+          Wellbit Technologies is an engineering-first technology company helping forward-thinking businesses build dependable custom software, autonomous AI agent pipelines, and modern digital platforms.
+        </p>
+
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+          <Button
+            href="/contact"
+            variant="primary"
+            className="py-3 px-6 text-sm font-semibold shadow-sm"
+          >
+            Start a Project Conversation
+          </Button>
+          <Button
+            href="/solutions"
+            variant="secondary"
+            className="py-3 px-6 text-sm font-semibold border-slate-300 hover:border-teal-400"
+          >
+            Explore Our Solutions
+          </Button>
+        </div>
+      </div>
+
+      {/* 4 Differentiator Cards */}
+      <div class="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {
+          differentiators.map(diff => (
+            <div class="card p-5 group hover:border-teal-400 hover:shadow-md transition duration-300">
+              <div class="size-10 rounded-xl bg-teal-100/80 flex items-center justify-center text-teal-700 mb-3.5 group-hover:bg-teal-600 group-hover:text-white transition duration-300">
+                <Icon name={diff.icon} class="size-5" />
+              </div>
+              <h3 class="text-base font-semibold text-slate-800">
+                {diff.title}
+              </h3>
+              <p class="mt-2 text-xs sm:text-sm text-slate-500 leading-relaxed">
+                {diff.description}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  {/* Our 4 Core Operational Principles */}
+  <section class="py-20 md:py-28 bg-white">
+    <div class="mx-auto max-w-[85rem] px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-3xl text-center mb-16">
+        <span
+          class="inline-flex items-center gap-1.5 rounded-full border border-teal-200 bg-teal-50 px-3.5 py-1 text-xs font-semibold text-teal-800 uppercase tracking-wide"
+        >
+          Our Core Tenets
+        </span>
+        <h2 class="mt-4 text-3xl font-bold tracking-tight text-slate-800 sm:text-4xl">
+          Four Principles That Guide Every Build
+        </h2>
+        <p class="mt-3 text-base text-slate-600 max-w-2xl mx-auto">
+          We believe high-quality engineering comes from discipline, clarity, and genuine technical empathy.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {
+          principles.map(p => (
+            <div class="relative rounded-2xl border border-slate-200 bg-section-gradient p-7 sm:p-9 shadow-xs hover:border-teal-400 hover:shadow-md transition duration-300 group">
+              <span class="text-xs font-bold text-teal-700 tracking-wider uppercase">
+                {p.tag}
+              </span>
+              <h3 class="mt-2 text-2xl font-bold text-slate-800">
+                {p.title}
+              </h3>
+              <p class="mt-1 text-sm font-semibold text-teal-700">
+                {p.subtitle}
+              </p>
+              <p class="mt-4 text-slate-600 leading-relaxed text-sm sm:text-base">
+                {p.description}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  {/* How We Build - 4-Stage Delivery Methodology */}
+  <section class="py-20 md:py-28 bg-section-gradient border-t border-slate-200">
+    <div class="mx-auto max-w-[85rem] px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-3xl text-center mb-16">
+        <span
+          class="inline-flex items-center gap-1.5 rounded-full border border-teal-300 bg-teal-100/70 px-3.5 py-1 text-xs font-semibold text-teal-800 uppercase tracking-wide"
+        >
+          Engineering Methodology
+        </span>
+        <h2 class="mt-4 text-3xl font-bold tracking-tight text-slate-800 sm:text-4xl">
+          From First Conversation to Production Handover
+        </h2>
+        <p class="mt-3 text-base text-slate-600 max-w-2xl mx-auto">
+          A structured, low-risk engineering process designed to eliminate ambiguity, guarantee code quality, and deliver tangible business outcomes.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {
+          methodologyStages.map(stage => (
+            <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-xs flex flex-col justify-between hover:border-teal-400 hover:shadow-md transition duration-300">
+              <div>
+                <span class="inline-block text-3xl font-black text-teal-600/30">
+                  {stage.step}
+                </span>
+                <h3 class="mt-2 text-lg font-bold text-slate-800">
+                  {stage.phase}
+                </h3>
+                <p class="mt-1 text-xs font-semibold text-teal-700">
+                  {stage.focus}
+                </p>
+                <p class="mt-3 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  {stage.description}
+                </p>
+              </div>
+
+              <div class="mt-6 pt-4 border-t border-slate-100">
+                <p class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider mb-2">
+                  Key Deliverables:
+                </p>
+                <ul class="space-y-1.5 text-xs text-slate-700">
+                  {stage.deliverables.map(deliv => (
+                    <li class="flex items-start gap-1.5">
+                      <Icon name="checkCircle" class="size-3.5 text-teal-600 shrink-0 mt-0.5" />
+                      <span>{deliv}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  {/* Expanded Core Disciplines Matrix */}
+  <section class="py-20 md:py-28 bg-white border-t border-slate-200">
+    <div class="mx-auto max-w-[85rem] px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-3xl text-center mb-16">
+        <span
+          class="inline-flex items-center gap-1.5 rounded-full border border-teal-200 bg-teal-50 px-3.5 py-1 text-xs font-semibold text-teal-800 uppercase tracking-wide"
+        >
+          Capabilities & Practices
+        </span>
+        <h2 class="mt-4 text-3xl font-bold tracking-tight text-slate-800 sm:text-4xl">
+          Our Core Engineering Disciplines
+        </h2>
+        <p class="mt-3 text-base text-slate-600 max-w-2xl mx-auto">
+          We combine modern software engineering rigor with practical AI orchestration across six primary technical competencies.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+        {
+          coreDisciplines.map(item => (
+            <div class="card p-6 flex flex-col justify-between hover:border-teal-400 hover:shadow-md transition duration-300">
+              <div>
+                <div class="size-11 rounded-xl bg-teal-100/80 flex items-center justify-center text-teal-700 mb-4">
+                  <Icon name={item.icon} class="size-5" />
+                </div>
+                <h3 class="text-lg font-bold text-slate-800">
+                  {item.title}
+                </h3>
+                <p class="mt-2.5 text-sm text-slate-600 leading-relaxed">
+                  {item.description}
+                </p>
+              </div>
+
+              <div class="mt-6 pt-4 border-t border-slate-100">
+                <p class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider mb-2">
+                  Stack & Tooling:
+                </p>
+                <div class="flex flex-wrap gap-1.5">
+                  {item.stack.map(st => (
+                    <span class="inline-flex items-center rounded-md bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-700 border border-slate-200">
+                      {st}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  {/* Interactive Architecture Tenets & FAQ */}
+  <section class="py-20 md:py-28 bg-slate-50/60 border-t border-slate-200">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <span
+          class="inline-flex items-center gap-1.5 rounded-full border border-teal-300 bg-teal-100/70 px-3.5 py-1 text-xs font-semibold text-teal-800 uppercase tracking-wide"
+        >
+          Frequently Asked Questions
+        </span>
+        <h2 class="mt-4 text-3xl font-bold tracking-tight text-slate-800 sm:text-4xl">
+          Architectural Tenets & Collaboration
+        </h2>
+        <p class="mt-3 text-base text-slate-600">
+          Straightforward answers about our engineering philosophy, code ownership, and how we work with clients.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        {
+          faqs.map(faq => (
+            <details class="group rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 transition shadow-2xs hover:border-teal-300 [&_summary::-webkit-details-marker]:hidden">
+              <summary class="flex cursor-pointer items-center justify-between gap-4 font-semibold text-slate-800 transition hover:text-teal-700">
+                <span class="text-base sm:text-lg">{faq.question}</span>
+                <span class="ml-4 flex size-7 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-500 transition-transform duration-300 group-open:rotate-90 group-open:bg-teal-100 group-open:text-teal-700">
+                  <Icon name="chevronRight" class="size-4" />
+                </span>
+              </summary>
+              <p class="mt-4 text-sm sm:text-base leading-relaxed text-slate-600 border-t border-slate-100 pt-4">
+                {faq.answer}
+              </p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  {/* Bottom Conversion CTA */}
+  <section class="py-20 bg-cta-gradient border-t border-slate-200">
+    <div class="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold tracking-tight text-slate-800 sm:text-4xl">
+        Let's Build Something Meaningful Together
+      </h2>
+      <p class="mx-auto mt-4 max-w-2xl text-base sm:text-lg text-slate-700 leading-relaxed">
+        Whether you are modernizing legacy operations, deploying autonomous AI workflows, or architecting a mission-critical web application, we are ready to partner with you.
+      </p>
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+        <Button
+          href="/contact"
+          variant="primary"
+          className="py-3 px-8 text-sm font-semibold shadow-sm"
+        >
+          Start a Project Conversation
+        </Button>
+        <Button
+          href="/solutions"
+          variant="secondary"
+          className="py-3 px-8 text-sm font-semibold bg-white border-slate-300 hover:border-teal-400"
+        >
+          Explore All Solutions
+        </Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
