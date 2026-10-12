@@ -200,7 +200,7 @@ const faqs = [
 
 <BaseLayout seo={seo} schema={schema}>
   {/* Hero Section */}
-  <section class="relative isolate overflow-hidden bg-hero-gradient pt-40 pb-16 md:pt-48 md:pb-24 border-b border-slate-200/80">
+  <section class="relative isolate overflow-hidden bg-hero-gradient pt-28 sm:pt-40 md:pt-48 pb-12 sm:pb-16 md:pb-24 border-b border-slate-200/80">
     <div class="mx-auto max-w-[85rem] px-4 sm:px-6 lg:px-8">
       <div class="mx-auto max-w-3xl text-center">
         <span
@@ -210,26 +210,26 @@ const faqs = [
           About Wellbit Technologies
         </span>
 
-        <h1 class="mt-6 text-4xl font-bold tracking-tight text-slate-800 sm:text-5xl md:text-6xl text-balance">
+        <h1 class="mt-4 sm:mt-6 text-3xl font-bold tracking-tight text-slate-800 sm:text-5xl md:text-6xl text-balance">
           Engineering Intelligence. <br class="hidden sm:inline" />Building Possibilities.
         </h1>
 
-        <p class="mt-6 text-lg font-medium text-slate-600 sm:text-xl leading-relaxed text-pretty">
+        <p class="mt-4 sm:mt-6 text-base sm:text-xl font-medium text-slate-600 leading-relaxed text-pretty">
           Wellbit Technologies is an engineering-first technology company helping forward-thinking businesses build dependable custom software, autonomous AI agent pipelines, and modern digital platforms.
         </p>
 
-        <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+        <div class="mt-6 sm:mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto">
           <Button
             href="/contact"
             variant="primary"
-            className="py-3 px-6 text-sm font-semibold shadow-sm"
+            className="w-full sm:w-auto py-3 px-6 text-sm font-semibold shadow-sm"
           >
             Start a Project Conversation
           </Button>
           <Button
             href="/solutions"
             variant="secondary"
-            className="py-3 px-6 text-sm font-semibold border-slate-300 hover:border-teal-400"
+            className="w-full sm:w-auto py-3 px-6 text-sm font-semibold border-slate-300 hover:border-teal-400"
           >
             Explore Our Solutions
           </Button>

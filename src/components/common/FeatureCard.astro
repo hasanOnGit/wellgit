@@ -4,7 +4,7 @@ const { icon, description, styleClass } = Astro.props;
 ---
 
 <div
-  class={`z-10 flex w-2/3 flex-col rounded-2xl bg-white border border-slate-200 p-5 shadow-xs hover:border-teal-400 hover:shadow-sm transition-all duration-300 md:p-6 xl:w-1/2 ${styleClass}`}
+  class={`z-10 flex w-full sm:w-2/3 flex-col rounded-2xl bg-white border border-slate-200 p-4 sm:p-5 shadow-xs hover:border-teal-400 hover:shadow-sm transition-all duration-300 md:p-6 xl:w-1/2 ${styleClass}`}
 >
   <div class="mb-3 flex size-10 items-center justify-center rounded-xl bg-teal-50 text-teal-600 shadow-xs">
     <Icon name={icon} class="size-5 text-teal-600" />

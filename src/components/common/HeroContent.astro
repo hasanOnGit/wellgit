@@ -15,9 +15,9 @@ const secondaryCTA = {
 ---
 
 {/* Hero Content Container with Reference Accents */}
-<div class="relative mx-auto max-w-5xl text-left select-none pt-2 sm:text-center">
+<div class="relative mx-auto max-w-5xl text-center select-none pt-2">
   {/* Headline with Floating Colorful Accents (Reference Alignment) */}
-  <div class="relative mx-auto inline-block max-w-4xl">
+  <div class="relative mx-auto inline-block max-w-4xl px-2 sm:px-0">
     <!-- Soft Sky Petal Accent (Left of Headline) -->
     <div class="pointer-events-none absolute -top-4 -left-12 hidden lg:block transform -rotate-12 transition-transform duration-700 hover:rotate-0 opacity-40">
       <svg class="h-10 w-8 drop-shadow-xs" viewBox="0 0 40 56" fill="#3896F5">
@@ -45,25 +45,25 @@ const secondaryCTA = {
     </div>
 
     <h1
-      class="block text-4xl font-bold tracking-tight text-balance text-slate-800 sm:text-5xl md:text-6xl lg:text-7xl leading-tight sm:leading-tight md:leading-tight"
+      class="block text-3xl font-bold tracking-tight text-balance text-slate-800 sm:text-5xl md:text-6xl lg:text-7xl leading-tight sm:leading-tight md:leading-tight"
     >
       {title}
     </h1>
   </div>
 </div>
 
-<div class="mx-auto max-w-3xl text-left sm:text-center mt-6 mb-8">
-  <p class="text-lg text-pretty text-slate-600 sm:text-xl font-normal leading-relaxed">
+<div class="mx-auto max-w-3xl text-center mt-4 sm:mt-6 mb-6 sm:mb-8 px-2 sm:px-0">
+  <p class="text-base sm:text-xl font-normal leading-relaxed text-pretty text-slate-600">
     {subTitle}
   </p>
 </div>
 
 {/* CTA Buttons with Modern Pill Shape */}
-<div class="flex flex-col justify-center items-center gap-4 sm:flex-row">
-  <Button href={primaryCTA.href} variant="primary" className="w-full sm:w-auto px-8 py-3.5 text-base font-semibold shadow-md shadow-teal-600/25">
+<div class="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4 w-full sm:w-auto px-4 sm:px-0">
+  <Button href={primaryCTA.href} variant="primary" className="w-full sm:w-auto px-7 py-3 sm:px-8 sm:py-3.5 text-sm sm:text-base font-semibold shadow-md shadow-teal-600/25">
     {primaryCTA.text}
   </Button>
-  <Button href={secondaryCTA.href} variant="secondary" className="w-full sm:w-auto px-8 py-3.5 text-base font-semibold">
+  <Button href={secondaryCTA.href} variant="secondary" className="w-full sm:w-auto px-7 py-3 sm:px-8 sm:py-3.5 text-sm sm:text-base font-semibold">
     {secondaryCTA.text}
   </Button>
 </div>
