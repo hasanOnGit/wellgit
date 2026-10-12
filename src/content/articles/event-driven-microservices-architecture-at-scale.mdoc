@@ -1,0 +1,31 @@
+---
+title: Event-Driven Microservices Architecture at Enterprise Scale
+description: >-
+  Designing high-throughput, fault-tolerant backend systems with Apache Kafka, asynchronous worker queues, and durable outbox patterns.
+date: 2026-03-10
+---
+Modern digital platforms must scale efficiently under variable workloads while remaining resilient against downstream service degradation. Traditional synchronous HTTP architectures often lead to cascading timeouts and tight coupling across service domains.
+
+At **Wellbit Technologies**, we implement event-driven architectures to decouple critical business services, guarantee message delivery, and support massive concurrent processing.
+
+## The Problem with Synchronous Service Chains
+
+In a naive microservices topology, a single user request might trigger synchronous HTTP calls across billing, notification, inventory, and analytics services. If any single service experiences latency or downtime, the entire request fails, consuming worker threads and exhausting connection pools.
+
+## Core Architectural Patterns for Resilient Event Streaming
+
+### 1. The Transactional Outbox Pattern
+To prevent distributed transaction discrepancies between relational databases and event brokers, we utilize the Transactional Outbox pattern:
+- Application mutations and event records are written to PostgreSQL within a single atomic database transaction.
+- A lightweight Change Data Capture (CDC) worker or relay process polls the outbox table and publishes events to Apache Kafka.
+- This guarantees at-least-once message delivery without distributed two-phase commits.
+
+### 2. Idempotent Consumer Design
+Because network partitions can cause message retries, all downstream consumer handlers are strictly idempotent. Events include unique idempotency keys that workers verify before executing side-effects, preventing duplicate transactions or double-processing.
+
+### 3. Dead-Letter Queues (DLQ) & Exponential Backoff
+Malformed messages or unrecoverable transient errors are automatically routed to Dead-Letter Queues after configured exponential backoff retries. Operational teams receive real-time alerts via monitoring dashboards, allowing engineers to inspect and replay failed events safely.
+
+## Telemetry and Distributed Tracing
+
+Tracing asynchronous events across decoupled message brokers requires end-to-end context propagation. We embed W3C trace contexts into Kafka message headers, enabling OpenTelemetry and distributed APM tools to visualize the complete lifecycle of every business transaction from edge ingress to database persistence.

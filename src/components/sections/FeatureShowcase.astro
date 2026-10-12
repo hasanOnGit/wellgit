@@ -1,8 +1,7 @@
 ---
-import { Image } from 'astro:assets';
-import image_1 from '@images/toolbar.webp';
-import image_2 from '@images/graph.webp';
-import image_3 from '@images/dashboard.webp';
+import SoftwareEngineeringCard from '@common/cards/SoftwareEngineeringCard.astro';
+import AiAgentCard from '@common/cards/AiAgentCard.astro';
+import BusinessPortalCard from '@common/cards/BusinessPortalCard.astro';
 
 // Content for the section title and subtitle
 const title = 'Technology Built Around Your Business';
@@ -15,28 +14,27 @@ const features = [
     title: 'Custom Software Engineering',
     description:
       'Build tailored applications, reliable backend systems, and maintainable software that adapts to your business requirements.',
-    image: image_1,
+    CardComponent: SoftwareEngineeringCard,
     class:
       'content-center border-b border-dashed border-slate-200 py-5 sm:col-span-2 sm:p-5',
-    alignment: 'mx-auto mt-10 rounded-xl shadow-lg sm:w-[75%]',
+    alignment: 'mx-auto mt-8 sm:w-[85%]',
   },
   {
     title: 'AI Solutions & Intelligent Agents',
     description:
       'Integrate language models, intelligent assistants, knowledge retrieval, and AI-powered workflows into real business processes.',
-    image: image_2,
+    CardComponent: AiAgentCard,
     class: 'content-center py-5 sm:row-start-2 sm:p-5 sm:py-10',
-    alignment:
-      'ml-auto mr-auto mt-10 w-[65%] rounded-xl shadow-lg sm:ml-0 sm:w-[45%]',
+    alignment: 'mx-auto mt-8 sm:w-[95%]',
   },
   {
     title: 'Business Applications & Portals',
     description:
       'Create CRM platforms, HR portals, internal dashboards, and workflow systems that simplify everyday operations.',
-    image: image_3,
+    CardComponent: BusinessPortalCard,
     class:
-      'content-center border-t border-dashed border-slate-200 py-5 sm:row-span-2 sm:row-start-2 sm:border-l sm:border-t-0 sm:p-5 sm:text-right',
-    alignment: 'ml-auto mr-auto mt-10 w-[80%] rounded-xl shadow-lg sm:mr-0',
+      'content-center border-t border-dashed border-slate-200 py-5 sm:row-span-2 sm:row-start-2 sm:border-l sm:border-t-0 sm:p-5 sm:text-left',
+    alignment: 'mx-auto mt-8 sm:w-[95%]',
   },
   {
     title: 'Cloud, APIs & Integration',
@@ -76,12 +74,10 @@ const features = [
             <Fragment set:html={feature.description || ''} />
           </p>
 
-          {feature.image && (
-            <Image
-              class={`${feature.alignment || ''}`}
-              src={feature.image}
-              alt={feature.title}
-            />
+          {feature.CardComponent && (
+            <div class={feature.alignment || ''}>
+              <feature.CardComponent />
+            </div>
           )}
 
           {feature.moreFeatures && (

@@ -24,12 +24,12 @@ export const GET: APIRoute = async () => {
     { loc: `${siteUrl}/downloads/license-options`, changefreq: 'monthly', priority: 0.7, lastmod: today },
     { loc: `${siteUrl}/downloads/subscription-licensing`, changefreq: 'monthly', priority: 0.7, lastmod: today },
     { loc: `${siteUrl}/downloads/request-quote`, changefreq: 'monthly', priority: 0.7, lastmod: today },
-    { loc: `${siteUrl}/downloads/datanova-core`, changefreq: 'monthly', priority: 0.7, lastmod: today },
+    { loc: `${siteUrl}/downloads/core-capabilities`, changefreq: 'monthly', priority: 0.7, lastmod: today },
     { loc: `${siteUrl}/support/knowledge-base`, changefreq: 'weekly', priority: 0.8, lastmod: today },
     { loc: `${siteUrl}/support/articles`, changefreq: 'weekly', priority: 0.8, lastmod: today },
     { loc: `${siteUrl}/support/reference`, changefreq: 'monthly', priority: 0.7, lastmod: today },
     { loc: `${siteUrl}/support/whitepapers`, changefreq: 'monthly', priority: 0.7, lastmod: today },
-    { loc: `${siteUrl}/support/sample-spreadsheets`, changefreq: 'monthly', priority: 0.6, lastmod: today },
+    { loc: `${siteUrl}/support/architecture-blueprints`, changefreq: 'monthly', priority: 0.6, lastmod: today },
   ];
 
   // Dynamic content collections: articles

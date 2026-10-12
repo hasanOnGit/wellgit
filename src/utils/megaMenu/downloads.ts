@@ -21,7 +21,7 @@ export const downloadsMenu = [
         title: 'Technical Capabilities',
         description:
           'Overview of application architecture, backend services, and cloud practices.',
-        href: '/downloads/datanova-core',
+        href: '/downloads/core-capabilities',
       },
     ],
   },

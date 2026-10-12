@@ -1,0 +1,49 @@
+---
+title: Wellbit Autonomous Agents Specification
+description: >-
+  Specification and engineering guidelines for constructing resilient multi-agent reasoning loops, deterministic guardrails, and validation gates.
+date: 2026-03-01
+---
+## Purpose and Scope
+
+This document specifies the technical requirements and validation protocols for autonomous AI agents deployed within Wellbit client environments. It establishes deterministic safety bounds, tool execution constraints, and human oversight escalation criteria.
+
+## Agent Loop Execution Lifecycle
+
+```
+User / System Event
+       |
+       v
+[ State Hydration ] ---> Load conversation history & session memory
+       |
+       v
+[ Knowledge RAG ]   ---> Query pgvector & sparse BM25 index
+       |
+       v
+[ Reasoning Step ]  ---> LLM structured chain-of-thought with system prompt
+       |
+       +--> Tool Call Requested?
+       |        |
+       |        v
+       |    [ Permission & Schema Check ]
+       |        |
+       |        v
+       |    [ Tool Execution Sandbox ]
+       |        |
+       |        v
+       |    [ Deterministic Verification ]
+       |        |
+       |        +--> Valid? ---> Loop back to Reasoning Step
+       |        +--> Invalid? -> Trigger Self-Correction Prompt
+       v
+[ Final Output Verification ]
+       |
+       v
+Response Emitted & Telemetry Logged
+```
+
+## Safety Boundaries and Invariants
+
+1. **Deterministic Verification Gate:** All agent outputs intended for write operations (database updates, email dispatch, external API calls) must satisfy predefined Pydantic / TypeScript schemas before execution.
+2. **Confidence Thresholding:** When an agent's confidence metric falls below 0.85 on critical tasks, execution must branch into the human-in-the-loop review queue.
+3. **Audit Immutability:** Every prompt token, tool payload, and model decision trace is persisted in an append-only audit log.

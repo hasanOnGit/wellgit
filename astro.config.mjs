@@ -14,6 +14,16 @@ export default defineConfig({
   site: 'https://wellbit.in',
   prefetch: true,
   trailingSlash: 'never',
+  redirects: {
+    '/downloads/datanova-core': {
+      status: 301,
+      destination: '/downloads/core-capabilities',
+    },
+    '/support/sample-spreadsheets': {
+      status: 301,
+      destination: '/support/architecture-blueprints',
+    },
+  },
   experimental: {
     clientPrerender: true,
   },

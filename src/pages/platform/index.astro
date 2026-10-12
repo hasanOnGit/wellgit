@@ -4,8 +4,7 @@ import BaseLayout from '@layout/BaseLayout.astro';
 import Diagram from '@common/Diagram.astro';
 import Icon from '@ui/icons/Icon.astro';
 import type { WithContext, Thing } from 'schema-dts';
-import { Image } from 'astro:assets';
-import image_1 from '@images/toolbar.webp';
+import SystemArchitectureCard from '@common/cards/SystemArchitectureCard.astro';
 
 const platform = {
   title: 'Architected for Scale. Engineered for Intelligence.',
@@ -193,7 +192,7 @@ const schema: WithContext<Thing> = {
   >
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
       <div class="order-last md:order-first">
-        <Image src={image_1} alt="Toolbar" class="rounded-xl shadow-lg" />
+        <SystemArchitectureCard />
       </div>
       <div class="text-start md:text-end">
         <h2

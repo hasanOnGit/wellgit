@@ -1,0 +1,84 @@
+---
+// System Architecture & Microservices Topology Card for /platform
+---
+
+<div class="relative w-full rounded-2xl border border-slate-200/90 bg-white/95 p-5 shadow-xl shadow-slate-900/5 ring-1 ring-slate-900/5 backdrop-blur-sm">
+  {/* Header */}
+  <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+    <div class="flex items-center gap-2">
+      <div class="flex size-7 items-center justify-center rounded-lg bg-teal-50 text-teal-600 ring-1 ring-teal-500/20">
+        <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z" />
+        </svg>
+      </div>
+      <div>
+        <div class="text-xs font-semibold text-slate-900">Distributed Architecture</div>
+        <div class="text-[10px] text-slate-500">Event-Driven Microservices Topology</div>
+      </div>
+    </div>
+    <span class="inline-flex items-center gap-1 rounded-full bg-teal-50 px-2.5 py-0.5 text-[11px] font-semibold text-teal-700 ring-1 ring-teal-600/20">
+      <span class="size-1.5 animate-pulse rounded-full bg-teal-600"></span>
+      HA CLUSTER
+    </span>
+  </div>
+
+  {/* Topology Diagram Nodes */}
+  <div class="mt-4 space-y-3">
+    {/* Tier 1: Ingress & Edge */}
+    <div class="rounded-xl border border-slate-200/80 bg-slate-50/80 p-3">
+      <div class="flex items-center justify-between text-xs">
+        <div class="flex items-center gap-2">
+          <span class="font-mono text-[10px] font-bold text-teal-600 uppercase">TIER 1</span>
+          <span class="font-semibold text-slate-800">API Gateway & Edge Ingress</span>
+        </div>
+        <span class="font-mono text-[11px] text-slate-500">TLS 1.3 &bull; JWT Validation</span>
+      </div>
+      <div class="mt-2 flex flex-wrap gap-1.5 text-[11px]">
+        <span class="rounded-md bg-white px-2 py-0.5 font-mono text-slate-600 shadow-2xs border border-slate-200">Rate Limiter</span>
+        <span class="rounded-md bg-white px-2 py-0.5 font-mono text-slate-600 shadow-2xs border border-slate-200">WAF Rules</span>
+        <span class="rounded-md bg-white px-2 py-0.5 font-mono text-slate-600 shadow-2xs border border-slate-200">Route Orchestration</span>
+      </div>
+    </div>
+
+    {/* Tier 2: Event Bus & Worker Pool */}
+    <div class="rounded-xl border border-teal-200/70 bg-teal-50/30 p-3">
+      <div class="flex items-center justify-between text-xs">
+        <div class="flex items-center gap-2">
+          <span class="font-mono text-[10px] font-bold text-teal-700 uppercase">TIER 2</span>
+          <span class="font-semibold text-teal-950">Asynchronous Event Stream & Workers</span>
+        </div>
+        <span class="font-mono text-[11px] font-semibold text-teal-700">Kafka &bull; Zero Loss</span>
+      </div>
+      <div class="mt-2 flex flex-wrap gap-1.5 text-[11px]">
+        <span class="rounded-md bg-white px-2 py-0.5 font-mono text-teal-800 shadow-2xs border border-teal-200">Job Queues (BullMQ)</span>
+        <span class="rounded-md bg-white px-2 py-0.5 font-mono text-teal-800 shadow-2xs border border-teal-200">Agent Worker Pools</span>
+        <span class="rounded-md bg-white px-2 py-0.5 font-mono text-teal-800 shadow-2xs border border-teal-200">Telemetry Emitter</span>
+      </div>
+    </div>
+
+    {/* Tier 3: Storage & Persistence */}
+    <div class="rounded-xl border border-slate-200/80 bg-slate-50/80 p-3">
+      <div class="flex items-center justify-between text-xs">
+        <div class="flex items-center gap-2">
+          <span class="font-mono text-[10px] font-bold text-teal-600 uppercase">TIER 3</span>
+          <span class="font-semibold text-slate-800">State & Storage Persistence</span>
+        </div>
+        <span class="font-mono text-[11px] text-emerald-600 font-semibold">Multi-AZ Replicas</span>
+      </div>
+      <div class="mt-2 flex flex-wrap gap-1.5 text-[11px]">
+        <span class="rounded-md bg-white px-2 py-0.5 font-mono text-slate-600 shadow-2xs border border-slate-200">PostgreSQL (Primary)</span>
+        <span class="rounded-md bg-white px-2 py-0.5 font-mono text-slate-600 shadow-2xs border border-slate-200">Redis Cache Cluster</span>
+        <span class="rounded-md bg-white px-2 py-0.5 font-mono text-slate-600 shadow-2xs border border-slate-200">Vector Embeddings</span>
+      </div>
+    </div>
+  </div>
+
+  {/* Footer Telemetry */}
+  <div class="mt-4 flex items-center justify-between border-t border-slate-100 pt-3 text-xs text-slate-500">
+    <span class="flex items-center gap-1.5 font-mono text-[11px]">
+      <span class="size-2 rounded-full bg-emerald-500"></span>
+      Observability: OpenTelemetry &bull; Prometheus
+    </span>
+    <span class="font-mono text-[11px] font-semibold text-slate-700">p99 &lt; 48ms</span>
+  </div>
+</div>

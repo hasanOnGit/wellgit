@@ -1,0 +1,38 @@
+---
+title: Wellbit System Architecture Guide
+description: >-
+  Architectural blueprints, infrastructure topology, containerization guidelines, and deployment practices for Wellbit enterprise platforms.
+date: 2026-03-01
+---
+## Architectural Overview
+
+The **Wellbit System Architecture Guide** provides engineering standards, topology specifications, and deployment conventions across our custom software engineering engagements. Our platforms are architected around loose coupling, strong typing, fault tolerance, and comprehensive observability.
+
+## Layered Topology Model
+
+```
++-------------------------------------------------------+
+|                 Edge & Ingress Tier                   |
+|     Cloudflare CDN / WAF / Envoy API Gateway (TLS 1.3)|
++-------------------------------------------------------+
+                           |
+                           v
++-------------------------------------------------------+
+|               Application Services Tier               |
+|   Containerized Microservices (Node.js, Go, Python)   |
+|   Autonomous Agent Workers & Background Task Pools    |
++-------------------------------------------------------+
+             |                              |
+             v                              v
++------------------------+      +------------------------+
+|   Event & Cache Tier   |      |    Persistence Tier    |
+| Apache Kafka / Redis   |      | PostgreSQL + pgvector  |
++------------------------+      +------------------------+
+```
+
+## Infrastructure Standards
+
+- **Containerization:** All services packaged with multi-stage Docker builds, non-root user execution, and minimal base images (Alpine or Distroless).
+- **Orchestration:** Managed Kubernetes (EKS / GKE) with Horizontal Pod Autoscalers (HPA) and automated health/readiness probes.
+- **Secrets Management:** Zero hardcoded credentials; dynamic secret injection via HashiCorp Vault or Cloud Secret Manager with automated rotation.
+- **Monitoring & Telemetry:** OpenTelemetry SDK instrumentation exporting distributed traces and metrics to Prometheus and Grafana.

@@ -1,0 +1,33 @@
+---
+title: Enterprise RAG with Hybrid Search and pgvector
+description: >-
+  Combining dense vector embeddings with sparse keyword search and cross-encoder reranking for production-grade contextual retrieval.
+date: 2026-03-05
+---
+Retrieval-Augmented Generation (RAG) is the foundational architecture for enterprise AI applications that require accurate, grounded responses from proprietary documents and domain knowledge bases. However, standard vector-only semantic search often fails on precise technical terms, part numbers, abbreviations, and exact keyword matches.
+
+At **Wellbit Technologies**, we engineer enterprise RAG systems utilizing **hybrid search** and multi-stage reranking pipelines built directly on PostgreSQL with `pgvector`.
+
+## Why Pure Vector Search Falls Short
+
+Dense embedding models project text into high-dimensional semantic spaces. While they excel at broad topical similarity, they struggle with:
+- Exact alphanumeric identifiers (e.g., product SKUs, invoice numbers, policy codes).
+- Specialized technical terminology not heavily represented in training corpuses.
+- High-precision keyword filtering across structured metadata.
+
+## The Hybrid Search Architecture
+
+To achieve state-of-the-art retrieval accuracy, our architecture combines two distinct search paradigms:
+
+### 1. Dense Semantic Embeddings (`pgvector`)
+We compute dense vector embeddings using state-of-the-art embedding models and index them using HNSW (Hierarchical Navigable Small World) indexes inside PostgreSQL via `pgvector`. This captures semantic intent and conceptual questions.
+
+### 2. Sparse Full-Text Search (BM25 / tsvector)
+Simultaneously, PostgreSQL full-text search (`tsvector` and `tsquery`) indexes exact tokens, stems, and lexemes with BM25-style ranking. This guarantees that exact keyword queries and entity identifiers are never missed.
+
+### 3. Reciprocal Rank Fusion (RRF) & Cross-Encoder Reranking
+Results from dense and sparse queries are merged using Reciprocal Rank Fusion (RRF). The top candidate documents are then passed to a high-precision cross-encoder reranking model, which scores the exact relevance of each passage against the user query before passing context to the LLM.
+
+## Production Impact
+
+By implementing hybrid search with cross-encoder reranking, retrieval precision typically increases by 25–40% compared to basic vector search, while eliminating hallucinated policy responses and ensuring reliable enterprise question-answering.
