@@ -1,0 +1,628 @@
+---
+export const prerender = false;
+import BaseLayout from '@layout/BaseLayout.astro';
+import { isAuthenticated, ADMIN_EMAIL } from '@/utils/auth';
+import { getInquiriesCollection } from '@/db/mongodb';
+
+if (!isAuthenticated(Astro.request)) {
+  return Astro.redirect('/dashboard/login');
+}
+
+// Fetch initial data on server render
+let initialInquiries: any[] = [];
+let initialStats = {
+  total: 0,
+  today: 0,
+  new: 0,
+  byCategory: {
+    'Contact Inquiry': 0,
+    'Quote Request': 0,
+    'Newsletter': 0,
+    'Article Feedback': 0,
+  },
+};
+
+try {
+  const collection = await getInquiriesCollection();
+  const raw = await collection.find({}).sort({ createdAt: -1 }).limit(100).toArray();
+  initialInquiries = raw.map(doc => ({
+    ...doc,
+    _id: doc._id.toString(),
+    createdAt: doc.createdAt ? new Date(doc.createdAt).toISOString() : new Date().toISOString(),
+  }));
+
+  const now = new Date();
+  const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+  initialStats.total = await collection.countDocuments({});
+  initialStats.today = await collection.countDocuments({ createdAt: { $gte: startOfToday } });
+  initialStats.new = await collection.countDocuments({ status: 'new' });
+  initialStats.byCategory['Contact Inquiry'] = await collection.countDocuments({ category: 'Contact Inquiry' });
+  initialStats.byCategory['Quote Request'] = await collection.countDocuments({ category: 'Quote Request' });
+  initialStats.byCategory['Newsletter'] = await collection.countDocuments({ category: 'Newsletter' });
+  initialStats.byCategory['Article Feedback'] = await collection.countDocuments({ category: 'Article Feedback' });
+} catch (err) {
+  console.error('[Dashboard Server Error] Failed to load inquiries:', err);
+}
+---
+
+<BaseLayout
+  title="Operations & Inquiries Dashboard | Wellbit Technologies"
+  description="Manage client inquiries, proposal requests, newsletter subscribers, and form submissions."
+  noindex={true}
+>
+  <div class="min-h-screen bg-slate-50/70 pt-28 pb-20">
+    <div class="mx-auto max-w-[88rem] px-4 sm:px-6 lg:px-8">
+
+      {/* Top Console Bar */}
+      <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between border-b border-slate-200/80 pb-6">
+        <div class="flex items-center gap-3">
+          <div class="flex size-11 items-center justify-center rounded-xl bg-white p-2 shadow-xs ring-1 ring-slate-200">
+            <img src="/logo-wellbit-symbol.png" alt="Wellbit" class="size-7 object-contain" />
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900">
+                Inquiries & Operations Console
+              </h1>
+              <span class="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-0.5 text-[11px] font-semibold text-emerald-700 ring-1 ring-emerald-600/20">
+                <span class="size-1.5 animate-pulse rounded-full bg-emerald-600"></span>
+                LIVE MONGODB
+              </span>
+            </div>
+            <p class="text-xs text-slate-500 font-mono">
+              Cluster: ClusterTuba &bull; DB: WellBitWebsite &bull; Coll: inquiries
+            </p>
+          </div>
+        </div>
+
+        {/* User Session & Actions */}
+        <div class="flex items-center gap-3">
+          <div class="hidden sm:flex flex-col text-right">
+            <span class="text-xs font-semibold text-slate-800">{ADMIN_EMAIL}</span>
+            <span class="text-[10px] text-slate-500">Administrator Role</span>
+          </div>
+          <button
+            id="refresh-btn"
+            class="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3.5 py-2 text-xs font-semibold text-slate-700 shadow-2xs hover:bg-slate-50 hover:text-teal-700 cursor-pointer transition-all"
+            title="Refresh Inquiries"
+          >
+            <svg class="size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+            </svg>
+            Refresh
+          </button>
+          <button
+            id="export-csv-btn"
+            class="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3.5 py-2 text-xs font-semibold text-slate-700 shadow-2xs hover:bg-slate-50 hover:text-teal-700 cursor-pointer transition-all"
+            title="Export as CSV"
+          >
+            <svg class="size-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.5V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+            </svg>
+            Export CSV
+          </button>
+          <a
+            href="/api/auth/logout"
+            class="inline-flex items-center gap-1.5 rounded-xl bg-slate-900 px-4 py-2 text-xs font-semibold text-white shadow-xs hover:bg-slate-800 transition-all"
+          >
+            Sign Out
+          </a>
+        </div>
+      </div>
+
+      {/* KPI Stats Overview */}
+      <div class="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:gap-4">
+        <div class="rounded-2xl border border-slate-200/90 bg-white p-4 shadow-xs">
+          <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Total Submissions</div>
+          <div id="stat-total" class="mt-1 font-mono text-2xl sm:text-3xl font-bold text-slate-900">
+            {initialStats.total}
+          </div>
+          <div class="mt-1 text-[11px] text-slate-500">All-time form inquiries</div>
+        </div>
+
+        <div class="rounded-2xl border border-teal-200/90 bg-teal-50/30 p-4 shadow-xs">
+          <div class="text-[11px] font-semibold uppercase tracking-wider text-teal-800">Today's Inquiries</div>
+          <div id="stat-today" class="mt-1 font-mono text-2xl sm:text-3xl font-bold text-teal-900">
+            {initialStats.today}
+          </div>
+          <div class="mt-1 text-[11px] text-teal-700 font-medium">Received since midnight</div>
+        </div>
+
+        <div class="rounded-2xl border border-amber-200/90 bg-amber-50/30 p-4 shadow-xs">
+          <div class="text-[11px] font-semibold uppercase tracking-wider text-amber-800">Action Required</div>
+          <div id="stat-new" class="mt-1 font-mono text-2xl sm:text-3xl font-bold text-amber-900">
+            {initialStats.new}
+          </div>
+          <div class="mt-1 text-[11px] text-amber-700 font-medium">Pending unreviewed items</div>
+        </div>
+
+        <div class="rounded-2xl border border-slate-200/90 bg-white p-4 shadow-xs">
+          <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Quote Proposals</div>
+          <div id="stat-quote" class="mt-1 font-mono text-2xl sm:text-3xl font-bold text-slate-900">
+            {initialStats.byCategory['Quote Request']}
+          </div>
+          <div class="mt-1 text-[11px] text-slate-500">High-intent project quotes</div>
+        </div>
+      </div>
+
+      {/* Filter Tabs & Search Controls */}
+      <div class="mt-8 flex flex-col gap-4 rounded-2xl border border-slate-200/90 bg-white p-4 shadow-xs sm:flex-row sm:items-center sm:justify-between">
+        {/* Category Pills */}
+        <div class="flex flex-wrap items-center gap-1.5" id="category-tabs">
+          <button
+            data-category="All"
+            class="tab-btn active rounded-lg px-3 py-1.5 text-xs font-semibold transition-all cursor-pointer bg-slate-900 text-white"
+          >
+            All (<span id="cat-count-all">{initialStats.total}</span>)
+          </button>
+          <button
+            data-category="Contact Inquiry"
+            class="tab-btn rounded-lg px-3 py-1.5 text-xs font-semibold text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all cursor-pointer"
+          >
+            Contact (<span id="cat-count-contact">{initialStats.byCategory['Contact Inquiry']}</span>)
+          </button>
+          <button
+            data-category="Quote Request"
+            class="tab-btn rounded-lg px-3 py-1.5 text-xs font-semibold text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all cursor-pointer"
+          >
+            Quotes (<span id="cat-count-quote">{initialStats.byCategory['Quote Request']}</span>)
+          </button>
+          <button
+            data-category="Newsletter"
+            class="tab-btn rounded-lg px-3 py-1.5 text-xs font-semibold text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all cursor-pointer"
+          >
+            Newsletter (<span id="cat-count-newsletter">{initialStats.byCategory['Newsletter']}</span>)
+          </button>
+          <button
+            data-category="Article Feedback"
+            class="tab-btn rounded-lg px-3 py-1.5 text-xs font-semibold text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all cursor-pointer"
+          >
+            Feedback (<span id="cat-count-feedback">{initialStats.byCategory['Article Feedback']}</span>)
+          </button>
+        </div>
+
+        {/* Search & Status Controls */}
+        <div class="flex items-center gap-2">
+          <div class="relative grow sm:w-64">
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Search by name, email, query..."
+              class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-1.5 text-xs text-slate-900 focus:border-teal-600 focus:bg-white focus:outline-hidden"
+            />
+          </div>
+          <select
+            id="status-filter"
+            class="rounded-xl border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-semibold text-slate-700 focus:border-teal-600 focus:outline-hidden"
+          >
+            <option value="all">All Statuses</option>
+            <option value="new">New (Pending)</option>
+            <option value="reviewed">Reviewed</option>
+            <option value="contacted">Contacted</option>
+            <option value="archived">Archived</option>
+          </select>
+        </div>
+      </div>
+
+      {/* Main Inquiries Table */}
+      <div class="mt-4 overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-xs">
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-slate-200/80 text-left text-xs">
+            <thead class="bg-slate-50 font-semibold text-slate-600">
+              <tr>
+                <th class="py-3.5 pl-4 pr-3 sm:pl-6">Date & Time</th>
+                <th class="px-3 py-3.5">Category</th>
+                <th class="px-3 py-3.5">Client / Contact</th>
+                <th class="px-3 py-3.5">Phone / WhatsApp</th>
+                <th class="px-3 py-3.5">Focus Area / Service</th>
+                <th class="px-3 py-3.5">Message / Scope</th>
+                <th class="px-3 py-3.5">Status</th>
+                <th class="py-3.5 pr-4 pl-3 text-right sm:pr-6">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="inquiries-tbody" class="divide-y divide-slate-100 font-normal text-slate-700">
+              {/* Dynamic rows rendered by script */}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Empty state container */}
+        <div id="empty-state" class="hidden p-12 text-center text-slate-500">
+          <svg class="mx-auto size-10 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 13.5h3.86a2.25 2.25 0 0 1 2.012 1.244l.256.512a2.25 2.25 0 0 0 2.013 1.244h3.218a2.25 2.25 0 0 0 2.013-1.244l.256-.512a2.25 2.25 0 0 1 2.013-1.244h3.859m-19.5.375-2.406-7.218A2.25 2.25 0 0 1 3.94 3.75h16.12a2.25 2.25 0 0 1 2.15 1.532l2.406 7.218M3.75 18a2.25 2.25 0 0 0 2.25 2.25h12a2.25 2.25 0 0 0 2.25-2.25V9.75H3.75V18Z" />
+          </svg>
+          <p class="mt-3 text-sm font-semibold text-slate-700">No submissions found</p>
+          <p class="mt-1 text-xs text-slate-400">There are no inquiries matching the active category or filter.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  {/* Detail Modal / Drawer */}
+  <div id="detail-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="relative w-full max-w-2xl rounded-2xl bg-white p-6 shadow-2xl ring-1 ring-slate-900/10">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+        <div>
+          <span id="modal-category-badge" class="rounded-full px-2.5 py-0.5 text-[11px] font-semibold"></span>
+          <h3 id="modal-client-name" class="mt-2 text-lg font-bold text-slate-900"></h3>
+        </div>
+        <button id="modal-close-btn" class="rounded-lg p-1.5 text-slate-400 hover:bg-slate-100 hover:text-slate-600 cursor-pointer">
+          <svg class="size-5" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="mt-4 space-y-4 text-xs">
+        <div class="grid grid-cols-2 gap-3 rounded-xl bg-slate-50 p-3">
+          <div>
+            <span class="text-slate-500 font-medium">Email Address:</span>
+            <div id="modal-email" class="font-mono font-semibold text-slate-800 mt-0.5"></div>
+          </div>
+          <div>
+            <span class="text-slate-500 font-medium">Phone / WhatsApp:</span>
+            <div id="modal-phone" class="font-mono font-semibold text-slate-800 mt-0.5"></div>
+          </div>
+          <div>
+            <span class="text-slate-500 font-medium">Company / Org:</span>
+            <div id="modal-company" class="font-semibold text-slate-800 mt-0.5"></div>
+          </div>
+          <div>
+            <span class="text-slate-500 font-medium">Service Requested:</span>
+            <div id="modal-service" class="font-semibold text-slate-800 mt-0.5"></div>
+          </div>
+        </div>
+
+        <div>
+          <span class="text-slate-500 font-medium uppercase tracking-wider text-[10px]">Full Submission Content:</span>
+          <div id="modal-message" class="mt-1.5 rounded-xl border border-slate-200 bg-white p-4 font-mono text-xs leading-relaxed text-slate-800 whitespace-pre-wrap max-h-60 overflow-y-auto"></div>
+        </div>
+
+        <div class="flex items-center justify-between border-t border-slate-100 pt-3 text-[11px] text-slate-400">
+          <span id="modal-timestamp"></span>
+          <span id="modal-metadata"></span>
+        </div>
+      </div>
+
+      <div class="mt-6 flex items-center justify-between border-t border-slate-100 pt-4">
+        <div class="flex items-center gap-2">
+          <label for="modal-status-select" class="text-xs font-semibold text-slate-600">Status:</label>
+          <select id="modal-status-select" class="rounded-lg border border-slate-200 px-2.5 py-1 text-xs font-semibold text-slate-700">
+            <option value="new">New</option>
+            <option value="reviewed">Reviewed</option>
+            <option value="contacted">Contacted</option>
+            <option value="archived">Archived</option>
+          </select>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <a id="modal-call-btn" href="#" class="rounded-xl border border-teal-200 bg-teal-50 px-3 py-1.5 text-xs font-semibold text-teal-800 hover:bg-teal-100">
+            Call Client
+          </a>
+          <a id="modal-reply-btn" href="#" class="rounded-xl bg-btn-gradient px-4 py-1.5 text-xs font-semibold text-white shadow-xs hover:bg-teal-700">
+            Reply via Email
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline id="initial-dashboard-data" type="application/json" set:html={JSON.stringify({ inquiries: initialInquiries, stats: initialStats })} />
+</BaseLayout>
+
+<script is:inline>
+  const initialDataEl = document.getElementById('initial-dashboard-data');
+  const initialParsed = initialDataEl ? JSON.parse(initialDataEl.textContent || '{}') : {};
+  let allInquiries = initialParsed.inquiries || [];
+  let currentCategory = 'All';
+  let currentStatus = 'all';
+  let currentSearch = '';
+
+  const tbody = document.getElementById('inquiries-tbody');
+  const emptyState = document.getElementById('empty-state');
+  const searchInput = document.getElementById('search-input');
+  const statusFilter = document.getElementById('status-filter');
+  const refreshBtn = document.getElementById('refresh-btn');
+  const exportCsvBtn = document.getElementById('export-csv-btn');
+
+  // Modal elements
+  const modal = document.getElementById('detail-modal');
+  const modalCloseBtn = document.getElementById('modal-close-btn');
+  const modalCategoryBadge = document.getElementById('modal-category-badge');
+  const modalClientName = document.getElementById('modal-client-name');
+  const modalEmail = document.getElementById('modal-email');
+  const modalPhone = document.getElementById('modal-phone');
+  const modalCompany = document.getElementById('modal-company');
+  const modalService = document.getElementById('modal-service');
+  const modalMessage = document.getElementById('modal-message');
+  const modalTimestamp = document.getElementById('modal-timestamp');
+  const modalMetadata = document.getElementById('modal-metadata');
+  const modalStatusSelect = document.getElementById('modal-status-select');
+  const modalReplyBtn = document.getElementById('modal-reply-btn');
+  const modalCallBtn = document.getElementById('modal-call-btn');
+
+  let activeInquiry = null;
+
+  function renderRows() {
+    const filtered = allInquiries.filter(item => {
+      if (currentCategory !== 'All' && item.category !== currentCategory) return false;
+      if (currentStatus !== 'all' && item.status !== currentStatus) return false;
+      if (currentSearch) {
+        const q = currentSearch.toLowerCase();
+        const match =
+          (item.name || '').toLowerCase().includes(q) ||
+          (item.email || '').toLowerCase().includes(q) ||
+          (item.phone || '').toLowerCase().includes(q) ||
+          (item.company || '').toLowerCase().includes(q) ||
+          (item.service || '').toLowerCase().includes(q) ||
+          (item.message || '').toLowerCase().includes(q);
+        if (!match) return false;
+      }
+      return true;
+    });
+
+    if (filtered.length === 0) {
+      tbody.innerHTML = '';
+      emptyState.classList.remove('hidden');
+      return;
+    }
+
+    emptyState.classList.add('hidden');
+    tbody.innerHTML = filtered.map(item => {
+      const dateStr = new Date(item.createdAt).toLocaleString('en-IN', {
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+      });
+
+      const catBadgeClass =
+        item.category === 'Quote Request'
+          ? 'bg-indigo-50 text-indigo-700 ring-1 ring-indigo-600/20'
+          : item.category === 'Newsletter'
+          ? 'bg-amber-50 text-amber-700 ring-1 ring-amber-600/20'
+          : item.category === 'Article Feedback'
+          ? 'bg-violet-50 text-violet-700 ring-1 ring-violet-600/20'
+          : 'bg-teal-50 text-teal-700 ring-1 ring-teal-600/20';
+
+      const statusBadgeClass =
+        item.status === 'new'
+          ? 'bg-amber-100 text-amber-800'
+          : item.status === 'contacted'
+          ? 'bg-emerald-100 text-emerald-800'
+          : item.status === 'reviewed'
+          ? 'bg-blue-100 text-blue-800'
+          : 'bg-slate-100 text-slate-700';
+
+      return `
+        <tr class="hover:bg-slate-50/70 transition-colors">
+          <td class="py-3.5 pl-4 pr-3 font-mono text-slate-500 text-[11px] sm:pl-6 whitespace-nowrap">
+            ${dateStr}
+          </td>
+          <td class="px-3 py-3.5 whitespace-nowrap">
+            <span class="inline-flex rounded-full px-2 py-0.5 text-[10px] font-semibold ${catBadgeClass}">
+              ${item.category || 'Contact'}
+            </span>
+          </td>
+          <td class="px-3 py-3.5">
+            <div class="font-semibold text-slate-900">${escapeHtml(item.name || 'Anonymous')}</div>
+            <a href="mailto:${item.email}" class="text-[11px] text-teal-700 hover:underline">${escapeHtml(item.email || '')}</a>
+            ${item.company ? `<div class="text-[10px] text-slate-400 font-medium">${escapeHtml(item.company)}</div>` : ''}
+          </td>
+          <td class="px-3 py-3.5 whitespace-nowrap">
+            ${item.phone ? `
+              <div class="flex items-center gap-1.5 font-mono text-slate-800">
+                <a href="tel:${item.phone}" class="hover:text-teal-700">${escapeHtml(item.phone)}</a>
+                <a href="https://wa.me/${item.phone.replace(/[^0-9]/g, '')}" target="_blank" rel="noopener noreferrer" class="text-emerald-600 hover:text-emerald-700" title="Open WhatsApp">
+                  <svg class="size-3.5 inline" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
+                  </svg>
+                </a>
+              </div>
+            ` : '<span class="text-slate-400">—</span>'}
+          </td>
+          <td class="px-3 py-3.5 font-medium text-slate-700">
+            ${escapeHtml(item.service || '—')}
+          </td>
+          <td class="px-3 py-3.5 max-w-xs truncate text-slate-600" title="${escapeHtml(item.message || '')}">
+            ${escapeHtml((item.message || '').slice(0, 75))}${(item.message || '').length > 75 ? '...' : ''}
+          </td>
+          <td class="px-3 py-3.5 whitespace-nowrap">
+            <span class="inline-flex rounded-md px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ${statusBadgeClass}">
+              ${item.status || 'new'}
+            </span>
+          </td>
+          <td class="py-3.5 pr-4 pl-3 text-right font-medium sm:pr-6 whitespace-nowrap">
+            <div class="flex items-center justify-end gap-2">
+              <button data-id="${item._id}" class="view-btn rounded-lg bg-slate-100 px-2.5 py-1 text-slate-700 hover:bg-teal-50 hover:text-teal-800 cursor-pointer">
+                View
+              </button>
+              <button data-id="${item._id}" class="delete-btn text-rose-500 hover:text-rose-700 cursor-pointer p-1" title="Delete">
+                <svg class="size-4" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M8.75 1A2.75 2.75 0 0 0 6 3.75v.443c-.795.077-1.584.176-2.365.298a.75.75 0 1 0 .23 1.482l.149-.022.841 10.518A2.75 2.75 0 0 0 7.596 19h4.807a2.75 2.75 0 0 0 2.742-2.53l.841-10.52.149.023a.75.75 0 0 0 .23-1.482A41.03 41.03 0 0 0 14 4.193V3.75A2.75 2.75 0 0 0 11.25 1h-2.5ZM10 4c.84 0 1.673.025 2.5.075V3.75c0-.69-.56-1.25-1.25-1.25h-2.5c-.69 0-1.25.56-1.25 1.25v.325C8.327 4.025 9.16 4 10 4ZM8.58 7.72a.75.75 0 0 1 .75.75v7a.75.75 0 0 1-1.5 0v-7a.75.75 0 0 1 .75-.75Zm3.59 0a.75.75 0 0 1 .75.75v7a.75.75 0 0 1-1.5 0v-7a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
+                </svg>
+              </button>
+            </div>
+          </td>
+        </tr>
+      `;
+    }).join('');
+
+    // Attach row events
+    document.querySelectorAll('.view-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const id = (e.currentTarget).getAttribute('data-id');
+        openModal(id);
+      });
+    });
+
+    document.querySelectorAll('.delete-btn').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        const id = (e.currentTarget).getAttribute('data-id');
+        if (!confirm('Are you sure you want to permanently delete this submission?')) return;
+        await deleteInquiry(id);
+      });
+    });
+  }
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  function openModal(id) {
+    const item = allInquiries.find(i => i._id === id);
+    if (!item) return;
+    activeInquiry = item;
+
+    modalClientName.textContent = item.name || 'Anonymous Submission';
+    modalCategoryBadge.textContent = item.category;
+    modalCategoryBadge.className = 'rounded-full px-2.5 py-0.5 text-[11px] font-semibold bg-teal-50 text-teal-800 ring-1 ring-teal-600/20';
+
+    modalEmail.textContent = item.email || '—';
+    modalPhone.textContent = item.phone || 'None provided';
+    modalCompany.textContent = item.company || 'None provided';
+    modalService.textContent = item.service || '—';
+    modalMessage.textContent = item.message || 'No message provided.';
+
+    modalTimestamp.textContent = 'Submitted: ' + new Date(item.createdAt).toLocaleString('en-IN');
+    modalMetadata.textContent = item.metadata?.ip ? `IP: ${item.metadata.ip}` : '';
+
+    modalStatusSelect.value = item.status || 'new';
+
+    modalReplyBtn.href = `mailto:${item.email}?subject=Re:%20Wellbit%20Technologies%20Inquiry`;
+    if (item.phone) {
+      modalCallBtn.href = `tel:${item.phone}`;
+      modalCallBtn.classList.remove('hidden');
+    } else {
+      modalCallBtn.classList.add('hidden');
+    }
+
+    modal.classList.remove('hidden');
+  }
+
+  modalCloseBtn.addEventListener('click', () => {
+    modal.classList.add('hidden');
+  });
+
+  modalStatusSelect.addEventListener('change', async () => {
+    if (!activeInquiry) return;
+    const newStatus = modalStatusSelect.value;
+    try {
+      const res = await fetch('/api/dashboard/inquiries', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: activeInquiry._id, status: newStatus }),
+      });
+      if (res.ok) {
+        activeInquiry.status = newStatus;
+        renderRows();
+      }
+    } catch (err) {
+      console.error('Failed to update status:', err);
+    }
+  });
+
+  async function deleteInquiry(id) {
+    try {
+      const res = await fetch(`/api/dashboard/inquiries?id=${id}`, { method: 'DELETE' });
+      if (res.ok) {
+        allInquiries = allInquiries.filter(i => i._id !== id);
+        renderRows();
+      }
+    } catch (err) {
+      console.error('Failed to delete inquiry:', err);
+    }
+  }
+
+  async function fetchFreshData() {
+    try {
+      const res = await fetch('/api/dashboard/inquiries');
+      if (res.ok) {
+        const data = await res.json();
+        allInquiries = data.inquiries || [];
+        if (data.stats) {
+          document.getElementById('stat-total').textContent = data.stats.total;
+          document.getElementById('stat-today').textContent = data.stats.today;
+          document.getElementById('stat-new').textContent = data.stats.new;
+          document.getElementById('stat-quote').textContent = data.stats.byCategory['Quote Request'];
+          document.getElementById('cat-count-all').textContent = data.stats.total;
+          document.getElementById('cat-count-contact').textContent = data.stats.byCategory['Contact Inquiry'];
+          document.getElementById('cat-count-quote').textContent = data.stats.byCategory['Quote Request'];
+          document.getElementById('cat-count-newsletter').textContent = data.stats.byCategory['Newsletter'];
+          document.getElementById('cat-count-feedback').textContent = data.stats.byCategory['Article Feedback'];
+        }
+        renderRows();
+      }
+    } catch (err) {
+      console.error('Failed to refresh data:', err);
+    }
+  }
+
+  // Category filter tabs
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        b.className = 'tab-btn rounded-lg px-3 py-1.5 text-xs font-semibold text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all cursor-pointer';
+      });
+      btn.className = 'tab-btn active rounded-lg px-3 py-1.5 text-xs font-semibold transition-all cursor-pointer bg-slate-900 text-white';
+      currentCategory = btn.getAttribute('data-category');
+      renderRows();
+    });
+  });
+
+  // Search filter
+  searchInput.addEventListener('input', (e) => {
+    currentSearch = e.target.value;
+    renderRows();
+  });
+
+  // Status dropdown filter
+  statusFilter.addEventListener('change', (e) => {
+    currentStatus = e.target.value;
+    renderRows();
+  });
+
+  refreshBtn.addEventListener('click', () => {
+    fetchFreshData();
+  });
+
+  // Export to CSV
+  exportCsvBtn.addEventListener('click', () => {
+    if (allInquiries.length === 0) {
+      alert('No inquiries to export.');
+      return;
+    }
+    const headers = ['Date', 'Category', 'Name', 'Email', 'Phone', 'Company', 'Service', 'Status', 'Message'];
+    const rows = allInquiries.map(i => [
+      new Date(i.createdAt).toISOString(),
+      `"${(i.category || '').replace(/"/g, '""')}"`,
+      `"${(i.name || '').replace(/"/g, '""')}"`,
+      `"${(i.email || '').replace(/"/g, '""')}"`,
+      `"${(i.phone || '').replace(/"/g, '""')}"`,
+      `"${(i.company || '').replace(/"/g, '""')}"`,
+      `"${(i.service || '').replace(/"/g, '""')}"`,
+      `"${(i.status || '').replace(/"/g, '""')}"`,
+      `"${(i.message || '').replace(/"/g, '""')}"`,
+    ]);
+
+    const csvContent = 'data:text/csv;charset=utf-8,' + [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement('a');
+    link.setAttribute('href', encodedUri);
+    link.setAttribute('download', `wellbit_inquiries_${new Date().toISOString().slice(0, 10)}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  });
+
+  // Initial render
+  renderRows();
+</script>

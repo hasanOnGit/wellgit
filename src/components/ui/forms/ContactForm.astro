@@ -55,6 +55,25 @@ const formStrings = {
       </label>
     </div>
 
+    {/* Phone input field (Optional) */}
+    <div class="relative">
+      <input
+        type="tel"
+        name="phone"
+        id="input-phone"
+        class="peer block w-full rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-800 not-placeholder-shown:pt-6 not-placeholder-shown:pb-2 placeholder:text-transparent autofill:pt-6 autofill:pb-2 focus:border-teal-600 focus:bg-white focus:pt-6 focus:pb-2 focus:ring-2 focus:ring-teal-600/20 focus:outline-hidden transition-all duration-200"
+        placeholder="Phone Number (Optional)"
+        aria-labelledby="input-phone-label"
+      />
+      <label
+        id="input-phone-label"
+        for="input-phone"
+        class="pointer-events-none absolute start-0 top-0 h-full w-full truncate border border-transparent p-4 text-slate-500 transition duration-100 ease-in-out peer-not-placeholder-shown:-translate-y-1.5 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-slate-600 peer-focus:-translate-y-1.5 peer-focus:text-xs peer-focus:text-teal-600"
+      >
+        Phone / WhatsApp (Optional)
+      </label>
+    </div>
+
     {/* Message textarea field */}
     <div class="relative">
       <textarea
@@ -110,7 +129,9 @@ const formStrings = {
       const payload = {
         name: formData.get('name'),
         email: formData.get('email'),
+        phone: formData.get('phone'),
         message: formData.get('message'),
+        category: 'Contact Inquiry',
       };
 
       try {
@@ -132,7 +153,7 @@ const formStrings = {
         }
       } catch (err) {
         statusDiv.className = 'mt-4 rounded-lg p-3 text-sm font-medium bg-red-500/10 text-red-700 border border-red-500/20';
-        statusDiv.textContent = 'An error occurred. Please email contact@wellbit.in directly.';
+        statusDiv.textContent = 'An error occurred. Please email m.hasanmzp@gmail.com directly.';
       } finally {
         submitBtn.disabled = false;
         btnText.textContent = 'Send Message';

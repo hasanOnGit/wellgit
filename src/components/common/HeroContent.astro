@@ -45,7 +45,7 @@ const secondaryCTA = {
     </div>
 
     <h1
-      class="block text-3xl font-bold tracking-tight text-balance text-slate-800 sm:text-5xl md:text-6xl lg:text-7xl leading-tight sm:leading-tight md:leading-tight"
+      class="block text-3xl font-black tracking-tight text-balance sm:text-5xl md:text-6xl lg:text-7xl leading-tight sm:leading-tight md:leading-tight font-display bg-clip-text text-transparent bg-gradient-to-br from-slate-950 via-slate-900 to-teal-600"
     >
       {title}
     </h1>
@@ -66,4 +66,24 @@ const secondaryCTA = {
   <Button href={secondaryCTA.href} variant="secondary" className="w-full sm:w-auto px-7 py-3 sm:px-8 sm:py-3.5 text-sm sm:text-base font-semibold">
     {secondaryCTA.text}
   </Button>
+</div>
+
+{/* Architectural Capability Strip */}
+<div class="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-y-2 gap-x-6 text-xs text-slate-500 font-mono">
+  <div class="flex items-center gap-1.5">
+    <span class="size-1.5 rounded-full bg-teal-600"></span>
+    <span>Autonomous AI Agent Loops</span>
+  </div>
+  <div class="flex items-center gap-1.5">
+    <span class="size-1.5 rounded-full bg-emerald-500"></span>
+    <span>99.99% Production Uptime</span>
+  </div>
+  <div class="flex items-center gap-1.5">
+    <span class="size-1.5 rounded-full bg-indigo-500"></span>
+    <span>PostgreSQL & pgvector Fabric</span>
+  </div>
+  <div class="flex items-center gap-1.5">
+    <span class="size-1.5 rounded-full bg-sky-500"></span>
+    <span>Zero Vendor Lock-in Codebase</span>
+  </div>
 </div>

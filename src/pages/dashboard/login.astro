@@ -1,0 +1,139 @@
+---
+export const prerender = false;
+import BaseLayout from '@layout/BaseLayout.astro';
+import { isAuthenticated } from '@/utils/auth';
+
+if (isAuthenticated(Astro.request)) {
+  return Astro.redirect('/dashboard');
+}
+---
+
+<BaseLayout
+  title="Admin Login | Wellbit Technologies"
+  description="Sign in to Wellbit Technologies administrative inquiry and operations console."
+  noindex={true}
+>
+  <div class="flex min-h-[85vh] items-center justify-center px-4 py-28 sm:px-6 lg:px-8">
+    <div class="w-full max-w-md">
+      {/* Brand Header */}
+      <div class="text-center">
+        <a href="/" class="inline-flex items-center gap-2">
+          <img src="/logo-wellbit-symbol.png" alt="Wellbit" class="size-10 object-contain" />
+          <span class="text-2xl font-bold tracking-tight text-slate-800">
+            <span class="text-teal-600">Well</span>bit
+          </span>
+        </a>
+        <h1 class="mt-4 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+          Operations Portal
+        </h1>
+        <p class="mt-2 text-sm text-slate-600">
+          Sign in to view client inquiries, quotes, and form submissions.
+        </p>
+      </div>
+
+      {/* Login Card */}
+      <div class="mt-8 rounded-2xl border border-slate-200/90 bg-white/95 p-6 sm:p-8 shadow-xl shadow-slate-900/5 ring-1 ring-slate-900/5">
+        <form id="login-form" class="space-y-5">
+          <div id="login-error" class="hidden rounded-lg bg-rose-50 border border-rose-200 p-3 text-xs font-medium text-rose-700"></div>
+
+          <div>
+            <label for="admin-email" class="block text-xs font-semibold uppercase tracking-wider text-slate-700">
+              Admin Email
+            </label>
+            <div class="mt-1.5">
+              <input
+                id="admin-email"
+                name="email"
+                type="email"
+                required
+                value="m.hasanmzp@gmail.com"
+                class="block w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 focus:border-teal-600 focus:bg-white focus:ring-2 focus:ring-teal-600/20 focus:outline-hidden transition-all duration-200"
+                placeholder="name@example.com"
+              />
+            </div>
+          </div>
+
+          <div>
+            <div class="flex items-center justify-between">
+              <label for="admin-password" class="block text-xs font-semibold uppercase tracking-wider text-slate-700">
+                Password
+              </label>
+            </div>
+            <div class="mt-1.5">
+              <input
+                id="admin-password"
+                name="password"
+                type="password"
+                required
+                class="block w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 focus:border-teal-600 focus:bg-white focus:ring-2 focus:ring-teal-600/20 focus:outline-hidden transition-all duration-200"
+                placeholder="••••••••"
+              />
+            </div>
+          </div>
+
+          <div>
+            <button
+              type="submit"
+              id="login-submit-btn"
+              class="flex w-full justify-center rounded-xl bg-btn-gradient py-3.5 px-4 text-sm font-semibold text-white shadow-md shadow-blue-500/20 transition-all duration-300 hover:bg-teal-700 hover:shadow-lg focus:outline-hidden cursor-pointer"
+            >
+              <span id="login-btn-text">Authenticate & Access</span>
+            </button>
+          </div>
+        </form>
+
+        <div class="mt-6 border-t border-slate-100 pt-4 text-center">
+          <p class="text-[11px] text-slate-500 font-mono">
+            Protected endpoint &bull; ClusterTuba &bull; WellBitWebsite
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  const form = document.getElementById('login-form') as HTMLFormElement | null;
+  const errorDiv = document.getElementById('login-error');
+  const submitBtn = document.getElementById('login-submit-btn') as HTMLButtonElement | null;
+  const btnText = document.getElementById('login-btn-text');
+
+  if (form && errorDiv && submitBtn && btnText) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorDiv.classList.add('hidden');
+      errorDiv.textContent = '';
+      submitBtn.disabled = true;
+      btnText.textContent = 'Verifying Credentials...';
+
+      const formData = new FormData(form);
+      const email = formData.get('email');
+      const password = formData.get('password');
+
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password }),
+        });
+
+        const data = await res.json();
+
+        if (res.ok && data.success) {
+          btnText.textContent = 'Success! Redirecting...';
+          window.location.href = '/dashboard';
+        } else {
+          errorDiv.classList.remove('hidden');
+          errorDiv.textContent = data.error || 'Invalid credentials. Access denied.';
+          submitBtn.disabled = false;
+          btnText.textContent = 'Authenticate & Access';
+        }
+      } catch (err) {
+        errorDiv.classList.remove('hidden');
+        errorDiv.textContent = 'Network or server error during authentication.';
+        submitBtn.disabled = false;
+        btnText.textContent = 'Authenticate & Access';
+      }
+    });
+  }
+</script>

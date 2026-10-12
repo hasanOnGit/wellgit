@@ -64,6 +64,8 @@
   /* Typography */
   --font-dm-sans: 'DM Sans', sans-serif;
   --font-work-sans: 'Work Sans', sans-serif;
+  --font-display: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
+  --font-tech: 'Plus Jakarta Sans', sans-serif;
 
   @keyframes scroll {
     to {

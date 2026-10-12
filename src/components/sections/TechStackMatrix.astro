@@ -1,0 +1,197 @@
+---
+// Interactive Tech Stack Matrix for Wellbit Technologies
+const techCategories = [
+  {
+    badge: 'AI & Cognitive Agents',
+    title: 'Autonomous Agents & Intelligence Loops',
+    description: 'We orchestrate multi-step autonomous agent pipelines that plan, call tools, retrieve context, and execute workflows safely with validation.',
+    iconColor: 'from-blue-600 to-cyan-500',
+    tags: ['LangChain', 'LlamaIndex', 'Autonomous Agents', 'RAG Pipelines', 'pgvector', 'Claude & OpenAI APIs'],
+    stats: { label: 'Query Latency', value: '< 240ms' },
+    svgType: 'neural',
+  },
+  {
+    badge: 'Modern Full-Stack',
+    title: 'Enterprise Web & Resilient APIs',
+    description: 'Sub-second response architectures with end-to-end type safety, modern reactive interfaces, and scalable server-side rendering.',
+    iconColor: 'from-teal-600 to-blue-600',
+    tags: ['TypeScript', 'Astro SSR', 'React 19', 'Next.js', 'Node.js & Bun', 'REST & GraphQL'],
+    stats: { label: 'Lighthouse Score', value: '99/100' },
+    svgType: 'fullstack',
+  },
+  {
+    badge: 'Data & Persistence',
+    title: 'Distributed Storage & Vector Search',
+    description: 'High-concurrency data persistence combining relational ACID transactions, distributed document databases, and millisecond caching.',
+    iconColor: 'from-sky-500 to-indigo-600',
+    tags: ['PostgreSQL', 'MongoDB Atlas', 'Redis In-Memory', 'Kafka Streams', 'Vector Embeddings'],
+    stats: { label: 'Data Concurrency', value: '100k+ ops/s' },
+    svgType: 'database',
+  },
+  {
+    badge: 'Cloud & DevOps',
+    title: 'Containerized Edge & Zero Lock-in',
+    description: 'Zero-downtime deployment pipelines with automated regression testing, immutable container images, and continuous telemetry.',
+    iconColor: 'from-indigo-600 to-cyan-600',
+    tags: ['Docker', 'Kubernetes', 'AWS & Cloudflare', 'Terraform IaC', 'OpenTelemetry', 'CI/CD Pipelines'],
+    stats: { label: 'Target Availability', value: '99.99%' },
+    svgType: 'cloud',
+  },
+];
+---
+
+<section class="relative overflow-hidden bg-gradient-to-b from-white via-slate-50 to-white py-16 sm:py-24 border-y border-slate-200">
+  {/* Ambient background glows */}
+  <div class="pointer-events-none absolute -top-40 left-1/2 -z-10 h-96 w-96 -translate-x-1/2 rounded-full bg-teal-200/30 blur-3xl"></div>
+  <div class="pointer-events-none absolute bottom-0 right-10 -z-10 h-80 w-80 rounded-full bg-blue-100/40 blur-3xl"></div>
+
+  <div class="mx-auto max-w-[85rem] px-4 sm:px-6 lg:px-8">
+    {/* Section Header */}
+    <div class="mx-auto max-w-3xl text-center mb-12 sm:mb-16">
+      <div class="inline-flex items-center gap-x-2 rounded-full border border-teal-200 bg-teal-50 px-3.5 py-1 text-xs font-semibold text-teal-800 shadow-2xs mb-4">
+        <span class="inline-block size-2 rounded-full bg-teal-500 animate-pulse"></span>
+        Engineered for Production Scale
+      </div>
+      <h2 class="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl md:text-5xl font-display">
+        The Wellbit Engineering Stack & Ecosystem
+      </h2>
+      <p class="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed">
+        We select and master enterprise technologies built for longevity, verifiable security, sub-second latency, and zero vendor lock-in.
+      </p>
+    </div>
+
+    {/* Tech Categories Grid */}
+    <div class="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-4">
+      {
+        techCategories.map((cat, idx) => (
+          <div class="group relative flex flex-col justify-between rounded-2xl border border-slate-200/90 bg-white p-6 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-teal-400 hover:shadow-xl hover:shadow-teal-900/5">
+            {/* Top decorative gradient bar */}
+            <div class={`absolute inset-x-0 top-0 h-1 rounded-t-2xl bg-gradient-to-r ${cat.iconColor}`}></div>
+
+            <div>
+              {/* Badge & Mini Graphic Header */}
+              <div class="flex items-center justify-between mb-4">
+                <span class="inline-block rounded-md bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-700">
+                  {cat.badge}
+                </span>
+                <span class="font-mono text-xs font-semibold text-teal-700 bg-teal-50 border border-teal-200/60 rounded px-2 py-0.5">
+                  0{idx + 1}
+                </span>
+              </div>
+
+              {/* Bespoke Tech Illustration SVG */}
+              <div class="mb-5 flex h-28 w-full items-center justify-center rounded-xl bg-gradient-to-b from-slate-50 to-slate-100/60 border border-slate-200/60 p-2 overflow-hidden group-hover:border-teal-200 transition-colors">
+                {cat.svgType === 'neural' && (
+                  <svg class="h-20 w-full text-teal-600" viewBox="0 0 200 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="30" cy="45" r="8" class="fill-teal-100 stroke-teal-600" stroke-width="2" />
+                    <circle cx="80" cy="22" r="7" class="fill-sky-100 stroke-sky-500" stroke-width="2" />
+                    <circle cx="80" cy="68" r="7" class="fill-sky-100 stroke-sky-500" stroke-width="2" />
+                    <circle cx="130" cy="22" r="7" class="fill-blue-100 stroke-blue-600" stroke-width="2" />
+                    <circle cx="130" cy="68" r="7" class="fill-blue-100 stroke-blue-600" stroke-width="2" />
+                    <circle cx="175" cy="45" r="9" class="fill-teal-500 stroke-teal-700" stroke-width="2" />
+                    {/* Connections */}
+                    <path d="M38 45 L73 24 M38 45 L73 66" stroke="#94a3b8" stroke-dasharray="3 3" stroke-width="1.5" />
+                    <path d="M87 22 L123 22 M87 22 L123 66" stroke="#38bdf8" stroke-width="1.5" />
+                    <path d="M87 68 L123 24 M87 68 L123 68" stroke="#38bdf8" stroke-width="1.5" />
+                    <path d="M137 24 L167 43 M137 66 L167 47" stroke="#1768e8" stroke-width="2" />
+                    <circle cx="80" cy="22" r="3" class="fill-teal-600" />
+                    <circle cx="175" cy="45" r="4" class="fill-white" />
+                  </svg>
+                )}
+
+                {cat.svgType === 'fullstack' && (
+                  <svg class="h-20 w-full text-blue-600" viewBox="0 0 200 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    {/* Browser Card Frame */}
+                    <rect x="25" y="10" width="150" height="70" rx="8" class="fill-white stroke-slate-300" stroke-width="1.5" />
+                    <rect x="25" y="10" width="150" height="16" rx="8" class="fill-slate-100" />
+                    <circle cx="37" cy="18" r="2.5" fill="#ef4444" />
+                    <circle cx="46" cy="18" r="2.5" fill="#f59e0b" />
+                    <circle cx="55" cy="18" r="2.5" fill="#10b981" />
+                    {/* Content bars */}
+                    <rect x="40" y="36" width="55" height="6" rx="3" class="fill-teal-500" />
+                    <rect x="40" y="48" width="80" height="4" rx="2" class="fill-slate-300" />
+                    <rect x="40" y="58" width="60" height="4" rx="2" class="fill-slate-200" />
+                    <rect x="115" y="36" width="45" height="30" rx="4" class="fill-teal-50 stroke-teal-200" stroke-width="1" />
+                    <path d="M125 51 L133 59 L150 43" stroke="#1768e8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                )}
+
+                {cat.svgType === 'database' && (
+                  <svg class="h-20 w-full text-sky-600" viewBox="0 0 200 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    {/* Database cylinders */}
+                    <g transform="translate(45, 12)">
+                      <ellipse cx="55" cy="14" rx="40" ry="10" class="fill-teal-100 stroke-teal-600" stroke-width="1.5" />
+                      <path d="M15 14 v20 c0 6 18 10 40 10 s40 -4 40 -10 v-20" class="fill-teal-50/50 stroke-teal-600" stroke-width="1.5" />
+                      <path d="M15 34 v20 c0 6 18 10 40 10 s40 -4 40 -10 v-20" class="fill-white stroke-teal-600" stroke-width="1.5" />
+                      {/* Status indicator */}
+                      <circle cx="55" cy="50" r="3" class="fill-teal-600 animate-pulse" />
+                      <line x1="65" y1="50" x2="82" y2="50" stroke="#0b1730" stroke-width="1.5" stroke-linecap="round" />
+                    </g>
+                  </svg>
+                )}
+
+                {cat.svgType === 'cloud' && (
+                  <svg class="h-20 w-full text-indigo-600" viewBox="0 0 200 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    {/* Cloud and edge nodes */}
+                    <path d="M70 55 C60 55 52 47 52 38 C52 30 58 23 66 22 C70 14 78 8 88 8 C100 8 110 16 112 26 C118 26 124 31 124 38 C124 45 118 55 108 55 Z" class="fill-blue-50 stroke-blue-500" stroke-width="1.5" />
+                    {/* Edge Nodes */}
+                    <rect x="35" y="65" width="30" height="15" rx="3" class="fill-white stroke-slate-300" stroke-width="1.2" />
+                    <rect x="85" y="65" width="30" height="15" rx="3" class="fill-teal-50 stroke-teal-400" stroke-width="1.2" />
+                    <rect x="135" y="65" width="30" height="15" rx="3" class="fill-white stroke-slate-300" stroke-width="1.2" />
+                    <path d="M50 65 L75 55 M100 65 L95 55 M150 65 L115 55" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="2 2" />
+                    <circle cx="100" cy="72" r="2" class="fill-teal-600" />
+                  </svg>
+                )}
+              </div>
+
+              {/* Title & Description */}
+              <h3 class="text-lg font-bold text-slate-800 font-display">
+                {cat.title}
+              </h3>
+              <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+                {cat.description}
+              </p>
+
+              {/* Tech Badges */}
+              <div class="mt-4 flex flex-wrap gap-1.5">
+                {cat.tags.map(t => (
+                  <span class="inline-flex items-center rounded-md bg-slate-50 border border-slate-200/80 px-2 py-0.5 text-[11px] font-medium text-slate-700">
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Bottom KPI */}
+            <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
+              <span class="text-slate-500">{cat.stats.label}</span>
+              <span class="font-bold text-teal-700 font-mono">{cat.stats.value}</span>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    {/* Architecture Guarantee Footer Banner */}
+    <div class="mt-12 rounded-2xl bg-gradient-to-r from-navy via-slate-900 to-navy p-6 sm:p-8 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-4">
+        <div class="flex size-12 shrink-0 items-center justify-center rounded-xl bg-teal-500/20 text-teal-300 border border-teal-400/30">
+          <svg class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+          </svg>
+        </div>
+        <div>
+          <h4 class="text-base sm:text-lg font-bold">100% Client Code Ownership & Zero Lock-in Guarantee</h4>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1">Every repository, database schema, and deployment script is handed over with comprehensive documentation and standard tooling.</p>
+        </div>
+      </div>
+      <a
+        href="/contact"
+        class="shrink-0 inline-flex items-center gap-x-2 rounded-xl bg-teal-500 px-5 py-3 text-sm font-semibold text-white shadow-md hover:bg-teal-400 transition-colors"
+      >
+        Consult With Engineers
+        <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+      </a>
+    </div>
+  </div>
+</section>

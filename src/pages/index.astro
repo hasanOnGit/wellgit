@@ -2,8 +2,9 @@
 export const prerender = true;
 import BaseLayout from '@layout/BaseLayout.astro';
 import Hero from '@sections/HeroSection.astro';
+import TechStackMatrix from '@sections/TechStackMatrix.astro';
 import FeatureShowcase from '@sections/FeatureShowcase.astro';
-// import FeatureBento from "@sections/FeatureBento.astro";
+import IndustrySolutions from '@sections/IndustrySolutions.astro';
 import FeatureAnimated from '@sections/FeatureAnimated.astro';
 import FeatureGrid from '@sections/FeatureGrid.astro';
 import CTA from '@sections/CTA.astro';
@@ -12,9 +13,11 @@ import CTA from '@sections/CTA.astro';
 <BaseLayout>
   <Hero />
 
+  <TechStackMatrix />
+
   <FeatureShowcase />
 
-  {/* <FeatureBento /> */}
+  <IndustrySolutions />
 
   <FeatureAnimated />
 

@@ -1,0 +1,224 @@
+---
+// Enterprise Solutions & Case Architectures
+const solutions = [
+  {
+    category: 'FinTech & Operations',
+    title: 'Autonomous Financial & Document Reconciliation',
+    challenge: 'Manual invoice matching and contract verification created hours of delay and compliance risk.',
+    solution: 'Engineered an AI agent pipeline extracting structured tabular data, validating against ERP rules, and routing anomalies with human-in-the-loop validation.',
+    metrics: [
+      { label: 'Processing Speed', value: '18x Faster' },
+      { label: 'Extraction Accuracy', value: '99.8%' },
+    ],
+    accent: 'border-teal-500/30 text-teal-700 bg-teal-50',
+    svgType: 'doc-pipeline',
+  },
+  {
+    category: 'Operations & Management',
+    title: 'Custom Internal Portals & Workflow Automation',
+    challenge: 'Disconnected spreadsheets and disparate tools caused communication silos and lost inquiries.',
+    solution: 'Built a centralized enterprise operational dashboard with role-based access control, automated notification triggers, and live KPI telemetry.',
+    metrics: [
+      { label: 'Admin Hours Saved', value: '35 hrs/wk' },
+      { label: 'Turnaround Time', value: '-65%' },
+    ],
+    accent: 'border-blue-500/30 text-blue-700 bg-blue-50',
+    svgType: 'workflow-portal',
+  },
+  {
+    category: 'AI Knowledge Retrieval',
+    title: 'Enterprise Semantic RAG & Knowledge Assistants',
+    challenge: 'Teams wasted hours locating standard operating procedures, documentation, and historical tickets.',
+    solution: 'Designed hybrid vector search pipelines combining pgvector, chunking heuristics, and citation-backed LLM responses adhering to strict RBAC.',
+    metrics: [
+      { label: 'Lookup Time', value: '< 2.1s' },
+      { label: 'Hallucination Rate', value: '< 0.05%' },
+    ],
+    accent: 'border-indigo-500/30 text-indigo-700 bg-indigo-50',
+    svgType: 'rag-search',
+  },
+  {
+    category: 'Customer Platforms',
+    title: 'High-Concurrency Client Portals & SaaS',
+    challenge: 'Slow legacy platforms could not scale with spikes in concurrent customer orders and account requests.',
+    solution: 'Engineered a cloud-native SSR web platform with edge caching, sub-second response times, and automated horizontal scaling.',
+    metrics: [
+      { label: 'Page Load (LCP)', value: '0.4s' },
+      { label: 'Concurrency Tested', value: '10,000+ users' },
+    ],
+    accent: 'border-sky-500/30 text-sky-700 bg-sky-50',
+    svgType: 'portal-scale',
+  },
+];
+---
+
+<section class="py-16 sm:py-24 bg-white">
+  <div class="mx-auto max-w-[85rem] px-4 sm:px-6 lg:px-8">
+    {/* Header */}
+    <div class="mx-auto max-w-3xl text-center mb-12 sm:mb-16">
+      <div class="inline-flex items-center gap-x-2 rounded-full border border-slate-200 bg-slate-50 px-3.5 py-1 text-xs font-semibold text-slate-700 shadow-2xs mb-4">
+        <svg class="size-3.5 text-teal-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
+        Proven Enterprise Delivery
+      </div>
+      <h2 class="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl md:text-5xl font-display">
+        Enterprise Solutions Engineered For Impact
+      </h2>
+      <p class="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed">
+        See how Wellbit transforms complex organizational bottlenecks into streamlined, automated, and maintainable software systems.
+      </p>
+    </div>
+
+    {/* Solutions Grid */}
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+      {
+        solutions.map((item, idx) => (
+          <div class="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-slate-200 bg-gradient-to-br from-white to-slate-50/50 p-6 sm:p-8 shadow-xs hover:border-teal-400 hover:shadow-xl transition-all duration-300">
+            <div>
+              {/* Category & Badge */}
+              <div class="flex items-center justify-between mb-4">
+                <span class={`rounded-full px-3 py-1 text-xs font-semibold border ${item.accent}`}>
+                  {item.category}
+                </span>
+                <span class="text-xs font-mono font-medium text-slate-400">
+                  CASE-0{idx + 1}
+                </span>
+              </div>
+
+              {/* Title */}
+              <h3 class="text-xl sm:text-2xl font-bold text-slate-900 font-display group-hover:text-teal-700 transition-colors">
+                {item.title}
+              </h3>
+
+              {/* Graphic SVG Illustration Container */}
+              <div class="my-6 h-36 w-full rounded-xl bg-slate-50 border border-slate-200/80 p-4 flex items-center justify-center overflow-hidden">
+                {item.svgType === 'doc-pipeline' && (
+                  <svg class="h-28 w-full text-slate-700" viewBox="0 0 300 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    {/* Document Input */}
+                    <rect x="20" y="15" width="55" height="70" rx="4" class="fill-white stroke-slate-300" stroke-width="1.5" />
+                    <line x1="30" y1="30" x2="60" y2="30" stroke="#94a3b8" stroke-width="2" />
+                    <line x1="30" y1="42" x2="65" y2="42" stroke="#94a3b8" stroke-width="2" />
+                    <line x1="30" y1="54" x2="52" y2="54" stroke="#94a3b8" stroke-width="2" />
+                    {/* Arrow 1 */}
+                    <path d="M85 50 L115 50" stroke="#14b8a6" stroke-width="2" stroke-dasharray="3 3" />
+                    <polygon points="113,47 120,50 113,53" fill="#14b8a6" />
+                    {/* AI Agent Engine */}
+                    <rect x="125" y="20" width="60" height="60" rx="8" class="fill-teal-50 stroke-teal-500" stroke-width="1.5" />
+                    <circle cx="155" cy="45" r="14" class="fill-teal-600/10 stroke-teal-600" stroke-width="1.5" />
+                    <path d="M148 45 L153 50 L163 40" stroke="#0d9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <text x="135" y="72" class="fill-teal-800 text-[9px] font-bold font-mono">PARSER</text>
+                    {/* Arrow 2 */}
+                    <path d="M195 50 L225 50" stroke="#14b8a6" stroke-width="2" stroke-dasharray="3 3" />
+                    <polygon points="223,47 230,50 223,53" fill="#14b8a6" />
+                    {/* Output Structured Data */}
+                    <rect x="235" y="15" width="55" height="70" rx="4" class="fill-white stroke-teal-500" stroke-width="1.5" />
+                    <rect x="242" y="25" width="41" height="8" rx="2" class="fill-teal-100" />
+                    <rect x="242" y="38" width="41" height="8" rx="2" class="fill-teal-100" />
+                    <rect x="242" y="51" width="41" height="8" rx="2" class="fill-teal-100" />
+                    <rect x="242" y="64" width="41" height="8" rx="2" class="fill-teal-500" />
+                  </svg>
+                )}
+
+                {item.svgType === 'workflow-portal' && (
+                  <svg class="h-28 w-full text-slate-700" viewBox="0 0 300 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    {/* Admin Dashboard Mock */}
+                    <rect x="30" y="10" width="240" height="80" rx="6" class="fill-white stroke-slate-300" stroke-width="1.5" />
+                    {/* Top bar */}
+                    <rect x="30" y="10" width="240" height="18" rx="6" class="fill-slate-100" />
+                    <circle cx="45" cy="19" r="3" fill="#ef4444" />
+                    <circle cx="55" cy="19" r="3" fill="#f59e0b" />
+                    <circle cx="65" cy="19" r="3" fill="#10b981" />
+                    {/* Sidebar */}
+                    <rect x="30" y="28" width="45" height="62" class="fill-slate-50 stroke-slate-200" stroke-width="0.8" />
+                    <rect x="36" y="36" width="33" height="4" rx="2" class="fill-teal-600" />
+                    <rect x="36" y="46" width="28" height="4" rx="2" class="fill-slate-300" />
+                    <rect x="36" y="56" width="30" height="4" rx="2" class="fill-slate-300" />
+                    {/* KPI Cards inside */}
+                    <rect x="85" y="35" width="55" height="24" rx="4" class="fill-teal-50 stroke-teal-200" stroke-width="1" />
+                    <text x="91" y="47" class="fill-teal-800 text-[8px] font-bold">INQUIRIES</text>
+                    <text x="91" y="56" class="fill-teal-600 text-[10px] font-mono font-bold">+184%</text>
+
+                    <rect x="150" y="35" width="55" height="24" rx="4" class="fill-blue-50 stroke-blue-200" stroke-width="1" />
+                    <text x="156" y="47" class="fill-blue-800 text-[8px] font-bold">REVENUE</text>
+                    <text x="156" y="56" class="fill-blue-600 text-[10px] font-mono font-bold">ACTIVE</text>
+
+                    <rect x="215" y="35" width="45" height="24" rx="4" class="fill-slate-50 stroke-slate-200" stroke-width="1" />
+                    <circle cx="237" cy="47" r="5" class="fill-teal-500" />
+                    {/* Table Rows */}
+                    <line x1="85" y1="68" x2="260" y2="68" stroke="#e2e8f0" stroke-width="1.5" />
+                    <line x1="85" y1="78" x2="260" y2="78" stroke="#e2e8f0" stroke-width="1.5" />
+                  </svg>
+                )}
+
+                {item.svgType === 'rag-search' && (
+                  <svg class="h-28 w-full text-slate-700" viewBox="0 0 300 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    {/* Search query input */}
+                    <rect x="25" y="32" width="75" height="34" rx="6" class="fill-white stroke-slate-300" stroke-width="1.5" />
+                    <circle cx="40" cy="49" r="5" class="stroke-teal-600" stroke-width="1.5" />
+                    <line x1="44" y1="53" x2="49" y2="58" stroke="#0d9488" stroke-width="1.5" />
+                    <text x="54" y="52" class="fill-slate-600 text-[9px] font-mono">Query...</text>
+                    {/* Vector Space Node Cloud */}
+                    <path d="M105 49 L135 49" stroke="#14b8a6" stroke-width="1.5" stroke-dasharray="3 3" />
+                    <circle cx="160" cy="30" r="12" class="fill-indigo-50 stroke-indigo-500" stroke-width="1.5" />
+                    <circle cx="160" cy="70" r="10" class="fill-teal-50 stroke-teal-500" stroke-width="1.5" />
+                    <circle cx="185" cy="50" r="14" class="fill-blue-50 stroke-blue-500" stroke-width="1.5" />
+                    <text x="175" y="53" class="fill-blue-800 text-[8px] font-bold font-mono">EMBED</text>
+                    {/* Response Card */}
+                    <path d="M205 50 L230 50" stroke="#14b8a6" stroke-width="1.5" stroke-dasharray="3 3" />
+                    <rect x="235" y="24" width="55" height="52" rx="6" class="fill-teal-50 stroke-teal-500" stroke-width="1.5" />
+                    <text x="242" y="39" class="fill-teal-900 text-[8px] font-bold">VERIFIED</text>
+                    <line x1="242" y1="46" x2="280" y2="46" stroke="#0d9488" stroke-width="1.5" />
+                    <line x1="242" y1="54" x2="275" y2="54" stroke="#0d9488" stroke-width="1.5" />
+                    <line x1="242" y1="62" x2="265" y2="62" stroke="#0d9488" stroke-width="1.5" />
+                  </svg>
+                )}
+
+                {item.svgType === 'portal-scale' && (
+                  <svg class="h-28 w-full text-slate-700" viewBox="0 0 300 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    {/* Edge CDN & Serverless Nodes */}
+                    <circle cx="50" cy="50" r="22" class="fill-sky-50 stroke-sky-500" stroke-width="1.5" />
+                    <text x="35" y="53" class="fill-sky-800 text-[9px] font-bold font-mono">EDGE</text>
+                    {/* Distribution lines */}
+                    <path d="M75 42 L130 25" stroke="#38bdf8" stroke-width="1.5" />
+                    <path d="M75 50 L130 50" stroke="#14b8a6" stroke-width="2" />
+                    <path d="M75 58 L130 75" stroke="#38bdf8" stroke-width="1.5" />
+                    {/* Microservices */}
+                    <rect x="135" y="15" width="50" height="20" rx="4" class="fill-white stroke-slate-300" stroke-width="1.2" />
+                    <rect x="135" y="40" width="50" height="20" rx="4" class="fill-teal-50 stroke-teal-500" stroke-width="1.2" />
+                    <rect x="135" y="65" width="50" height="20" rx="4" class="fill-white stroke-slate-300" stroke-width="1.2" />
+                    {/* Target users */}
+                    <path d="M190 50 L240 50" stroke="#14b8a6" stroke-width="1.5" stroke-dasharray="3 3" />
+                    <rect x="245" y="25" width="45" height="50" rx="6" class="fill-slate-900 text-white" />
+                    <circle cx="267" cy="42" r="6" fill="#14b8a6" />
+                    <text x="252" y="64" class="fill-white text-[7px] font-mono">GLOBAL</text>
+                  </svg>
+                )}
+              </div>
+
+              {/* Challenge & Solution details */}
+              <div class="space-y-2.5 text-sm">
+                <div>
+                  <span class="font-semibold text-slate-700">Problem:</span>
+                  <span class="text-slate-600 ml-1">{item.challenge}</span>
+                </div>
+                <div>
+                  <span class="font-semibold text-slate-800">Engineered Fix:</span>
+                  <span class="text-slate-600 ml-1">{item.solution}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Metrics */}
+            <div class="mt-6 pt-4 border-t border-slate-200/80 grid grid-cols-2 gap-4">
+              {item.metrics.map(m => (
+                <div>
+                  <div class="text-xs text-slate-500 font-medium">{m.label}</div>
+                  <div class="text-lg font-bold text-teal-800 font-display">{m.value}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
