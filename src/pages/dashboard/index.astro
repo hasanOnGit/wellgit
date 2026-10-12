@@ -51,7 +51,7 @@ try {
   description="Manage client inquiries, proposal requests, newsletter subscribers, and form submissions."
   noindex={true}
 >
-  <div class="min-h-screen bg-slate-50/70 pt-28 pb-20">
+  <div class="min-h-screen bg-slate-50/70 pt-36 sm:pt-44 lg:pt-48 pb-20">
     <div class="mx-auto max-w-[88rem] px-4 sm:px-6 lg:px-8">
 
       {/* Top Console Bar */}
@@ -524,6 +524,7 @@ try {
       if (res.ok) {
         activeInquiry.status = newStatus;
         renderRows();
+        fetchFreshData();
       }
     } catch (err) {
       console.error('Failed to update status:', err);
@@ -536,6 +537,7 @@ try {
       if (res.ok) {
         allInquiries = allInquiries.filter(i => i._id !== id);
         renderRows();
+        fetchFreshData();
       }
     } catch (err) {
       console.error('Failed to delete inquiry:', err);
