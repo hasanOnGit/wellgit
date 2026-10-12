@@ -3,7 +3,6 @@ import Navbar from '@sections/Navbar.astro';
 import Footer from '@sections/Footer.astro';
 import { ClientRouter } from 'astro:transitions';
 import { SEO, type Props as SEOProps } from 'astro-seo';
-import { Schema } from 'astro-seo-schema';
 import type { WithContext, Thing } from 'schema-dts';
 import { AstroFont } from 'astro-font';
 import '@styles/global.css';
@@ -12,40 +11,109 @@ interface Props {
   title?: string;
   description?: string;
   seo?: SEOProps; // Optional SEO properties to customize meta tags
-  schema?: WithContext<Thing>; // Optional schema.org properties for structured data
+  schema?: WithContext<Thing> | Record<string, unknown>; // Optional schema.org properties for structured data
+  noindex?: boolean; // Set true for 404 or non-indexable pages
 }
 
-// Extract `seo` and `schema` from properties or define defaults
-const { title, description, schema } = Astro.props;
+const { title, description, schema, noindex = false } = Astro.props;
 const seo = Astro.props.seo ?? (title || description ? { title, description } : undefined);
-const socialImage = `${Astro.site}social.png`; // Path to the default social sharing image
 
-const ogTitle =
+// Ensure canonical URL is always normalized to production origin https://wellbit.in
+const rawPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+const canonicalURL = rawPath === '/' ? 'https://wellbit.in/' : `https://wellbit.in${rawPath}`;
+const siteURL = 'https://wellbit.in';
+const socialImage = `${siteURL}/social.png`;
+
+const pageTitle =
   seo?.title ??
   title ??
   'Wellbit Technologies — Engineering Intelligence. Building Possibilities.';
-const ogDescription =
+const pageDescription =
   seo?.description ??
   description ??
   'Wellbit builds custom software, AI-powered solutions, and scalable digital platforms that help businesses automate operations, solve complex challenges, and accelerate growth.';
 
-// Define default JSON-LD Schema.org data if no schema is passed
-const defaultSchema: WithContext<Thing> = {
-  '@context': 'https://schema.org',
-  '@type': 'WebPage',
-  inLanguage: 'en-US',
-  '@id': Astro.url.href,
-  url: Astro.url.href,
+// Root Knowledge Graph Organization Schema
+const organizationEntity = {
+  '@type': 'Organization',
+  '@id': `${siteURL}/#organization`,
   name: 'Wellbit Technologies',
+  legalName: 'Wellbit Technologies',
+  alternateName: ['Wellbit', 'Wellbit Tech', 'wellbit.in'],
+  url: siteURL,
+  logo: {
+    '@type': 'ImageObject',
+    '@id': `${siteURL}/#logo`,
+    url: `${siteURL}/icon-512.png`,
+    caption: 'Wellbit Technologies Logo',
+    inLanguage: 'en-US',
+    width: '512',
+    height: '512',
+  },
+  image: socialImage,
   description:
     'Wellbit Technologies is an enterprise technology solutions partner specializing in custom software engineering, AI solutions, intelligent agents, workflow automation, and digital transformation.',
-  isPartOf: {
-    '@type': 'WebSite',
-    url: `${Astro.site}`,
-    name: 'Wellbit Technologies',
-    description:
-      'Engineering Intelligence. Building Possibilities. Custom software, AI systems, and cloud architecture.',
+  slogan: 'Engineering Intelligence. Building Possibilities.',
+  email: 'contact@wellbit.in',
+  contactPoint: [
+    {
+      '@type': 'ContactPoint',
+      contactType: 'customer support',
+      email: 'contact@wellbit.in',
+      availableLanguage: ['English', 'Hindi'],
+    },
+  ],
+  knowsAbout: [
+    'Custom Software Engineering',
+    'Enterprise AI Solutions',
+    'Autonomous AI Agents',
+    'Workflow Automation',
+    'Modern Web Applications',
+    'Cloud Architecture',
+    'System Modernization',
+    'API Integration',
+  ],
+  areaServed: 'Worldwide',
+};
+
+// Root WebSite Entity
+const websiteEntity = {
+  '@type': 'WebSite',
+  '@id': `${siteURL}/#website`,
+  url: siteURL,
+  name: 'Wellbit Technologies',
+  alternateName: ['Wellbit', 'wellbit.in'],
+  description:
+    'Engineering Intelligence. Building Possibilities. Custom software, AI systems, and cloud architecture.',
+  publisher: {
+    '@id': `${siteURL}/#organization`,
   },
+  inLanguage: 'en-US',
+};
+
+// Page Entity (WebPage, AboutPage, ContactPage, CollectionPage, Article, etc.)
+const pageEntity =
+  schema && typeof schema === 'object'
+    ? Object.assign({}, schema, {
+        '@id': `${canonicalURL}#webpage`,
+        url: canonicalURL,
+        isPartOf: { '@id': `${siteURL}/#website` },
+        publisher: { '@id': `${siteURL}/#organization` },
+      })
+    : {
+        '@type': 'WebPage',
+        '@id': `${canonicalURL}#webpage`,
+        url: canonicalURL,
+        name: pageTitle,
+        description: pageDescription,
+        inLanguage: 'en-US',
+        isPartOf: { '@id': `${siteURL}/#website` },
+        publisher: { '@id': `${siteURL}/#organization` },
+      };
+
+const jsonLdGraph = {
+  '@context': 'https://schema.org',
+  '@graph': [organizationEntity, websiteEntity, pageEntity],
 };
 ---
 
@@ -54,25 +122,36 @@ const defaultSchema: WithContext<Thing> = {
     {/* SEO Meta Tags */}
     <SEO
       charset="utf-8"
-      title={seo?.title ?? 'Wellbit Technologies — Engineering Intelligence. Building Possibilities.'}
-      description={seo?.description ??
-        'Wellbit builds custom software, AI-powered solutions, and scalable digital platforms that help businesses automate operations, solve complex challenges, and accelerate growth.'}
+      title={pageTitle}
+      description={pageDescription}
+      canonical={canonicalURL}
+      noindex={noindex}
+      nofollow={noindex}
       openGraph={{
         basic: {
-          title: ogTitle,
+          title: pageTitle,
           type: 'website',
           image: socialImage,
+          url: canonicalURL,
         },
         optional: {
-          description: ogDescription,
+          description: pageDescription,
+          siteName: 'Wellbit Technologies',
+          locale: 'en_US',
+        },
+        image: {
+          url: socialImage,
+          width: 1200,
+          height: 630,
+          alt: 'Wellbit Technologies — Engineering Intelligence. Building Possibilities.',
         },
       }}
       twitter={{
         card: 'summary_large_image',
-        title: ogTitle,
-        description: ogDescription,
+        title: pageTitle,
+        description: pageDescription,
         image: socialImage,
-        imageAlt: 'Wellbit Technologies Logo',
+        imageAlt: 'Wellbit Technologies — Engineering Intelligence. Building Possibilities.',
       }}
       extend={{
         link: [
@@ -82,13 +161,29 @@ const defaultSchema: WithContext<Thing> = {
           { rel: 'manifest', href: '/manifest.webmanifest' },
         ],
         meta: [
-          { name: 'viewport', content: 'width=device-width' },
+          { name: 'viewport', content: 'width=device-width, initial-scale=1' },
           { name: 'generator', content: `${Astro.generator}` },
+          {
+            name: 'keywords',
+            content:
+              'Wellbit, Wellbit Technologies, wellbit.in, Wellbit Tech, enterprise software development, custom AI solutions, intelligent agent pipelines, workflow automation, digital transformation, cloud architecture',
+          },
+          { name: 'author', content: 'Wellbit Technologies' },
+          { name: 'application-name', content: 'Wellbit Technologies' },
+          { name: 'apple-mobile-web-app-title', content: 'Wellbit' },
+          { name: 'theme-color', content: '#1768E8' },
+          {
+            name: 'robots',
+            content: noindex
+              ? 'noindex, nofollow'
+              : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+          },
         ],
       }}
     />
-    {/* Schema.org JSON-LD */}
-    <Schema item={schema ?? defaultSchema} />
+
+    {/* Schema.org Entity Graph JSON-LD */}
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLdGraph)} />
 
     {/* Client-Side Router for page transitions */}
     <ClientRouter />

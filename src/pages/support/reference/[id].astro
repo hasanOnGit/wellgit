@@ -6,6 +6,8 @@ import { formatDate } from '@utils/utils';
 import { getReadingTime } from '@utils/reading-time';
 import { getEntry, render } from 'astro:content';
 
+import type { WithContext, Thing } from 'schema-dts';
+
 // 1. Get the slug from the incoming server request
 const { id } = Astro.params;
 if (id === undefined) {
@@ -26,11 +28,26 @@ const { Content, headings } = await render(post);
 const validHeadings = headings.filter(heading => heading.depth === 2);
 const readingTime = getReadingTime(post.body ?? '');
 const slug = id;
+
+const schema: WithContext<Thing> = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  url: Astro.url.href,
+  name: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.date ? new Date(post.data.date).toISOString().split('T')[0] : undefined,
+  isPartOf: {
+    '@type': 'WebSite',
+    url: 'https://wellbit.in',
+    name: 'Wellbit Technologies',
+  },
+};
 ---
 
 <BaseLayout
-  title={`${post.data.title} | Wellbit Reference`}
+  title={`${post.data.title} | Wellbit Technologies`}
   description={post.data.description}
+  schema={schema}
 >
   <section class="mx-auto max-w-[85rem] px-4 py-24 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-(--breakpoint-xl)">

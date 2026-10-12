@@ -1,6 +1,7 @@
 {
   "short_name": "Wellbit",
   "name": "Wellbit Technologies",
+  "description": "Wellbit Technologies — Engineering Intelligence. Building Possibilities. Custom software, AI systems, and cloud architecture.",
   "icons": [
     {
       "src": "./icon-192.png",
@@ -18,6 +19,6 @@
   "display": "minimal-ui",
   "id": "/",
   "start_url": "/",
-  "theme_color": "#fefefe",
-  "background_color": "#85c5c5"
+  "theme_color": "#1768E8",
+  "background_color": "#FFFFFF"
 }

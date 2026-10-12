@@ -1,14 +1,21 @@
+export const prerender = true;
 import type { APIRoute } from 'astro';
 
-// Helper function that generates the content for the robots.txt file
-// This specifies that all web crawlers (User-agent: *) have access to the entire site (Allow: /)
-const getRobotsTxt = () => `
-User-agent: *
+const getRobotsTxt = () => `User-agent: *
 Allow: /
+Disallow: /keystatic/
+Disallow: /api/keystatic/
+
+Sitemap: https://wellbit.in/sitemap.xml
+Host: https://wellbit.in
 `;
 
-// API route for serving the robots.txt file
-// When a GET request is made to this route, it returns the generated robots.txt content
 export const GET: APIRoute = () => {
-  return new Response(getRobotsTxt());
+  return new Response(getRobotsTxt(), {
+    status: 200,
+    headers: {
+      'Content-Type': 'text/plain; charset=utf-8',
+      'Cache-Control': 'public, max-age=86400, s-maxage=86400',
+    },
+  });
 };
