@@ -29,9 +29,9 @@ const tagline = 'Engineering Intelligence. Building Possibilities.';
   <div class="mx-auto mt-auto w-full max-w-[85rem] px-4 pb-10 sm:px-6 lg:px-8">
     <hr class="mb-10 border-slate-200" />
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 md:grid-cols-5">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 md:grid-cols-4 lg:grid-cols-5">
       {/* Company Information */}
-      <div class="col-span-full self-center xl:col-span-2">
+      <div class="col-span-full self-start lg:col-span-2">
         <a
           href="/"
           class="inline-flex items-center gap-2 focus:opacity-80 focus:outline-hidden"
@@ -44,18 +44,45 @@ const tagline = 'Engineering Intelligence. Building Possibilities.';
             loading="lazy"
           />
         </a>
-        <p class="mt-4 text-pretty text-slate-600 lg:w-5/12 xl:w-10/12 text-sm leading-relaxed">
+        <p class="mt-4 text-pretty text-slate-600 lg:w-11/12 text-sm leading-relaxed">
           {companyDescription}
         </p>
       </div>
 
+      {/* Core Services Links */}
+      <div class="col-span-1">
+        <h3 class="font-semibold text-slate-700">Core Services</h3>
+        <ul class="mt-3 space-y-2.5 text-sm text-slate-600">
+          <li>
+            <a href="/services/software-development" class="hover:text-teal-700 transition-colors">
+              Software Engineering
+            </a>
+          </li>
+          <li>
+            <a href="/services/app-development" class="hover:text-teal-700 transition-colors">
+              Mobile &amp; Web Apps
+            </a>
+          </li>
+          <li>
+            <a href="/services/cloud-devops" class="hover:text-teal-700 transition-colors">
+              Cloud &amp; DevOps (SRE)
+            </a>
+          </li>
+          <li>
+            <a href="/solutions#ai-workflows" class="hover:text-teal-700 transition-colors">
+              AI &amp; Autonomous Systems
+            </a>
+          </li>
+        </ul>
+      </div>
+
       {/* Contact Information Section */}
-      <div class="col-span-1 md:col-span-2 xl:col-span-1 xl:col-start-3">
+      <div class="col-span-1">
         <ContactInfo {...contactDetails} />
       </div>
 
       {/* Email Subscription Form */}
-      <div class="col-span-1 sm:col-span-2 md:col-span-3 xl:col-span-2">
+      <div class="col-span-1 sm:col-span-2 md:col-span-1 lg:col-span-1">
         <h3 class="font-semibold text-slate-700">Engineering Updates</h3>
         <FooterForm />
       </div>

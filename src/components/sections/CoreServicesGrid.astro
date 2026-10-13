@@ -1,0 +1,237 @@
+---
+import Button from '@ui/Button.astro';
+
+const pillars = [
+  {
+    id: 'software',
+    badge: 'CORE BACKEND & MICROSERVICES',
+    badgeColor: 'border-teal-200 bg-teal-50 text-teal-800',
+    title: 'Custom Software & Distributed Systems',
+    description:
+      'Architect robust backend services, event-driven microservices with Kafka, resilient persistence layers, and high-concurrency APIs built to scale without vendor lock-in.',
+    href: '/services/software-development',
+    ctaText: 'Explore Software Engineering',
+    metrics: [
+      { value: '100k+', label: 'ops/sec throughput' },
+      { value: '< 110ms', label: 'p99 response latency' },
+    ],
+    techStack: ['Go', 'Node.js', 'FastAPI', 'Apache Kafka', 'PostgreSQL', 'gRPC'],
+    // Bespoke SVG representation for distributed backend
+    diagramType: 'software',
+  },
+  {
+    id: 'mobile-web',
+    badge: 'CROSS-PLATFORM & NATIVE APPS',
+    badgeColor: 'border-blue-200 bg-blue-50 text-blue-800',
+    title: 'Mobile & Web App Development',
+    description:
+      'Deliver fluid, responsive mobile apps for iOS and Android with React Native and Flutter, alongside progressive web apps (PWAs) engineered with offline-first synchronization.',
+    href: '/services/app-development',
+    ctaText: 'Explore App Engineering',
+    metrics: [
+      { value: '60 FPS', label: 'fluid animations' },
+      { value: '100%', label: 'native device access' },
+    ],
+    techStack: ['React Native', 'Flutter', 'Swift', 'Kotlin', 'Next.js', 'WatermelonDB'],
+    // Bespoke SVG representation for mobile device
+    diagramType: 'mobile',
+  },
+  {
+    id: 'cloud-devops',
+    badge: 'INFRASTRUCTURE AS CODE & SRE',
+    badgeColor: 'border-sky-200 bg-sky-50 text-sky-800',
+    title: 'Cloud Infrastructure & DevOps (SRE)',
+    description:
+      'Codify immutable cloud infrastructure with Terraform, orchestrate multi-region Kubernetes clusters, and automate zero-downtime blue-green CI/CD deployment pipelines.',
+    href: '/services/cloud-devops',
+    ctaText: 'Explore Cloud Architecture',
+    metrics: [
+      { value: '99.99%', label: 'production uptime SLA' },
+      { value: '< 6 min', label: 'build-to-prod velocity' },
+    ],
+    techStack: ['AWS / GCP', 'Kubernetes (EKS)', 'Terraform', 'Docker', 'GitHub Actions', 'Prometheus'],
+    // Bespoke SVG representation for cloud kubernetes
+    diagramType: 'cloud',
+  },
+  {
+    id: 'enterprise-ai',
+    badge: 'AUTONOMOUS AGENTS & RAG',
+    badgeColor: 'border-indigo-200 bg-indigo-50 text-indigo-800',
+    title: 'Enterprise AI & Autonomous Workflows',
+    description:
+      'Deploy deterministic multi-agent task loops, private enterprise RAG retrieval systems over proprietary data, and document intelligence with strict human verification guardrails.',
+    href: '/solutions#ai-workflows',
+    ctaText: 'Explore AI Solutions',
+    metrics: [
+      { value: '10x', label: 'operational turnaround' },
+      { value: 'Zero', label: 'hallucination drift with RAG' },
+    ],
+    techStack: ['Python', 'FastAPI', 'LangChain', 'pgvector', 'OpenAI / Claude', 'Redis Queues'],
+    // Bespoke SVG representation for AI neural flow
+    diagramType: 'ai',
+  },
+];
+---
+
+<section id="services-overview" class="relative py-20 sm:py-28 overflow-hidden bg-gradient-to-b from-white via-slate-50/50 to-white border-b border-slate-200/80">
+  {/* Ambient background glow accents */}
+  <div class="pointer-events-none absolute -top-24 right-1/4 -z-10 h-96 w-96 rounded-full bg-teal-100/40 blur-3xl"></div>
+  <div class="pointer-events-none absolute bottom-0 left-1/4 -z-10 h-80 w-80 rounded-full bg-blue-100/30 blur-3xl"></div>
+
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    {/* Section Header */}
+    <div class="mx-auto max-w-3xl text-center mb-16 sm:mb-20">
+      <div class="inline-flex items-center gap-x-2 rounded-full border border-teal-200/90 bg-white/90 backdrop-blur-md px-3.5 py-1 text-xs font-semibold text-teal-800 shadow-2xs mb-4">
+        <span class="size-2 rounded-full bg-teal-500 animate-pulse"></span>
+        ENGINEERING DISCIPLINES & SOLUTIONS
+      </div>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-950 font-display leading-[1.15]">
+        Full-Spectrum Engineering. <br class="hidden sm:inline" />
+        <span class="bg-clip-text text-transparent bg-gradient-to-r from-teal-600 via-blue-600 to-indigo-600">
+          Built for Production Scale.
+        </span>
+      </h2>
+      <p class="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed font-sans">
+        We do not just train machine learning models. Wellbit engineers end-to-end technological foundations—from high-throughput backend services and fluid mobile apps to automated cloud infrastructure and deterministic enterprise intelligence.
+      </p>
+    </div>
+
+    {/* 4-Pillar Grid */}
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
+      {
+        pillars.map((pillar) => (
+          <div class="group relative flex flex-col justify-between rounded-3xl border border-white/80 bg-white/80 backdrop-blur-xl p-7 sm:p-9 shadow-[0_8px_30px_rgb(11,23,48,0.06)] hover:shadow-[0_16px_40px_rgb(13,148,136,0.12)] hover:border-teal-400/80 hover:-translate-y-1 transition-all duration-300">
+            {/* Top Row: Badge & Diagram Accent */}
+            <div>
+              <div class="flex items-center justify-between gap-4 mb-5">
+                <span class={`inline-flex items-center rounded-full border px-3 py-1 text-[11px] font-mono font-semibold tracking-wide ${pillar.badgeColor}`}>
+                  {pillar.badge}
+                </span>
+
+                {/* Minimal Micro-Status Indicator */}
+                <span class="inline-flex items-center gap-1.5 text-[11px] font-mono text-slate-500">
+                  <span class="size-2 rounded-full bg-teal-500 animate-pulse"></span>
+                  Active Practice
+                </span>
+              </div>
+
+              {/* Title & Description */}
+              <h3 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-950 font-display mb-3 group-hover:text-teal-700 transition-colors">
+                <a href={pillar.href} class="focus:outline-hidden">
+                  {pillar.title}
+                </a>
+              </h3>
+              <p class="text-sm sm:text-base text-slate-600 leading-relaxed mb-6 font-sans">
+                {pillar.description}
+              </p>
+
+              {/* Micro Visual Architecture Strip */}
+              <div class="mb-6 rounded-2xl border border-slate-200/70 bg-gradient-to-br from-slate-50/90 to-teal-50/20 p-4 font-mono text-xs overflow-hidden">
+                {pillar.diagramType === 'software' && (
+                  <div class="flex items-center justify-between gap-2 text-slate-600">
+                    <div class="flex items-center gap-2">
+                      <span class="flex size-7 items-center justify-center rounded-lg bg-teal-600 text-white font-bold text-[10px]">API</span>
+                      <span class="text-slate-400 font-bold">➔</span>
+                      <span class="rounded bg-teal-100 px-2 py-0.5 text-teal-800 text-[11px] font-semibold">Kafka Bus</span>
+                      <span class="text-slate-400 font-bold">➔</span>
+                      <span class="rounded bg-slate-200 px-2 py-0.5 text-slate-800 text-[11px]">Workers</span>
+                    </div>
+                    <span class="hidden sm:inline-block text-[11px] text-teal-700 font-bold">p99 &lt; 110ms</span>
+                  </div>
+                )}
+
+                {pillar.diagramType === 'mobile' && (
+                  <div class="flex items-center justify-between gap-2 text-slate-600">
+                    <div class="flex items-center gap-2">
+                      <span class="flex size-7 items-center justify-center rounded-lg bg-blue-600 text-white font-bold text-[10px]">APP</span>
+                      <span class="text-slate-400 font-bold">➔</span>
+                      <span class="rounded bg-blue-100 px-2 py-0.5 text-blue-800 text-[11px] font-semibold">Offline SQLite</span>
+                      <span class="text-slate-400 font-bold">⇄</span>
+                      <span class="rounded bg-slate-200 px-2 py-0.5 text-slate-800 text-[11px]">Cloud Sync</span>
+                    </div>
+                    <span class="hidden sm:inline-block text-[11px] text-blue-700 font-bold">60 FPS Native</span>
+                  </div>
+                )}
+
+                {pillar.diagramType === 'cloud' && (
+                  <div class="flex items-center justify-between gap-2 text-slate-600">
+                    <div class="flex items-center gap-2">
+                      <span class="flex size-7 items-center justify-center rounded-lg bg-sky-600 text-white font-bold text-[10px]">IAC</span>
+                      <span class="text-slate-400 font-bold">➔</span>
+                      <span class="rounded bg-sky-100 px-2 py-0.5 text-sky-800 text-[11px] font-semibold">Terraform</span>
+                      <span class="text-slate-400 font-bold">➔</span>
+                      <span class="rounded bg-slate-200 px-2 py-0.5 text-slate-800 text-[11px]">K8s Cluster</span>
+                    </div>
+                    <span class="hidden sm:inline-block text-[11px] text-sky-700 font-bold">99.99% SRE</span>
+                  </div>
+                )}
+
+                {pillar.diagramType === 'ai' && (
+                  <div class="flex items-center justify-between gap-2 text-slate-600">
+                    <div class="flex items-center gap-2">
+                      <span class="flex size-7 items-center justify-center rounded-lg bg-indigo-600 text-white font-bold text-[10px]">RAG</span>
+                      <span class="text-slate-400 font-bold">➔</span>
+                      <span class="rounded bg-indigo-100 px-2 py-0.5 text-indigo-800 text-[11px] font-semibold">pgvector</span>
+                      <span class="text-slate-400 font-bold">➔</span>
+                      <span class="rounded bg-slate-200 px-2 py-0.5 text-slate-800 text-[11px]">Guardrails</span>
+                    </div>
+                    <span class="hidden sm:inline-block text-[11px] text-indigo-700 font-bold">Zero Drift</span>
+                  </div>
+                )}
+              </div>
+
+              {/* Key Metrics Strip */}
+              <div class="grid grid-cols-2 gap-3 mb-6 p-3.5 rounded-xl bg-slate-50 border border-slate-100">
+                {pillar.metrics.map((m) => (
+                  <div>
+                    <div class="text-lg sm:text-xl font-bold font-mono text-slate-900">{m.value}</div>
+                    <div class="text-xs text-slate-500 font-sans capitalize">{m.label}</div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Tech Stack Pills */}
+              <div class="flex flex-wrap gap-1.5 mb-7">
+                {pillar.techStack.map((tech) => (
+                  <span class="rounded-md bg-white border border-slate-200 px-2.5 py-1 text-xs font-mono text-slate-700 shadow-2xs">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Bottom Row: CTA Button */}
+            <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+              <a
+                href={pillar.href}
+                class="inline-flex items-center gap-2 text-sm font-bold text-teal-700 hover:text-teal-900 group-hover:translate-x-1 transition-all duration-200"
+              >
+                <span>{pillar.ctaText}</span>
+                <svg class="size-4 shrink-0 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                </svg>
+              </a>
+
+              <span class="text-xs text-slate-400 font-mono">Architecture &amp; Docs &rarr;</span>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    {/* Bottom Banner Linking to Enterprise Platform / Quote */}
+    <div class="mt-14 rounded-2xl border border-teal-200/80 bg-gradient-to-r from-teal-50/80 via-white to-blue-50/80 p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xs">
+      <div>
+        <h4 class="text-lg font-bold text-slate-900 font-display">Need a tailored combination across mobile, backend, and AI?</h4>
+        <p class="text-sm text-slate-600 mt-1 font-sans">
+          We provide flexible engagement models: dedicated engineering pods, project-based delivery, or architecture advisory.
+        </p>
+      </div>
+      <div class="shrink-0 flex items-center gap-3">
+        <Button href="/contact" variant="primary" className="text-sm px-6 py-2.5 font-bold shadow-xs">
+          Schedule Architecture Call
+        </Button>
+      </div>
+    </div>
+  </div>
+</section>

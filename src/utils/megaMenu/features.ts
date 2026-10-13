@@ -1,53 +1,53 @@
 export const featuresMenu = [
   {
-    sectionTitle: 'Core Engineering',
+    sectionTitle: 'Core Engineering Pillars',
     items: [
       {
         icon: 'cog',
         title: 'Custom Software Engineering',
         description:
-          'Tailored business applications, resilient backends, and maintainable enterprise software.',
-        href: '/platform',
+          'Distributed microservices, event streams with Kafka, resilient backends, and high-concurrency APIs.',
+        href: '/services/software-development',
       },
       {
-        icon: 'brain',
-        title: 'AI Solutions & Intelligent Agents',
+        icon: 'mobile',
+        title: 'Mobile & Web App Development',
         description:
-          'Practical AI workflows, autonomous task agents, and contextual knowledge retrieval (RAG).',
-        href: '/platform',
+          'Native iOS & Android, 60fps React Native, Flutter, and progressive web apps with offline sync.',
+        href: '/services/app-development',
       },
       {
-        icon: 'presentationChart',
-        title: 'Business Process Automation',
+        icon: 'puzzle',
+        title: 'Cloud Infrastructure & DevOps',
         description:
-          'End-to-end automated workflows, document intelligence, and operational task orchestration.',
-        href: '/platform',
+          'Terraform IaC, Kubernetes clusters, zero-downtime CI/CD pipelines, and 99.99% SRE observability.',
+        href: '/services/cloud-devops',
       },
     ],
   },
   {
-    sectionTitle: 'Enterprise & Digital Systems',
+    sectionTitle: 'Enterprise & AI Solutions',
     items: [
+      {
+        icon: 'brain',
+        title: 'AI Solutions & Intelligent Agents',
+        description:
+          'Deterministic agent loops, enterprise RAG over private data, and automated document intelligence.',
+        href: '/solutions#ai-workflows',
+      },
       {
         icon: 'portfolio',
         title: 'CRM & Operations Portals',
         description:
-          'Bespoke customer management platforms, pipeline tracking, and operational telemetry.',
-        href: '/platform',
+          'Bespoke client lifecycle management, automated deal routing, and operational telemetry.',
+        href: '/solutions#crm-operations',
       },
       {
         icon: 'dataBase',
-        title: 'HR & Enterprise Applications',
+        title: 'HR & Enterprise Systems',
         description:
-          'Employee management portals, internal approval hierarchies, and role-based dashboards.',
-        href: '/platform',
-      },
-      {
-        icon: 'puzzle',
-        title: 'Cloud Architecture & API Integration',
-        description:
-          'Cloud-native services, third-party system integrations, and modern API architectures.',
-        href: '/platform',
+          'Secure role-based enterprise portals, organizational approval hierarchies, and internal tools.',
+        href: '/solutions#hr-systems',
       },
     ],
   },
