@@ -1,27 +1,27 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
-import tailwindcss from '@tailwindcss/vite';
-import vercel from '@astrojs/vercel';
-import react from '@astrojs/react';
-import markdoc from '@astrojs/markdoc';
-import keystatic from '@keystatic/astro';
-import svelte from '@astrojs/svelte';
+import { defineConfig } from "astro/config";
+import tailwindcss from "@tailwindcss/vite";
+import vercel from "@astrojs/vercel";
+import react from "@astrojs/react";
+import markdoc from "@astrojs/markdoc";
+import keystatic from "@keystatic/astro";
+import svelte from "@astrojs/svelte";
 
 // https://astro.build/config
 export default defineConfig({
   // The `site` property specifies the base URL for your site.
   // Be sure to update this to your own domain (e.g., "https://yourdomain.com") before deploying.
-  site: 'https://wellbit.in',
+  site: "https://wellbit.in",
   prefetch: true,
-  trailingSlash: 'never',
+  trailingSlash: "never",
   redirects: {
-    '/downloads/datanova-core': {
+    "/downloads/datanova-core": {
       status: 301,
-      destination: '/downloads/core-capabilities',
+      destination: "/downloads/core-capabilities",
     },
-    '/support/sample-spreadsheets': {
+    "/support/sample-spreadsheets": {
       status: 301,
-      destination: '/support/architecture-blueprints',
+      destination: "/support/architecture-blueprints",
     },
   },
   experimental: {
@@ -36,6 +36,10 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  output: 'server',
-  adapter: vercel(),
+  output: "server",
+  adapter: vercel({
+    webAnalytics: {
+      enabled: true,
+    },
+  }),
 });
