@@ -22,13 +22,18 @@ const primaryCTA = { text: 'Start a Project Conversation', href: '/contact' };
         {subTitle}
       </p>
       <div class="mt-6 sm:mt-8 flex justify-center w-full">
-        <Button
-          href={primaryCTA.href}
-          variant="primary"
-          className="w-full sm:w-auto px-8 py-3.5 text-base font-semibold shadow-md shadow-blue-500/20"
-        >
-          {primaryCTA.text}
-        </Button>
+        <div class="relative group/glow p-0.5 rounded-full bg-gradient-to-r from-teal-400 via-blue-500 to-cyan-400 animate-pulse-glow shadow-xl shadow-teal-500/20 hover:shadow-teal-500/40 transition-all duration-300 w-full sm:w-auto">
+          <Button
+            href={primaryCTA.href}
+            variant="primary"
+            className="w-full sm:w-auto px-9 py-4 text-base font-bold shadow-none"
+          >
+            {primaryCTA.text}
+            <svg class="size-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </Button>
+        </div>
       </div>
     </div>
   </div>

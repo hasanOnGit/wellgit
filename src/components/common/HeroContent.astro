@@ -1,7 +1,6 @@
 ---
 import Button from '@ui/Button.astro';
 
-const title = 'Engineering Intelligence. Building Possibilities.';
 const subTitle =
   'Wellbit builds custom software, AI-powered solutions, and scalable digital platforms that help businesses automate operations, solve complex challenges, and accelerate growth.';
 const primaryCTA = {
@@ -16,74 +15,97 @@ const secondaryCTA = {
 
 {/* Hero Content Container with Reference Accents */}
 <div class="relative mx-auto max-w-5xl text-center select-none pt-2">
-  {/* Headline with Floating Colorful Accents (Reference Alignment) */}
+  {/* Headline with Floating Colorful Accents */}
   <div class="relative mx-auto inline-block max-w-4xl px-2 sm:px-0">
     <!-- Soft Sky Petal Accent (Left of Headline) -->
-    <div class="pointer-events-none absolute -top-4 -left-12 hidden lg:block transform -rotate-12 transition-transform duration-700 hover:rotate-0 opacity-40">
+    <div class="pointer-events-none absolute -top-4 -left-12 hidden lg:block animate-float opacity-50">
       <svg class="h-10 w-8 drop-shadow-xs" viewBox="0 0 40 56" fill="#3896F5">
         <path d="M0 28C0 12.536 12.536 0 28 0C34.627 0 40 5.373 40 12C40 27.464 27.464 40 12 40C5.373 40 0 34.627 0 28Z"></path>
       </svg>
     </div>
 
     <!-- Soft Icy Hexagon Accent (Top Center above Headline) -->
-    <div class="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 hidden lg:block opacity-35">
+    <div class="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 hidden lg:block opacity-40 animate-pulse-glow">
       <svg class="h-8 w-8 drop-shadow-xs" viewBox="0 0 32 32" fill="#B9D9FF">
         <path d="M16 2L28 9V23L16 30L4 23V9L16 2Z"></path>
       </svg>
     </div>
 
-    <!-- Brand Cyan-Blue Leaf Accent (Right of Headline - Wellbit Identity) -->
-    <div class="pointer-events-none absolute -top-4 -right-12 hidden lg:block transform rotate-12 transition-transform duration-700 hover:rotate-45 opacity-40">
+    <!-- Brand Cyan-Blue Leaf Accent (Right of Headline) -->
+    <div class="pointer-events-none absolute -top-4 -right-12 hidden lg:block animate-float opacity-50" style="animation-delay: 1.5s;">
       <svg class="h-10 w-8 drop-shadow-xs" viewBox="0 0 40 56" fill="#00BFFC">
         <path d="M40 28C40 12.536 27.464 0 12 0C5.373 0 0 5.373 0 12C0 27.464 12.536 40 28 40C34.627 40 40 34.627 40 28Z"></path>
       </svg>
     </div>
 
     <!-- Subtle Blue Ring Accent (Mid Right) -->
-    <div class="pointer-events-none absolute top-1/2 -right-16 hidden lg:block opacity-40">
-      <div class="h-3.5 w-3.5 rounded-full bg-teal-500 ring-2 ring-teal-300/40"></div>
+    <div class="pointer-events-none absolute top-1/2 -right-16 hidden lg:block opacity-50 animate-pulse-glow">
+      <div class="h-3.5 w-3.5 rounded-full bg-teal-500 ring-4 ring-teal-300/40"></div>
     </div>
 
     <h1
-      class="block text-3xl font-black tracking-tight text-balance sm:text-5xl md:text-6xl lg:text-7xl leading-tight sm:leading-tight md:leading-tight font-display bg-clip-text text-transparent bg-gradient-to-br from-slate-950 via-slate-900 to-teal-600"
+      class="block text-4xl font-extrabold tracking-tight text-balance sm:text-6xl md:text-7xl lg:text-7xl leading-[1.1] sm:leading-[1.1] md:leading-[1.1] font-display text-slate-950 drop-shadow-2xs"
     >
-      {title}
+      Engineering Intelligence. <span class="bg-clip-text text-transparent bg-gradient-to-r from-teal-600 via-blue-600 to-indigo-600">Building Possibilities.</span>
     </h1>
   </div>
 </div>
 
-<div class="mx-auto max-w-3xl text-center mt-4 sm:mt-6 mb-6 sm:mb-8 px-2 sm:px-0">
+<div class="mx-auto max-w-3xl text-center mt-5 sm:mt-7 mb-7 sm:mb-9 px-2 sm:px-0">
   <p class="text-base sm:text-xl font-normal leading-relaxed text-pretty text-slate-600">
     {subTitle}
   </p>
 </div>
 
-{/* CTA Buttons with Modern Pill Shape */}
-<div class="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4 w-full sm:w-auto px-4 sm:px-0">
-  <Button href={primaryCTA.href} variant="primary" className="w-full sm:w-auto px-7 py-3 sm:px-8 sm:py-3.5 text-sm sm:text-base font-semibold shadow-md shadow-teal-600/25">
-    {primaryCTA.text}
-  </Button>
-  <Button href={secondaryCTA.href} variant="secondary" className="w-full sm:w-auto px-7 py-3 sm:px-8 sm:py-3.5 text-sm sm:text-base font-semibold">
+{/* High-Impact Animated CTA Buttons */}
+<div class="flex flex-col sm:flex-row justify-center items-center gap-4 w-full sm:w-auto px-4 sm:px-0">
+  {/* Primary CTA with Animated Glow Border */}
+  <div class="relative group/glow p-0.5 rounded-full bg-gradient-to-r from-teal-400 via-blue-500 to-cyan-400 animate-pulse-glow shadow-xl shadow-teal-500/20 hover:shadow-teal-500/40 transition-all duration-300 w-full sm:w-auto">
+    <Button
+      href={primaryCTA.href}
+      variant="primary"
+      className="w-full sm:w-auto px-8 py-3.5 sm:px-9 sm:py-4 text-sm sm:text-base font-bold shadow-none"
+    >
+      <span class="relative flex size-2 mr-0.5">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-200 opacity-75"></span>
+        <span class="relative inline-flex rounded-full size-2 bg-white"></span>
+      </span>
+      {primaryCTA.text}
+      <svg class="size-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+      </svg>
+    </Button>
+  </div>
+
+  {/* Secondary CTA with Smooth Light Sweep */}
+  <Button
+    href={secondaryCTA.href}
+    variant="secondary"
+    className="w-full sm:w-auto px-8 py-3.5 sm:px-9 sm:py-4 text-sm sm:text-base font-semibold group/sec"
+  >
     {secondaryCTA.text}
+    <svg class="size-4 shrink-0 text-slate-400 group-hover/sec:text-teal-600 transition-transform duration-300 group-hover/sec:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+    </svg>
   </Button>
 </div>
 
-{/* Architectural Capability Strip */}
-<div class="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-y-2 gap-x-6 text-xs text-slate-500 font-mono">
-  <div class="flex items-center gap-1.5">
-    <span class="size-1.5 rounded-full bg-teal-600"></span>
-    <span>Autonomous AI Agent Loops</span>
+{/* Architectural Capability Strip with Interactive Badges */}
+<div class="mt-8 sm:mt-12 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3.5 text-xs font-mono">
+  <div class="flex items-center gap-1.5 rounded-full bg-white/90 border border-slate-200/90 px-3.5 py-1.5 shadow-2xs hover:border-teal-400 hover:shadow-xs transition-all cursor-default">
+    <span class="size-2 rounded-full bg-teal-500 animate-pulse"></span>
+    <span class="text-slate-700 font-medium">Autonomous AI Agent Loops</span>
   </div>
-  <div class="flex items-center gap-1.5">
-    <span class="size-1.5 rounded-full bg-emerald-500"></span>
-    <span>99.99% Production Uptime</span>
+  <div class="flex items-center gap-1.5 rounded-full bg-white/90 border border-slate-200/90 px-3.5 py-1.5 shadow-2xs hover:border-emerald-400 hover:shadow-xs transition-all cursor-default">
+    <span class="size-2 rounded-full bg-emerald-500 animate-pulse"></span>
+    <span class="text-slate-700 font-medium">99.99% Production Uptime</span>
   </div>
-  <div class="flex items-center gap-1.5">
-    <span class="size-1.5 rounded-full bg-indigo-500"></span>
-    <span>PostgreSQL & pgvector Fabric</span>
+  <div class="flex items-center gap-1.5 rounded-full bg-white/90 border border-slate-200/90 px-3.5 py-1.5 shadow-2xs hover:border-indigo-400 hover:shadow-xs transition-all cursor-default">
+    <span class="size-2 rounded-full bg-indigo-500 animate-pulse"></span>
+    <span class="text-slate-700 font-medium">PostgreSQL & pgvector Fabric</span>
   </div>
-  <div class="flex items-center gap-1.5">
-    <span class="size-1.5 rounded-full bg-sky-500"></span>
-    <span>Zero Vendor Lock-in Codebase</span>
+  <div class="flex items-center gap-1.5 rounded-full bg-white/90 border border-slate-200/90 px-3.5 py-1.5 shadow-2xs hover:border-sky-400 hover:shadow-xs transition-all cursor-default">
+    <span class="size-2 rounded-full bg-sky-500 animate-pulse"></span>
+    <span class="text-slate-700 font-medium">Zero Vendor Lock-in Codebase</span>
   </div>
 </div>

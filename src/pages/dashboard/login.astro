@@ -12,8 +12,10 @@ if (isAuthenticated(Astro.request)) {
   title="Admin Login | Wellbit Technologies"
   description="Sign in to Wellbit Technologies administrative inquiry and operations console."
   noindex={true}
+  hideNavbar={true}
+  hideFooter={true}
 >
-  <div class="flex min-h-[85vh] items-center justify-center px-4 py-28 sm:px-6 lg:px-8">
+  <div class="flex min-h-screen items-center justify-center px-4 py-16 sm:px-6 lg:px-8 bg-slate-50/70">
     <div class="w-full max-w-md">
       {/* Brand Header */}
       <div class="text-center">

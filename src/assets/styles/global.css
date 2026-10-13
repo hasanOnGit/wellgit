@@ -72,6 +72,26 @@
       transform: translate(calc(-50% - 0.5rem));
     }
   }
+
+  @keyframes pulseGlow {
+    0%, 100% {
+      opacity: 0.45;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.85;
+      transform: scale(1.04);
+    }
+  }
+
+  @keyframes floatSlow {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-7px);
+    }
+  }
 }
 
 /* Central Gradient Utility Classes */
@@ -91,6 +111,14 @@
   background: linear-gradient(135deg, #1768e8 0%, #3896f5 100%);
 }
 
+@utility animate-pulse-glow {
+  animation: pulseGlow 3.5s ease-in-out infinite;
+}
+
+@utility animate-float {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
 @layer base {
   *,
   ::after,
@@ -108,6 +136,12 @@
   h2,
   h3,
   h4,
+  .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.03em;
+    color: #0b1730;
+  }
+
   .dm-sans {
     @apply font-dm-sans text-slate-800;
   }

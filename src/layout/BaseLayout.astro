@@ -13,9 +13,18 @@ interface Props {
   seo?: SEOProps; // Optional SEO properties to customize meta tags
   schema?: WithContext<Thing> | Record<string, unknown>; // Optional schema.org properties for structured data
   noindex?: boolean; // Set true for 404 or non-indexable pages
+  hideNavbar?: boolean; // Set true to hide marketing navbar (e.g. for dashboard)
+  hideFooter?: boolean; // Set true to hide marketing footer (e.g. for dashboard)
 }
 
-const { title, description, schema, noindex = false } = Astro.props;
+const {
+  title,
+  description,
+  schema,
+  noindex = false,
+  hideNavbar = false,
+  hideFooter = false,
+} = Astro.props;
 const seo = Astro.props.seo ?? (title || description ? { title, description } : undefined);
 
 // Ensure canonical URL is always normalized to production origin https://wellbit.in
@@ -194,7 +203,7 @@ const jsonLdGraph = {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=Space+Grotesk:wght@500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=Space+Grotesk:wght@500;600;700;800&family=Syne:wght@700;800&display=swap"
       rel="stylesheet"
     />
 
@@ -208,7 +217,7 @@ const jsonLdGraph = {
             'https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100..1000&display=swap',
           preload: true,
           display: 'swap',
-          selector: 'h1, h2, h3, h4',
+          selector: '.dm-sans',
           fallback: 'sans-serif',
         },
         {
@@ -237,12 +246,12 @@ const jsonLdGraph = {
     </script>
   </head>
   <body class="bg-white selection:bg-teal-200 selection:text-slate-800 overflow-x-clip min-h-screen flex flex-col">
-    <Navbar />
+    {!hideNavbar && <Navbar />}
 
     <main class="grow">
       <slot />
     </main>
 
-    <Footer />
+    {!hideFooter && <Footer />}
   </body>
 </html>
