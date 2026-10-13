@@ -9,7 +9,7 @@ const primaryCTA = {
 };
 const secondaryCTA = {
   text: 'Explore Our Capabilities',
-  href: '/platform',
+  href: '#services-overview',
 };
 ---
 
@@ -90,34 +90,56 @@ const secondaryCTA = {
   </Button>
 </div>
 
-{/* Architectural Capability Strip with Interactive Badges */}
-<div class="mt-8 sm:mt-12 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3.5 text-xs font-mono">
+{/* Refined Enterprise Practice Strip (Clean typography & vector stroke SVGs; no awkward bubble pills) */}
+<div class="mt-7 sm:mt-9 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs sm:text-sm text-slate-500 font-sans">
+  <span class="text-slate-400 font-normal hidden md:inline">Core Practices:</span>
   <a
     href="/services/software-development"
-    class="flex items-center gap-1.5 rounded-full bg-white/90 border border-slate-200/90 px-3.5 py-1.5 shadow-2xs hover:border-teal-500 hover:text-teal-700 hover:shadow-xs hover:-translate-y-0.5 transition-all"
+    class="group inline-flex items-center gap-1.5 font-medium text-slate-700 hover:text-teal-600 transition-colors"
   >
-    <span class="size-2 rounded-full bg-teal-500 animate-pulse"></span>
-    <span class="text-slate-750 font-medium">⚡ High-Concurrency Software &amp; APIs</span>
+    <svg class="size-4 text-teal-600 transition-transform group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="16 18 22 12 16 6"></polyline>
+      <polyline points="8 6 2 12 8 18"></polyline>
+    </svg>
+    <span>Software Engineering</span>
   </a>
+
+  <span class="text-slate-300 hidden sm:inline">•</span>
+
   <a
     href="/services/app-development"
-    class="flex items-center gap-1.5 rounded-full bg-white/90 border border-slate-200/90 px-3.5 py-1.5 shadow-2xs hover:border-blue-500 hover:text-blue-700 hover:shadow-xs hover:-translate-y-0.5 transition-all"
+    class="group inline-flex items-center gap-1.5 font-medium text-slate-700 hover:text-teal-600 transition-colors"
   >
-    <span class="size-2 rounded-full bg-blue-500 animate-pulse"></span>
-    <span class="text-slate-750 font-medium">📱 iOS, Android &amp; React Native Apps</span>
+    <svg class="size-4 text-blue-600 transition-transform group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect width="14" height="20" x="5" y="2" rx="2" ry="2"></rect>
+      <line x1="12" x2="12.01" y1="18" y2="18"></line>
+    </svg>
+    <span>Mobile &amp; Web Apps</span>
   </a>
+
+  <span class="text-slate-300 hidden sm:inline">•</span>
+
   <a
     href="/services/cloud-devops"
-    class="flex items-center gap-1.5 rounded-full bg-white/90 border border-slate-200/90 px-3.5 py-1.5 shadow-2xs hover:border-sky-500 hover:text-sky-700 hover:shadow-xs hover:-translate-y-0.5 transition-all"
+    class="group inline-flex items-center gap-1.5 font-medium text-slate-700 hover:text-teal-600 transition-colors"
   >
-    <span class="size-2 rounded-full bg-sky-500 animate-pulse"></span>
-    <span class="text-slate-750 font-medium">☁️ Cloud, Kubernetes &amp; SRE DevOps</span>
+    <svg class="size-4 text-sky-600 transition-transform group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path>
+    </svg>
+    <span>Cloud &amp; DevOps</span>
   </a>
+
+  <span class="text-slate-300 hidden sm:inline">•</span>
+
   <a
     href="/solutions#ai-workflows"
-    class="flex items-center gap-1.5 rounded-full bg-white/90 border border-slate-200/90 px-3.5 py-1.5 shadow-2xs hover:border-indigo-500 hover:text-indigo-700 hover:shadow-xs hover:-translate-y-0.5 transition-all"
+    class="group inline-flex items-center gap-1.5 font-medium text-slate-700 hover:text-teal-600 transition-colors"
   >
-    <span class="size-2 rounded-full bg-indigo-500 animate-pulse"></span>
-    <span class="text-slate-750 font-medium">🧠 Enterprise Autonomous AI Systems</span>
+    <svg class="size-4 text-indigo-600 transition-transform group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+    </svg>
+    <span>Enterprise AI</span>
   </a>
 </div>
+
+
