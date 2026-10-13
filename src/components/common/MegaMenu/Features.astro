@@ -12,8 +12,8 @@ const currentPath = Astro.url.pathname;
   <button
     id="mega-menu-features"
     type="button"
-    class={`hs-dropdown-toggle flex w-full items-center rounded-lg p-2 font-medium text-slate-800 hover:bg-slate-100 focus:bg-slate-100 focus:outline-hidden ${
-      currentPath.startsWith('/features') || currentPath.startsWith('/services') ? 'underline underline-offset-4' : ''
+    class={`hs-dropdown-toggle flex w-full items-center rounded-lg p-2 font-medium text-slate-800 hover:bg-white/80 hover:text-teal-700 transition-all duration-200 focus:outline-hidden ${
+      currentPath.startsWith('/features') || currentPath.startsWith('/services') ? 'text-teal-600 font-semibold underline underline-offset-4' : ''
     }`}
     aria-haspopup="menu"
     aria-expanded="false"
