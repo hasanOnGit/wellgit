@@ -1,0 +1,462 @@
+---
+export const prerender = true;
+import BaseLayout from '@layout/BaseLayout.astro';
+import Button from '@ui/Button.astro';
+import Icon from '@ui/icons/Icon.astro';
+import type { WithContext, Thing } from 'schema-dts';
+
+const seo = {
+  title: 'Privacy Policy & Data Protection | Wellbit Technologies',
+  description:
+    'Read the official Wellbit Technologies Privacy Policy. Learn how we safeguard client confidential data, handle form submissions, uphold zero vendor lock-in, and comply with global privacy frameworks including GDPR and the DPDP Act.',
+};
+
+const schema: WithContext<Thing> = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  inLanguage: 'en-US',
+  '@id': Astro.url.href,
+  url: Astro.url.href,
+  name: 'Wellbit Technologies Privacy Policy',
+  description:
+    'Comprehensive data protection, confidential engineering governance, and privacy practices of Wellbit Technologies.',
+  isPartOf: {
+    '@type': 'WebSite',
+    url: `${Astro.site}`,
+    name: 'Wellbit Technologies',
+  },
+};
+
+const lastUpdated = 'October 14, 2026';
+const effectiveVersion = 'Version 2.4';
+
+const sections = [
+  { id: 'introduction', title: '1. Executive Overview & Scope' },
+  { id: 'information-collected', title: '2. Information We Collect' },
+  { id: 'client-ip-data', title: '3. Client Intellectual Property & Code Confidentiality' },
+  { id: 'how-we-use-data', title: '4. How We Utilize Collected Data' },
+  { id: 'security-infrastructure', title: '5. Security Architecture & Storage Standards' },
+  { id: 'no-sale-policy', title: '6. Zero Commercial Sale of Data' },
+  { id: 'third-party-processors', title: '7. Sub-processors & Infrastructure Partners' },
+  { id: 'cookies-telemetry', title: '8. Cookies & Session Telemetry' },
+  { id: 'international-rights', title: '9. Your Rights (GDPR, DPDP Act & CCPA)' },
+  { id: 'retention-policy', title: '10. Data Retention & Deletion Protocol' },
+  { id: 'contact-officer', title: '11. Privacy Officer & Grievance Contact' },
+];
+---
+
+<BaseLayout seo={seo} schema={schema}>
+  {/* Page Hero Header */}
+  <section class="relative overflow-hidden bg-hero-gradient pt-28 sm:pt-36 lg:pt-40 pb-12 sm:pb-16 border-b border-slate-200">
+    <div class="pointer-events-none absolute -top-40 left-1/2 -z-10 h-96 w-96 -translate-x-1/2 rounded-full bg-teal-200/40 blur-3xl animate-pulse-glow"></div>
+
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      {/* Breadcrumb Navigation */}
+      <nav class="flex items-center gap-2 text-xs text-slate-500 mb-6 font-mono">
+        <a href="/" class="hover:text-teal-700 transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-slate-400">Legal</span>
+        <span>/</span>
+        <span class="text-teal-700 font-semibold">Privacy Policy</span>
+      </nav>
+
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-x-2 rounded-full border border-teal-200/90 bg-white/90 backdrop-blur-md px-3.5 py-1 text-xs font-semibold text-teal-800 shadow-2xs mb-4">
+          <span class="size-2 rounded-full bg-teal-500 animate-pulse"></span>
+          DATA GOVERNANCE &amp; PRIVACY COMMITMENT
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-950 font-display leading-[1.15]">
+          Privacy Policy &amp; Data Protection
+        </h1>
+
+        <p class="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed font-sans">
+          At Wellbit Technologies, enterprise confidentiality and data privacy are fundamental architectural tenets. This policy governs how we collect, process, safeguard, and respect personal data and client technical materials.
+        </p>
+
+        <div class="mt-6 flex flex-wrap items-center gap-4 text-xs font-mono text-slate-500">
+          <div class="flex items-center gap-1.5 rounded-md bg-white border border-slate-200 px-2.5 py-1 shadow-2xs">
+            <span class="text-slate-400">Last Revised:</span>
+            <span class="font-semibold text-slate-800">{lastUpdated}</span>
+          </div>
+          <div class="flex items-center gap-1.5 rounded-md bg-white border border-slate-200 px-2.5 py-1 shadow-2xs">
+            <span class="text-slate-400">Status:</span>
+            <span class="font-semibold text-teal-700">{effectiveVersion} (Active)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Main Content Area */}
+  <section class="py-16 sm:py-20 bg-slate-50/60">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        
+        {/* Sticky Sidebar: Table of Contents */}
+        <aside class="hidden lg:block lg:col-span-4 sticky top-28">
+          <div class="rounded-2xl border border-white/80 bg-white/80 backdrop-blur-xl p-6 shadow-md shadow-slate-900/5 ring-1 ring-slate-900/5">
+            <h2 class="text-sm font-bold uppercase tracking-wider text-slate-900 font-display flex items-center gap-2 mb-4">
+              <Icon name="articles" class="size-4 text-teal-600" />
+              Policy Sections
+            </h2>
+
+            <nav class="space-y-1 font-sans text-xs">
+              {sections.map((item) => (
+                <a
+                  href={`#${item.id}`}
+                  class="group flex items-center justify-between rounded-lg px-3 py-2 text-slate-600 hover:bg-teal-50 hover:text-teal-900 transition-colors"
+                >
+                  <span class="font-medium group-hover:translate-x-0.5 transition-transform">{item.title}</span>
+                  <svg class="size-3 text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </a>
+              ))}
+            </nav>
+
+            <div class="mt-6 pt-5 border-t border-slate-100">
+              <div class="rounded-xl bg-gradient-to-br from-teal-50 to-blue-50/60 p-3.5 border border-teal-200/60 text-xs">
+                <span class="font-bold text-slate-900 block font-display">Need a signed NDA?</span>
+                <p class="text-slate-600 mt-1 leading-relaxed">
+                  We execute bilateral Non-Disclosure Agreements prior to reviewing code, proprietary databases, or architectural blueprints.
+                </p>
+                <a
+                  href="/contact"
+                  class="mt-2.5 inline-flex items-center gap-1 font-bold text-teal-700 hover:text-teal-900 transition-colors"
+                >
+                  Request Mutual NDA &rarr;
+                </a>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        {/* Policy Content Column */}
+        <main class="lg:col-span-8 space-y-12">
+          
+          {/* Section 1 */}
+          <article id="introduction" class="rounded-2xl border border-white/90 bg-white p-7 sm:p-9 shadow-xs">
+            <span class="inline-block rounded bg-teal-50 px-2.5 py-0.5 text-xs font-mono font-bold text-teal-800 mb-3">SECTION 01</span>
+            <h2 class="text-2xl font-bold tracking-tight text-slate-950 font-display mb-4">
+              1. Executive Overview &amp; Scope
+            </h2>
+            <div class="space-y-3.5 text-sm sm:text-base text-slate-600 leading-relaxed font-sans">
+              <p>
+                This Privacy Policy outlines the practices and principles enforced by <strong>Wellbit Technologies</strong> ("Wellbit", "we", "our", or "us") regarding the collection, handling, storage, and dissemination of personal data and business information gathered through our website (<a href="https://wellbit.in" class="text-teal-700 font-medium hover:underline">wellbit.in</a>), our inquiry intake pipelines, client consultation sessions, and digital solutions portals.
+              </p>
+              <p>
+                We operate as an engineering-driven partner building custom software, mobile applications, cloud infrastructures, and enterprise artificial intelligence systems. Because we collaborate with organizations on mission-critical applications, we uphold the most rigorous standards of corporate confidentiality, technical compartmentalization, and statutory privacy compliance.
+              </p>
+              <div class="rounded-xl bg-slate-50 border border-slate-200/80 p-4 mt-4 text-sm text-slate-700">
+                <strong>Applicability:</strong> This policy applies to all website visitors, prospective enterprise clients submitting project scopes, job applicants, newsletter subscribers, and authorized users interacting with our web-based consoles.
+              </div>
+            </div>
+          </article>
+
+          {/* Section 2 */}
+          <article id="information-collected" class="rounded-2xl border border-white/90 bg-white p-7 sm:p-9 shadow-xs">
+            <span class="inline-block rounded bg-teal-50 px-2.5 py-0.5 text-xs font-mono font-bold text-teal-800 mb-3">SECTION 02</span>
+            <h2 class="text-2xl font-bold tracking-tight text-slate-950 font-display mb-4">
+              2. Information We Collect
+            </h2>
+            <div class="space-y-4 text-sm sm:text-base text-slate-600 leading-relaxed font-sans">
+              <p>
+                We adhere to strict data minimization principles. We only gather data necessary to provide accurate architectural assessments, execute contractual obligations, or secure our platform from unauthorized access.
+              </p>
+
+              <h3 class="text-lg font-bold text-slate-900 font-display mt-5">A. Information Provided Voluntarily by You</h3>
+              <ul class="list-disc pl-5 space-y-2 text-sm text-slate-600">
+                <li><strong>Contact Credentials:</strong> Full name, corporate email address, telephone/WhatsApp number, and physical business location.</li>
+                <li><strong>Commercial Context:</strong> Company name, job title, industry domain, budget expectations, and targeted implementation deadlines.</li>
+                <li><strong>Project Specifications:</strong> Technical specifications, architectural requirements, feature descriptions, and system integration details submitted via our contact and quote forms.</li>
+                <li><strong>Correspondence Records:</strong> Records of inquiries, consultation notes, and technical feedback provided during discovery and project delivery.</li>
+              </ul>
+
+              <h3 class="text-lg font-bold text-slate-900 font-display mt-5">B. Information Collected Automatically</h3>
+              <ul class="list-disc pl-5 space-y-2 text-sm text-slate-600">
+                <li><strong>Device &amp; Telemetry Data:</strong> IP address, operating system, browser engine and version, language settings, and referring source URLs.</li>
+                <li><strong>Security &amp; Abuse Prevention Logs:</strong> HTTP request headers, submission velocity, and timestamp logs collected to prevent automated spam bots, DDoS attempts, and cross-site request forgery.</li>
+              </ul>
+            </div>
+          </article>
+
+          {/* Section 3 */}
+          <article id="client-ip-data" class="rounded-2xl border border-teal-200/80 bg-gradient-to-br from-teal-50/40 via-white to-blue-50/30 p-7 sm:p-9 shadow-xs">
+            <span class="inline-block rounded bg-teal-100 px-2.5 py-0.5 text-xs font-mono font-bold text-teal-900 mb-3">SECTION 03</span>
+            <h2 class="text-2xl font-bold tracking-tight text-slate-950 font-display mb-4">
+              3. Client Intellectual Property &amp; Code Confidentiality
+            </h2>
+            <div class="space-y-3.5 text-sm sm:text-base text-slate-700 leading-relaxed font-sans">
+              <p>
+                Unlike commercial SaaS aggregators, <strong>Wellbit Technologies builds bespoke software where the client retains 100% intellectual property ownership</strong>.
+              </p>
+              
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-4">
+                <div class="p-4 rounded-xl bg-white border border-teal-200 shadow-2xs">
+                  <h4 class="font-bold text-slate-900 text-sm font-display flex items-center gap-1.5">
+                    <Icon name="checkCircle" class="size-4 text-teal-600" />
+                    Zero Proprietary Lock-In
+                  </h4>
+                  <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                    All source code, Dockerfiles, Terraform scripts, and database migrations are transferred directly to your organization upon project completion.
+                  </p>
+                </div>
+
+                <div class="p-4 rounded-xl bg-white border border-teal-200 shadow-2xs">
+                  <h4 class="font-bold text-slate-900 text-sm font-display flex items-center gap-1.5">
+                    <Icon name="checkCircle" class="size-4 text-teal-600" />
+                    No Unauthorized AI Training
+                  </h4>
+                  <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                    We never use client codebases, private proprietary schemas, or company documents to train or fine-tune public foundation AI models.
+                  </p>
+                </div>
+              </div>
+
+              <p class="text-sm text-slate-600">
+                Any test databases or staging environments provisioned during development are sanitized, strictly compartmentalized, and destroyed following production handoff.
+              </p>
+            </div>
+          </article>
+
+          {/* Section 4 */}
+          <article id="how-we-use-data" class="rounded-2xl border border-white/90 bg-white p-7 sm:p-9 shadow-xs">
+            <span class="inline-block rounded bg-teal-50 px-2.5 py-0.5 text-xs font-mono font-bold text-teal-800 mb-3">SECTION 04</span>
+            <h2 class="text-2xl font-bold tracking-tight text-slate-950 font-display mb-4">
+              4. How We Utilize Collected Data
+            </h2>
+            <div class="space-y-3 text-sm sm:text-base text-slate-600 leading-relaxed font-sans">
+              <p>We process collected data under valid lawful bases, including legitimate commercial interest, pre-contractual requests, contractual fulfillment, and explicit statutory consent:</p>
+              
+              <ul class="list-disc pl-5 space-y-2 text-sm text-slate-600 mt-3">
+                <li><strong>Evaluating &amp; Scoping Inquiries:</strong> Reviewing incoming project briefs to recommend suitable tech stacks, compute architectures, and accurate delivery timelines.</li>
+                <li><strong>Contractual Execution:</strong> Drafting Statements of Work (SOWs), Master Services Agreements (MSAs), invoicing schedules, and milestone sign-offs.</li>
+                <li><strong>Platform Security &amp; Diagnostics:</strong> Protecting our servers against DDoS floods, unauthorized login attempts on administrative portals, and injection vulnerabilities.</li>
+                <li><strong>Engineering Communications:</strong> Delivering subscribed technical tear-downs, architecture updates, and quarterly software insights (every communication includes a one-click unsubscribe mechanism).</li>
+              </ul>
+            </div>
+          </article>
+
+          {/* Section 5 */}
+          <article id="security-infrastructure" class="rounded-2xl border border-white/90 bg-white p-7 sm:p-9 shadow-xs">
+            <span class="inline-block rounded bg-teal-50 px-2.5 py-0.5 text-xs font-mono font-bold text-teal-800 mb-3">SECTION 05</span>
+            <h2 class="text-2xl font-bold tracking-tight text-slate-950 font-display mb-4">
+              5. Security Architecture &amp; Storage Standards
+            </h2>
+            <div class="space-y-4 text-sm sm:text-base text-slate-600 leading-relaxed font-sans">
+              <p>
+                As an enterprise engineering firm, we practice what we preach. We apply defense-in-depth security principles across all intake and persistence layers:
+              </p>
+
+              <div class="rounded-xl border border-slate-200 bg-slate-50 p-5 space-y-3 text-sm">
+                <div class="flex items-start gap-3">
+                  <span class="flex size-6 shrink-0 items-center justify-center rounded-full bg-teal-600 text-white font-bold text-xs">1</span>
+                  <div>
+                    <strong class="text-slate-900 block font-display">In-Transit Encryption:</strong>
+                    <span class="text-slate-600 text-xs sm:text-sm">Enforced Transport Layer Security (TLS 1.3) across all endpoints with HTTP Strict Transport Security (HSTS) headers.</span>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <span class="flex size-6 shrink-0 items-center justify-center rounded-full bg-teal-600 text-white font-bold text-xs">2</span>
+                  <div>
+                    <strong class="text-slate-900 block font-display">At-Rest Encryption:</strong>
+                    <span class="text-slate-600 text-xs sm:text-sm">All database records stored on MongoDB Atlas are encrypted using AES-256 with automated daily snapshot replication.</span>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <span class="flex size-6 shrink-0 items-center justify-center rounded-full bg-teal-600 text-white font-bold text-xs">3</span>
+                  <div>
+                    <strong class="text-slate-900 block font-display">Zero-Trust Administrative Access:</strong>
+                    <span class="text-slate-600 text-xs sm:text-sm">Administrative consoles are protected behind hashed and salted credentials, rate-limiting circuit breakers, and session invalidation cookies.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          {/* Section 6 */}
+          <article id="no-sale-policy" class="rounded-2xl border border-white/90 bg-white p-7 sm:p-9 shadow-xs">
+            <span class="inline-block rounded bg-teal-50 px-2.5 py-0.5 text-xs font-mono font-bold text-teal-800 mb-3">SECTION 06</span>
+            <h2 class="text-2xl font-bold tracking-tight text-slate-950 font-display mb-4">
+              6. Zero Commercial Sale of Data
+            </h2>
+            <div class="space-y-3.5 text-sm sm:text-base text-slate-600 leading-relaxed font-sans">
+              <p class="font-medium text-slate-800">
+                Wellbit Technologies has never sold, rented, leased, or monetized personal or corporate data, and will never do so under any circumstances.
+              </p>
+              <p>
+                We do not supply contact lists or lead databases to third-party marketing brokers, programmatic ad-tech networks, or data aggregation platforms. Our commercial model is strictly based on engineering services, enterprise software delivery, and cloud solutions.
+              </p>
+            </div>
+          </article>
+
+          {/* Section 7 */}
+          <article id="third-party-processors" class="rounded-2xl border border-white/90 bg-white p-7 sm:p-9 shadow-xs">
+            <span class="inline-block rounded bg-teal-50 px-2.5 py-0.5 text-xs font-mono font-bold text-teal-800 mb-3">SECTION 07</span>
+            <h2 class="text-2xl font-bold tracking-tight text-slate-950 font-display mb-4">
+              7. Sub-processors &amp; Infrastructure Partners
+            </h2>
+            <div class="space-y-3 text-sm sm:text-base text-slate-600 leading-relaxed font-sans">
+              <p>
+                To provide high availability and sub-second web delivery, we partner with industry-leading cloud infrastructure providers bound by strict Data Processing Agreements:
+              </p>
+
+              <div class="overflow-x-auto mt-4">
+                <table class="w-full text-left text-xs sm:text-sm border border-slate-200 rounded-xl overflow-hidden">
+                  <thead class="bg-slate-100/80 text-slate-900 font-display font-semibold">
+                    <tr>
+                      <th class="p-3 border-b border-slate-200">Entity</th>
+                      <th class="p-3 border-b border-slate-200">Role</th>
+                      <th class="p-3 border-b border-slate-200">Location</th>
+                      <th class="p-3 border-b border-slate-200">Security Standard</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-200/80 text-slate-600">
+                    <tr>
+                      <td class="p-3 font-semibold text-slate-800">Vercel Inc.</td>
+                      <td class="p-3">Edge Serverless Hosting &amp; CDN</td>
+                      <td class="p-3">Global Edge Network</td>
+                      <td class="p-3">SOC 2 Type II, ISO 27001</td>
+                    </tr>
+                    <tr>
+                      <td class="p-3 font-semibold text-slate-800">MongoDB Inc.</td>
+                      <td class="p-3">Managed Atlas Database Cluster</td>
+                      <td class="p-3">AWS Region (Encrypted)</td>
+                      <td class="p-3">SOC 2, HIPAA, ISO 27001</td>
+                    </tr>
+                    <tr>
+                      <td class="p-3 font-semibold text-slate-800">GitHub (Microsoft)</td>
+                      <td class="p-3">Version Control &amp; CI/CD Pipelines</td>
+                      <td class="p-3">United States</td>
+                      <td class="p-3">SOC 1/2, FedRAMP</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </article>
+
+          {/* Section 8 */}
+          <article id="cookies-telemetry" class="rounded-2xl border border-white/90 bg-white p-7 sm:p-9 shadow-xs">
+            <span class="inline-block rounded bg-teal-50 px-2.5 py-0.5 text-xs font-mono font-bold text-teal-800 mb-3">SECTION 08</span>
+            <h2 class="text-2xl font-bold tracking-tight text-slate-950 font-display mb-4">
+              8. Cookies &amp; Session Telemetry
+            </h2>
+            <div class="space-y-3.5 text-sm sm:text-base text-slate-600 leading-relaxed font-sans">
+              <p>
+                Our website utilizes minimal, privacy-first session mechanisms:
+              </p>
+              <ul class="list-disc pl-5 space-y-2 text-sm text-slate-600">
+                <li><strong>Strictly Necessary Session Tokens:</strong> Used to maintain secure authenticated state for authorized administrators accessing the protected operations console (`wellbit_session`).</li>
+                <li><strong>Functional UI State:</strong> Local browser storage to remember user interface preferences, such as selected technology stack filter tabs.</li>
+                <li><strong>Zero Third-Party Ad Trackers:</strong> We do not load invasive social media tracking pixels, cross-site profiling scripts, or advertising trackers.</li>
+              </ul>
+            </div>
+          </article>
+
+          {/* Section 9 */}
+          <article id="international-rights" class="rounded-2xl border border-white/90 bg-white p-7 sm:p-9 shadow-xs">
+            <span class="inline-block rounded bg-teal-50 px-2.5 py-0.5 text-xs font-mono font-bold text-teal-800 mb-3">SECTION 09</span>
+            <h2 class="text-2xl font-bold tracking-tight text-slate-950 font-display mb-4">
+              9. Your Rights (GDPR, DPDP Act &amp; CCPA/CPRA)
+            </h2>
+            <div class="space-y-3.5 text-sm sm:text-base text-slate-600 leading-relaxed font-sans">
+              <p>
+                Regardless of your geographic location, we extend comprehensive data sovereignty rights under the European Union General Data Protection Regulation (GDPR), India's Digital Personal Data Protection Act (DPDP Act 2023), and the California Consumer Privacy Act (CCPA):
+              </p>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mt-4">
+                <div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50 text-xs">
+                  <strong class="text-slate-900 block font-display">Right to Access &amp; Portability:</strong>
+                  <span class="text-slate-600 mt-1 block">Request an export of all personal details or inquiry records associated with your email.</span>
+                </div>
+
+                <div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50 text-xs">
+                  <strong class="text-slate-900 block font-display">Right to Rectification:</strong>
+                  <span class="text-slate-600 mt-1 block">Correct inaccurate or outdated corporate contact information in our systems.</span>
+                </div>
+
+                <div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50 text-xs">
+                  <strong class="text-slate-900 block font-display">Right to Erasure ("To Be Forgotten"):</strong>
+                  <span class="text-slate-600 mt-1 block">Request permanent deletion of your inquiry data and historical communications.</span>
+                </div>
+
+                <div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50 text-xs">
+                  <strong class="text-slate-900 block font-display">Right to Withdraw Consent:</strong>
+                  <span class="text-slate-600 mt-1 block">Opt out of technical newsletters or engineering updates at any time with one click.</span>
+                </div>
+              </div>
+
+              <p class="text-sm text-slate-600 mt-3">
+                To exercise any of these statutory rights, submit an email to <a href="mailto:m.hasanmzp@gmail.com" class="text-teal-700 font-semibold hover:underline">m.hasanmzp@gmail.com</a> with the subject line <em>"Data Subject Rights Request"</em>. We resolve all valid requests within 30 days without charge.
+              </p>
+            </div>
+          </article>
+
+          {/* Section 10 */}
+          <article id="retention-policy" class="rounded-2xl border border-white/90 bg-white p-7 sm:p-9 shadow-xs">
+            <span class="inline-block rounded bg-teal-50 px-2.5 py-0.5 text-xs font-mono font-bold text-teal-800 mb-3">SECTION 10</span>
+            <h2 class="text-2xl font-bold tracking-tight text-slate-950 font-display mb-4">
+              10. Data Retention &amp; Deletion Protocol
+            </h2>
+            <div class="space-y-3.5 text-sm sm:text-base text-slate-600 leading-relaxed font-sans">
+              <p>
+                We maintain data only as long as necessary to fulfill the commercial purposes outlined in this policy:
+              </p>
+              <ul class="list-disc pl-5 space-y-2 text-sm text-slate-600">
+                <li><strong>General Inquiries:</strong> Stored securely in our MongoDB Atlas cluster for ongoing client relationship tracking. Inquiries not progressing to active contracts are reviewed annually and securely expunged.</li>
+                <li><strong>Contractual &amp; Accounting Records:</strong> Financial invoices and executed service contracts are retained for 7 years to comply with statutory fiscal, auditing, and corporate governance laws.</li>
+                <li><strong>System Security Logs:</strong> Network telemetry and error traces are automatically cycled and overwritten within 90 days.</li>
+              </ul>
+            </div>
+          </article>
+
+          {/* Section 11 */}
+          <article id="contact-officer" class="rounded-2xl border border-teal-200 bg-gradient-to-br from-white via-teal-50/20 to-white p-7 sm:p-9 shadow-sm">
+            <span class="inline-block rounded bg-teal-600 px-2.5 py-0.5 text-xs font-mono font-bold text-white mb-3">SECTION 11</span>
+            <h2 class="text-2xl font-bold tracking-tight text-slate-950 font-display mb-4">
+              11. Privacy Officer &amp; Grievance Contact
+            </h2>
+            <div class="space-y-4 text-sm sm:text-base text-slate-600 leading-relaxed font-sans">
+              <p>
+                For questions concerning our technical data governance protocols, bilateral NDA execution, or to submit a formal privacy grievance, contact our designated Data Protection Lead:
+              </p>
+
+              <div class="rounded-xl border border-slate-200/90 bg-white p-5 space-y-2.5 text-sm font-sans shadow-2xs">
+                <div class="font-bold text-slate-900 text-base font-display">Wellbit Technologies</div>
+                <div class="text-slate-600">Attn: Data Protection &amp; Governance Officer</div>
+                <div class="flex items-center gap-2 text-slate-700">
+                  <Icon name="email" class="size-4 text-teal-700" />
+                  <a href="mailto:m.hasanmzp@gmail.com" class="hover:text-teal-800 transition-colors font-medium">m.hasanmzp@gmail.com</a>
+                </div>
+                <div class="flex items-center gap-2 text-slate-700">
+                  <svg class="size-4 shrink-0 text-teal-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                  </svg>
+                  <a href="tel:+918948626497" class="hover:text-teal-800 transition-colors font-medium">+91 8948626497</a>
+                </div>
+                <div class="flex items-center gap-2 text-slate-700">
+                  <Icon name="mapPin" class="size-4 text-teal-700" />
+                  <span>Global Engineering &amp; Client Delivery</span>
+                </div>
+              </div>
+
+              <div class="pt-4 flex flex-col sm:flex-row items-center gap-4">
+                <Button href="/contact" variant="primary" className="text-sm px-6 py-3 font-bold w-full sm:w-auto shadow-xs">
+                  Initiate Secure Project Discussion
+                </Button>
+                <Button href="/" variant="secondary" className="text-sm px-6 py-3 font-semibold w-full sm:w-auto">
+                  Return to Homepage
+                </Button>
+              </div>
+            </div>
+          </article>
+
+        </main>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
