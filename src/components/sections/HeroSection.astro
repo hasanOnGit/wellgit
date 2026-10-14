@@ -4,7 +4,14 @@ import HeroContent from '@common/HeroContent.astro';
 import HeroVideo from '@common/HeroVideo.astro';
 ---
 
-<section class="bg-hero-gradient">
+<section class="relative overflow-hidden bg-hero-gradient">
+  {/* Luminous Siri & Gemini Ambient Aurora Orbs */}
+  <div class="pointer-events-none absolute -top-32 sm:-top-48 left-1/2 -translate-x-1/2 -z-10 h-[36rem] w-[50rem] sm:w-[65rem] rounded-full bg-gradient-to-tr from-cyan-400/25 via-blue-500/20 via-indigo-500/20 to-fuchsia-400/18 blur-3xl animate-siri-aura"></div>
+  
+  <div class="pointer-events-none absolute top-12 -left-20 -z-10 h-80 w-80 sm:h-[28rem] sm:w-[28rem] rounded-full bg-gradient-to-r from-cyan-300/25 via-sky-400/20 to-indigo-400/15 blur-3xl animate-gemini-glow"></div>
+
+  <div class="pointer-events-none absolute top-24 -right-20 -z-10 h-80 w-80 sm:h-[30rem] sm:w-[30rem] rounded-full bg-gradient-to-l from-pink-400/20 via-purple-500/18 to-blue-400/15 blur-3xl animate-siri-aura" style="animation-delay: -5s;"></div>
+
   <div class="mx-auto max-w-[85rem] space-y-6 sm:space-y-8 px-4 pt-28 sm:pt-40 lg:pt-48 pb-10 sm:pb-14 lg:pb-16 sm:px-6 lg:px-8">
     {/* Announcement Banner */}
     <AnnouncementBanner />

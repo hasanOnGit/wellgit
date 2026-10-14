@@ -7,26 +7,28 @@ const linkHref = '#services-overview';
 ---
 
 <div class="flex justify-center">
-  <div class="rounded-full bg-white/90 border border-slate-200/90 shadow-xs hover:border-teal-400 hover:shadow-sm transition-all duration-300">
-    <a
-      href={linkHref}
-      class="group flex h-9 w-fit items-center justify-center gap-0 rounded-full transition duration-300"
-      aria-label=`${text} - ${linkText}`
-    >
-      <div
-        class="flex h-full w-fit items-center gap-2 rounded-full bg-btn-gradient px-3.5 shadow-xs"
+  <div class="rounded-full p-[1px] bg-gradient-to-r from-cyan-400/40 via-indigo-400/30 to-fuchsia-400/40 hover:from-cyan-400 hover:via-indigo-400 hover:to-fuchsia-400 hover:shadow-[0_0_20px_rgba(56,150,245,0.25)] transition-all duration-300">
+    <div class="rounded-full bg-white/95 backdrop-blur-md">
+      <a
+        href={linkHref}
+        class="group flex h-9 w-fit items-center justify-center gap-0 rounded-full transition duration-300"
+        aria-label=`${text} - ${linkText}`
       >
-        <span class="text-xs font-semibold text-white tracking-wide">{text}</span>
-      </div>
-      <div
-        class="hidden h-full w-fit items-center justify-center gap-2 px-3.5 sm:flex"
-      >
-        <span
-          class="text-xs font-medium text-slate-700 transition duration-300 group-hover:text-teal-700"
-          >{linkText}</span
+        <div
+          class="flex h-full w-fit items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 px-3.5 shadow-xs"
         >
-        <Icon name="chevronRight" class="size-3.5 text-slate-400 group-hover:text-teal-700 group-hover:translate-x-0.5 transition-all duration-200" />
-      </div>
-    </a>
+          <span class="text-xs font-semibold text-white tracking-wide">{text}</span>
+        </div>
+        <div
+          class="hidden h-full w-fit items-center justify-center gap-2 px-3.5 sm:flex"
+        >
+          <span
+            class="text-xs font-medium text-slate-700 transition duration-300 group-hover:text-indigo-600"
+            >{linkText}</span
+          >
+          <Icon name="chevronRight" class="size-3.5 text-slate-400 group-hover:text-indigo-600 group-hover:translate-x-0.5 transition-all duration-200" />
+        </div>
+      </a>
+    </div>
   </div>
 </div>

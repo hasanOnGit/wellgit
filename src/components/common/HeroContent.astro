@@ -38,15 +38,15 @@ const secondaryCTA = {
       </svg>
     </div>
 
-    <!-- Subtle Blue Ring Accent (Mid Right) -->
-    <div class="pointer-events-none absolute top-1/2 -right-16 hidden lg:block opacity-50 animate-pulse-glow">
-      <div class="h-3.5 w-3.5 rounded-full bg-teal-500 ring-4 ring-teal-300/40"></div>
+    <!-- Subtle Siri/Gemini Chromatic Ring Accent (Mid Right) -->
+    <div class="pointer-events-none absolute top-1/2 -right-16 hidden lg:block opacity-60 animate-pulse-glow">
+      <div class="h-3.5 w-3.5 rounded-full bg-gradient-to-tr from-indigo-500 to-fuchsia-500 ring-4 ring-cyan-400/30"></div>
     </div>
 
     <h1
       class="block text-4xl font-extrabold tracking-tight text-balance sm:text-6xl md:text-7xl lg:text-7xl leading-[1.1] sm:leading-[1.1] md:leading-[1.1] font-display text-slate-950 drop-shadow-2xs"
     >
-      Engineering Intelligence. <span class="bg-clip-text text-transparent bg-gradient-to-r from-teal-600 via-blue-600 to-indigo-600">Building Possibilities.</span>
+      Engineering Intelligence. <span class="bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 via-blue-600 via-indigo-600 to-fuchsia-600 bg-[length:200%_auto] animate-siri-border drop-shadow-xs">Building Possibilities.</span>
     </h1>
   </div>
 </div>
@@ -59,15 +59,15 @@ const secondaryCTA = {
 
 {/* High-Impact Animated CTA Buttons */}
 <div class="flex flex-col sm:flex-row justify-center items-center gap-4 w-full sm:w-auto px-4 sm:px-0">
-  {/* Primary CTA with Animated Glow Border */}
-  <div class="relative group/glow p-0.5 rounded-full bg-gradient-to-r from-teal-400 via-blue-500 to-cyan-400 animate-pulse-glow shadow-xl shadow-teal-500/20 hover:shadow-teal-500/40 transition-all duration-300 w-full sm:w-auto">
+  {/* Primary CTA with Siri/Gemini Chromatic Flow Border */}
+  <div class="relative group/glow p-0.5 rounded-full bg-gradient-to-r from-cyan-400 via-blue-500 via-indigo-500 to-fuchsia-500 bg-[length:200%_auto] animate-siri-border shadow-xl shadow-blue-500/25 hover:shadow-indigo-500/40 hover:scale-[1.02] transition-all duration-300 w-full sm:w-auto">
     <Button
       href={primaryCTA.href}
       variant="primary"
       className="w-full sm:w-auto px-8 py-3.5 sm:px-9 sm:py-4 text-sm sm:text-base font-bold shadow-none"
     >
       <span class="relative flex size-2 mr-0.5">
-        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-200 opacity-75"></span>
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-300 opacity-75"></span>
         <span class="relative inline-flex rounded-full size-2 bg-white"></span>
       </span>
       {primaryCTA.text}

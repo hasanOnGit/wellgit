@@ -55,6 +55,31 @@
 
   --color-blue-500: #1768e8;
   --color-blue-600: #1057cc;
+
+  /* Siri & Gemini Luminous Chromatic Palette */
+  --color-cyan-300: #67e8f9;
+  --color-cyan-400: #22d3ee;
+  --color-cyan-500: #06b6d4;
+  --color-indigo-400: #818cf8;
+  --color-indigo-500: #6366f1;
+  --color-indigo-600: #4f46e5;
+  --color-indigo-700: #4338ca;
+  --color-violet-400: #a78bfa;
+  --color-violet-500: #8b5cf6;
+  --color-violet-600: #7c3aed;
+  --color-purple-400: #c084fc;
+  --color-purple-500: #a855f7;
+  --color-purple-600: #9333ea;
+  --color-fuchsia-400: #e879f9;
+  --color-fuchsia-500: #d946ef;
+  --color-fuchsia-600: #c026d3;
+  --color-pink-400: #f472b6;
+  --color-pink-500: #ec4899;
+  --color-pink-600: #db2777;
+  --color-rose-400: #fb7185;
+  --color-rose-500: #f43f5e;
+  --color-amber-400: #fbbf24;
+  --color-amber-500: #f59e0b;
 }
 
 @theme inline {
@@ -92,6 +117,46 @@
       transform: translateY(-7px);
     }
   }
+
+  @keyframes siriAura {
+    0%, 100% {
+      transform: scale(1) translate(0%, 0%) rotate(0deg);
+      opacity: 0.65;
+    }
+    33% {
+      transform: scale(1.12) translate(2%, -2%) rotate(120deg);
+      opacity: 0.85;
+    }
+    66% {
+      transform: scale(0.96) translate(-2%, 2%) rotate(240deg);
+      opacity: 0.70;
+    }
+  }
+
+  @keyframes siriBorderFlow {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @keyframes geminiGlowPulse {
+    0%, 100% {
+      opacity: 0.45;
+      filter: blur(48px) saturate(140%);
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.80;
+      filter: blur(58px) saturate(180%);
+      transform: scale(1.06);
+    }
+  }
 }
 
 /* Central Gradient Utility Classes */
@@ -111,12 +176,36 @@
   background: linear-gradient(135deg, #1768e8 0%, #3896f5 100%);
 }
 
+@utility bg-siri-gradient {
+  background: linear-gradient(135deg, #00f0ff 0%, #3896f5 25%, #8b5cf6 50%, #ec4899 75%, #f59e0b 100%);
+}
+
+@utility bg-gemini-gradient {
+  background: linear-gradient(135deg, #22d3ee 0%, #3b82f6 30%, #6366f1 60%, #d946ef 100%);
+}
+
+@utility bg-siri-aurora {
+  background: radial-gradient(ellipse at 50% 30%, rgba(34, 211, 238, 0.28) 0%, rgba(99, 102, 241, 0.24) 35%, rgba(217, 70, 239, 0.18) 70%, transparent 100%);
+}
+
 @utility animate-pulse-glow {
   animation: pulseGlow 3.5s ease-in-out infinite;
 }
 
 @utility animate-float {
   animation: floatSlow 6s ease-in-out infinite;
+}
+
+@utility animate-siri-aura {
+  animation: siriAura 20s ease-in-out infinite;
+}
+
+@utility animate-siri-border {
+  animation: siriBorderFlow 5s ease infinite;
+}
+
+@utility animate-gemini-glow {
+  animation: geminiGlowPulse 6s ease-in-out infinite;
 }
 
 @layer base {
