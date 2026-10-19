@@ -19,8 +19,8 @@ export const STARTER_PROMPTS = [
   '📱 How do you build mobile & web apps?',
   '🧠 How do your AI agents & RAG work?',
   '💰 How much does a project cost?',
-  '🔒 Who owns the code & IP?',
-  '📞 How can I talk to your team?',
+  '🎨 Do you do UI/UX design or only code?',
+  '📞 How can I schedule a discovery call?',
 ];
 
 export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
@@ -28,42 +28,86 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
   {
     id: 'greetings',
     title: 'Hello & Welcome',
-    keywords: ['hello', 'hi', 'hey', 'greetings', 'morning', 'afternoon', 'evening', 'who are you', 'what is your name', 'what are you', 'help'],
+    keywords: ['hello', 'hi', 'hey', 'greetings', 'morning', 'afternoon', 'evening', 'yo', 'hola', 'sup'],
     patterns: [
-      /^(hi|hello|hey|hola|greetings|good\s*(morning|afternoon|evening))/i,
-      /who are you/i,
-      /what('s| is) your name/i,
-      /what can you do/i,
-      /what is nova/i,
+      /^(hi|hello|hey|hola|greetings|yo|sup|good\s*(morning|afternoon|evening))/i,
     ],
     answer:
-      `Hey there! 👋 I'm **Nova**, your engineering copilot at Wellbit.\n\nI can answer questions about our software development, mobile & web apps, cloud infrastructure, and enterprise AI solutions—or connect you directly with our team for estimates and consultations.\n\nWhat are you planning to build or optimize?`,
+      `Hey there! 👋 I'm **Nova**, your engineering copilot at Wellbit.\n\nWhether you're exploring custom software development, mobile & web apps, cloud infrastructure, or enterprise AI, I'm here to give you exact, helpful answers and guide you to the right place.\n\nWhat are you planning to build or improve today?`,
     routes: [
       { label: 'Explore Core Services', href: '/#services-overview' },
       { label: 'Request a Project Quote', href: '/downloads/request-quote' },
-      { label: 'Talk to Our Team', href: '/contact' },
+      { label: 'Talk to an Engineer', href: '/contact' },
     ],
     followUps: [
       'What services does Wellbit offer?',
       'How much does a project cost?',
-      'How do I talk to an engineer?',
+      'Can you build an MVP for my startup?',
     ],
   },
 
-  // 2. Polite pleasantries (thanks, cool, bye)
+  // 2. Persona, Bot or Human
   {
-    id: 'pleasantries',
-    title: 'Thanks & Goodbye',
-    keywords: ['thank', 'thanks', 'appreciate', 'awesome', 'cool', 'great', 'perfect', 'bye', 'goodbye', 'see you'],
+    id: 'persona_bot',
+    title: 'Who is Nova (AI vs Human)',
+    keywords: ['who are you', 'are you human', 'are you a bot', 'are you real', 'who made you', 'who built you', 'what are you', 'what is nova'],
     patterns: [
-      /^(thanks|thank you|thx|awesome|cool|great|perfect|nice)/i,
-      /^(bye|goodbye|see ya|cya)/i,
+      /who are you/i,
+      /are you (a )?(human|bot|ai|robot|person|real)/i,
+      /who (made|built|created) you/i,
+      /what('s| is) your name/i,
+      /what is nova/i,
     ],
     answer:
-      `You're very welcome! 😊 If any other questions come up about your project or architecture, I'm always right here.\n\nReady to get started? Feel free to reach out to our engineering leads directly!`,
+      `I am **Nova** ✦, an interactive AI architectural assistant built by the engineering team at Wellbit Technologies!\n\nWhile I am an AI trained on all of Wellbit's capabilities, architectures, and pricing models, I work hand-in-hand with our real human engineering leads and software architects. If you'd like to speak with a human lead directly, we can hop on a video call anytime!`,
     routes: [
+      { label: 'Schedule a Call with a Human Lead', href: '/contact' },
+      { label: 'Read About Wellbit', href: '/about' },
+    ],
+    followUps: [
+      'How can I schedule a call?',
+      'What services does Wellbit offer?',
+    ],
+  },
+
+  // 3. Casual Smalltalk & Humor
+  {
+    id: 'casual_smalltalk',
+    title: 'Friendly Smalltalk & Joke',
+    keywords: ['how are you', 'hows it going', 'whats up', 'how do you do', 'tell me a joke', 'joke', 'funny', 'are you happy'],
+    patterns: [
+      /how are you/i,
+      /how('s| is) it going/i,
+      /what('s| is) up/i,
+      /tell me a joke/i,
+      /make me laugh/i,
+    ],
+    answer:
+      `I'm doing fantastic, thank you for asking! 😊 Ready to help turn ambitious ideas into clean, scalable software.\n\n*Here's a quick one for you:* Why do software engineers prefer dark mode?\nBecause light attracts bugs! 🐛\n\nHow can I help you with your software or AI project today?`,
+    routes: [
+      { label: 'Explore What We Build', href: '/#services-overview' },
       { label: 'Start a Project Conversation', href: '/contact' },
-      { label: 'Get an Estimate', href: '/downloads/request-quote' },
+    ],
+    followUps: [
+      'What services does Wellbit offer?',
+      'Can you build mobile apps?',
+    ],
+  },
+
+  // 4. Polite Pleasantries
+  {
+    id: 'pleasantries',
+    title: 'Thanks & Goodbyes',
+    keywords: ['thank', 'thanks', 'appreciate', 'awesome', 'cool', 'great', 'perfect', 'bye', 'goodbye', 'see you', 'nice', 'helpful'],
+    patterns: [
+      /^(thanks|thank you|thx|awesome|cool|great|perfect|nice|appreciate)/i,
+      /^(bye|goodbye|see ya|cya|take care)/i,
+    ],
+    answer:
+      `You're very welcome! 😊 Glad I could help. If any other questions come up about architectures, timelines, or quotes, I'm always right here.\n\nWhenever you're ready to take the next step, our engineering team would love to connect!`,
+    routes: [
+      { label: 'Schedule Discovery Call', href: '/contact' },
+      { label: 'Request a Project Quote', href: '/downloads/request-quote' },
     ],
     followUps: [
       'What services does Wellbit offer?',
@@ -71,7 +115,7 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
     ],
   },
 
-  // 3. Core Services Overview
+  // 5. Core Services Overview
   {
     id: 'services-overview',
     title: 'Core Engineering Services',
@@ -98,7 +142,57 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
     ],
   },
 
-  // 4. Custom Software & Backend Development
+  // 6. Startup & MVP Acceleration
+  {
+    id: 'mvp_startup',
+    title: 'Startups & Fast MVP Development',
+    keywords: ['mvp', 'startup', 'founder', 'early stage', 'prototype', 'idea', 'poc', 'proof of concept', 'build an mvp', 'launch fast'],
+    patterns: [
+      /build (an? )?mvp/i,
+      /startup/i,
+      /founder/i,
+      /proof of concept|poc/i,
+      /prototype/i,
+      /i have an idea/i,
+    ],
+    answer:
+      `We love working with startups and early-stage founders! 🚀\n\nHere is how we help you launch fast without compromising quality:\n- **Rapid 4 to 8-Week MVP Delivery**: We strip away unnecessary complexity to ship your core value proposition to initial users fast.\n- **Production-Ready Foundation**: Unlike disposable prototypes, our MVPs are built on clean architectures (e.g. Go, Node, React Native, PostgreSQL) that can scale to 100k+ users without needing a complete rewrite.\n- **Full IP Ownership**: You own 100% of the code, designs, and database from Day 1—ready for investor due diligence.\n- **Investor Demo Ready**: Polished UI, fast response times, and automated deployment pipelines.`,
+    routes: [
+      { label: 'Get an MVP Estimate', href: '/downloads/request-quote' },
+      { label: 'Book Founder Discovery Call', href: '/contact' },
+    ],
+    followUps: [
+      'How much does an MVP cost?',
+      'Do you do UI/UX design too?',
+      'Can you help with post-launch iterations?',
+    ],
+  },
+
+  // 7. UI/UX Design & Figma
+  {
+    id: 'ui_ux_figma',
+    title: 'UI/UX Design & Figma Prototyping',
+    keywords: ['figma', 'ui', 'ux', 'design', 'designer', 'wireframe', 'prototype', 'mockup', 'adobe xd', 'sketch', 'styling', 'branding', 'do you design'],
+    patterns: [
+      /do you (do|provide|offer) (ui|ux|design)/i,
+      /figma/i,
+      /ui[\/\s]?ux/i,
+      /i (already )?have (a )?design/i,
+      /wireframes?|mockups?/i,
+    ],
+    answer:
+      `Yes, absolutely! We handle both ends of the product lifecycle:\n\n- **If you already have Figma / Adobe XD designs**: Our frontend engineers translate your designs into pixel-perfect, 60 FPS responsive code with clean semantic HTML and Tailwind CSS.\n- **If you need design from scratch**: Our product designers create modern design systems, user flows, interactive Figma prototypes, and sleek modern UI tailored to your brand identity before writing a single line of code.`,
+    routes: [
+      { label: 'Explore Web & Mobile Engineering', href: '/services/app-development' },
+      { label: 'Share Your Figma Link for Review', href: '/contact' },
+    ],
+    followUps: [
+      'Can you review my existing Figma designs?',
+      'What mobile frameworks do you use?',
+    ],
+  },
+
+  // 8. Custom Software & Backend Engineering
   {
     id: 'software-dev',
     title: 'Custom Software & Distributed Systems',
@@ -112,7 +206,7 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
       /kafka|redis|postgres/i,
     ],
     answer:
-      `Yes! Custom backend and distributed systems engineering is one of our deepest specialties.\n\nHere is how we build:\n- **High-Throughput Backends**: Written in Go, Node.js, and Python (FastAPI), engineered to handle 100k+ ops/sec with sub-110ms latency.\n- **Event Streaming & Real-Time Data**: Reliable asynchronous messaging using Apache Kafka, RabbitMQ, and Redis.\n- **Resilient Persistence**: Optimized SQL & NoSQL data layers (PostgreSQL, MongoDB, pgvector) with automated backups and read-replicas.\n- **Clean Architecture**: Decoupled, modular codebases with automated unit/integration tests and zero vendor lock-in.`,
+      `Custom backend and distributed systems engineering is one of our deepest specialties:\n\n- **High-Throughput Backends**: Written in Go, Node.js, and Python (FastAPI), engineered to handle 100k+ ops/sec with sub-110ms latency.\n- **Event Streaming & Real-Time Data**: Reliable asynchronous messaging using Apache Kafka, RabbitMQ, and Redis.\n- **Optimized Persistence**: Distributed SQL & NoSQL data layers (PostgreSQL, MongoDB, pgvector) with automated backups and read-replicas.\n- **Clean Architecture**: Decoupled, modular codebases with automated unit/integration tests and zero vendor lock-in.`,
     routes: [
       { label: 'Explore Software Engineering', href: '/services/software-development' },
       { label: 'Request Technical Blueprint', href: '/downloads/request-quote' },
@@ -124,21 +218,21 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
     ],
   },
 
-  // 5. Mobile & Web App Development
+  // 9. Mobile App Development
   {
     id: 'app-dev',
-    title: 'Mobile & Web App Development',
-    keywords: ['mobile', 'app', 'apps', 'ios', 'android', 'iphone', 'react native', 'flutter', 'swift', 'kotlin', 'pwa', 'frontend', 'nextjs', 'web app', 'mobile app', 'website'],
+    title: 'Mobile App Development (iOS & Android)',
+    keywords: ['mobile', 'app', 'apps', 'ios', 'android', 'iphone', 'react native', 'flutter', 'swift', 'kotlin', 'app store', 'play store', 'mobile app'],
     patterns: [
       /mobile (app|application|development)/i,
-      /build (an? )?(app|mobile app|website)/i,
+      /build (an? )?(app|mobile app)/i,
       /app development/i,
       /ios|android|iphone/i,
       /react native|flutter/i,
-      /web (app|application)/i,
+      /app store|google play/i,
     ],
     answer:
-      `We build fluid, responsive apps for mobile (iOS & Android) and the web:\n\n- **Cross-Platform Excellence**: Using React Native and Flutter, giving you 60 FPS native feel with a single shared codebase (saving 40% on build and maintenance costs).\n- **Native iOS & Android**: Swift and Kotlin for hardware-intensive features, background geofencing, or BLE accessories.\n- **Modern Full-Stack Web**: High-speed Next.js, React, and Astro applications optimized for Core Web Vitals and lightning-fast page loads.\n- **Offline-First Synchronization**: Local caching (WatermelonDB / SQLite) so your users can work smoothly without internet, auto-syncing when back online.`,
+      `We build fluid, responsive apps for mobile (iOS & Android):\n\n- **Cross-Platform Excellence**: Using React Native and Flutter, giving you 60 FPS native feel with a single shared codebase (saving 40% on build and maintenance costs).\n- **Native iOS & Android**: Swift and Kotlin for hardware-intensive features, background geofencing, or BLE accessories.\n- **Offline-First Synchronization**: Local caching (WatermelonDB / SQLite) so your users can work smoothly without internet, auto-syncing when back online.\n- **Store Deployment**: We handle the entire App Store and Google Play submission and approval process for you.`,
     routes: [
       { label: 'Explore App Development', href: '/services/app-development' },
       { label: 'Get an App Estimate', href: '/downloads/request-quote' },
@@ -151,7 +245,100 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
     ],
   },
 
-  // 6. Cloud Infrastructure & DevOps (SRE)
+  // 10. Web Apps, SaaS & PWAs
+  {
+    id: 'web_apps_saas',
+    title: 'Web Apps, SaaS Platforms & PWAs',
+    keywords: ['web', 'website', 'web app', 'saas', 'nextjs', 'react', 'astro', 'pwa', 'frontend', 'dashboard', 'portal', 'subscription platform'],
+    patterns: [
+      /web (app|application|development)/i,
+      /build (a )?(website|web app|saas|portal|dashboard)/i,
+      /saas/i,
+      /next[\s-]?js/i,
+      /pwa|progressive web app/i,
+    ],
+    answer:
+      `We engineer high-performance web applications and multi-tenant SaaS platforms:\n\n- **Modern Full-Stack Frameworks**: Next.js, React, Astro, and Tailwind CSS delivering sub-second page loads and top Core Web Vitals.\n- **SaaS Architecture**: Multi-tenancy, user authentication (OAuth, SSO, JWT), role-based permissions (RBAC), and recurring subscription billing (Stripe).\n- **Progressive Web Apps (PWAs)**: Installable web apps with offline service workers and push notifications.\n- **Administrative Dashboards**: Rich real-time analytical dashboards, data tables, filtering, and CSV/PDF reporting.`,
+    routes: [
+      { label: 'Explore Web Engineering', href: '/services/app-development' },
+      { label: 'Request SaaS Architecture Estimate', href: '/downloads/request-quote' },
+    ],
+    followUps: [
+      'Can you integrate Stripe or payment gateways?',
+      'Do you support multi-tenant databases?',
+      'How fast will the website load?',
+    ],
+  },
+
+  // 11. Payment Gateways & Subscriptions
+  {
+    id: 'payments_stripe',
+    title: 'Payment Gateways & Subscription Billing',
+    keywords: ['stripe', 'payment', 'payments', 'razorpay', 'paypal', 'apple pay', 'google pay', 'checkout', 'billing', 'subscription', 'invoice', 'credit card'],
+    patterns: [
+      /payment( gateway| processing| integration)?/i,
+      /stripe|razorpay|paypal/i,
+      /subscription billing|recurring payments/i,
+      /checkout/i,
+    ],
+    answer:
+      `Yes! We have extensive experience integrating secure, PCI-compliant payment gateways:\n\n- **Global Gateways**: Stripe (Payments, Billing, Subscriptions, Connect for marketplaces), PayPal, and Apple/Google Pay.\n- **Regional Gateways**: Razorpay, Cashfree, and UPI for Indian and APAC markets.\n- **Subscription Engines**: Recurring billing, tier upgrades/downgrades, automated invoice receipts, pro-rata calculations, and webhook failure retries.\n- **Security**: Zero raw card data touches your servers—tokenized transactions compliant with PCI-DSS standards.`,
+    routes: [
+      { label: 'Discuss Payment Integration', href: '/contact' },
+      { label: 'Request Project Quote', href: '/downloads/request-quote' },
+    ],
+    followUps: [
+      'Can you build a marketplace with vendor payouts?',
+      'How do you handle subscription renewals?',
+    ],
+  },
+
+  // 12. eCommerce & Custom Marketplaces
+  {
+    id: 'ecommerce_marketplace',
+    title: 'eCommerce & Custom Marketplaces',
+    keywords: ['ecommerce', 'e-commerce', 'shop', 'store', 'marketplace', 'multi vendor', 'shopping cart', 'catalog', 'shopify', 'woocommerce'],
+    patterns: [
+      /e[\s-]?commerce/i,
+      /online (store|shop)/i,
+      /marketplace|multi[\s-]?vendor/i,
+      /shopping cart/i,
+    ],
+    answer:
+      `We build custom, high-conversion eCommerce platforms and multi-sided marketplaces:\n\n- **Custom vs Headless**: High-speed custom web/mobile storefronts powered by headless APIs or custom microservices.\n- **Multi-Vendor Marketplaces**: Vendor onboarding, commission splits, inventory management, and automated Stripe Connect payouts (like Airbnb or Amazon).\n- **High Concurrency**: Engineered to easily handle flash sales, high traffic spikes, and inventory locking without race conditions.`,
+    routes: [
+      { label: 'Explore App & Web Solutions', href: '/services/app-development' },
+      { label: 'Request Marketplace Estimate', href: '/downloads/request-quote' },
+    ],
+    followUps: [
+      'Can you build an app like Uber or Airbnb?',
+      'How do vendor payouts work?',
+    ],
+  },
+
+  // 13. Clone Apps (Uber, Airbnb, etc.)
+  {
+    id: 'clone_apps',
+    title: 'On-Demand & Marketplace Apps (Like Uber/Airbnb)',
+    keywords: ['uber', 'airbnb', 'instagram', 'tinder', 'clone', 'like uber', 'like airbnb', 'on demand', 'delivery app', 'booking app'],
+    patterns: [
+      /like (uber|airbnb|instagram|doordash|swiggy|zomato)/i,
+      /on[\s-]?demand app/i,
+      /booking (app|platform)/i,
+    ],
+    answer:
+      `Yes! We build custom on-demand and marketplace platforms inspired by models like Uber, Airbnb, or DoorDash—custom-engineered from the ground up for your specific business niche:\n\n- **Live GPS & Real-Time Tracking**: WebSockets and MQTT for live vehicle, courier, or order location mapping.\n- **Multi-Role Portals**: Dedicated interfaces for customers, service providers/drivers, and administrative staff.\n- **Automated Dispatch & Matching**: Geo-hashing algorithms to automatically match nearest available providers.\n- **In-App Chat & Notifications**: Push notifications, SMS OTP, and instant messaging.`,
+    routes: [
+      { label: 'Discuss Your On-Demand App', href: '/contact' },
+      { label: 'Request Custom Quote', href: '/downloads/request-quote' },
+    ],
+    followUps: [
+      'How long does a marketplace app take?',
+      'How much does a custom on-demand app cost?',
+    ],
+  },
+
+  // 14. Cloud Infrastructure & DevOps (SRE)
   {
     id: 'cloud-devops',
     title: 'Cloud Infrastructure & DevOps',
@@ -179,7 +366,7 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
     ],
   },
 
-  // 7. Enterprise AI & Autonomous Workflows
+  // 15. Enterprise AI & Autonomous Workflows
   {
     id: 'ai-solutions',
     title: 'Enterprise AI & Autonomous Agents',
@@ -208,7 +395,78 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
     ],
   },
 
-  // 8. Pricing, Cost & Quote Inquiries
+  // 16. Legacy Modernization & Bug Fixing
+  {
+    id: 'legacy_modernization',
+    title: 'Legacy Modernization & Code Refactoring',
+    keywords: ['legacy', 'refactor', 'slow', 'bugs', 'buggy', 'rewrite', 'fix website', 'fix app', 'optimize', 'performance', 'broken code', 'audit'],
+    patterns: [
+      /legacy (system|codebase|app)/i,
+      /refactor/i,
+      /my (app|website) is (slow|buggy|broken)/i,
+      /code audit/i,
+      /modernize/i,
+    ],
+    answer:
+      `Yes, we specialize in modernizing existing systems without causing downtime or disrupting ongoing operations:\n\n- **Comprehensive Code & Architecture Audit**: We profile your backend, database queries, and frontend assets to pinpoint bottlenecks.\n- **Incremental Strangler Fig Migrations**: We replace legacy monolith components piece-by-piece with modern, high-speed microservices.\n- **Database Optimization**: Indexing, query tuning, connection pooling, and caching (Redis) to turn 5-second queries into 50ms responses.\n- **Security Hardening**: Patching outdated dependencies, resolving vulnerabilities, and upgrading outdated framework versions.`,
+    routes: [
+      { label: 'Book a Technical Audit', href: '/contact' },
+      { label: 'Explore Custom Software', href: '/services/software-development' },
+    ],
+    followUps: [
+      'Can you audit our codebase under an NDA?',
+      'How do you avoid downtime during migration?',
+    ],
+  },
+
+  // 17. QA, Testing & Code Quality
+  {
+    id: 'qa_testing',
+    title: 'QA Testing & Code Reliability',
+    keywords: ['qa', 'testing', 'quality', 'test', 'unit test', 'integration test', 'bugs', 'cypress', 'playwright', 'code review', 'reliability'],
+    patterns: [
+      /how do you test/i,
+      /quality assurance|qa/i,
+      /automated testing/i,
+      /unit testing/i,
+    ],
+    answer:
+      `Quality and reliability are baked into our delivery process from Day 1:\n\n- **Automated Test Suites**: Comprehensive unit, integration, and end-to-end tests (using Jest, PyTest, Go Test, Cypress, Playwright).\n- **Mandatory Peer Code Reviews**: Every pull request requires review from senior architects before merging.\n- **CI/CD Quality Gates**: Automated linting, security vulnerability scanning, and test validation on every commit.\n- **Staging Verification**: Every release is deployed to isolated staging environments for thorough user-acceptance testing before touching production.`,
+    routes: [
+      { label: 'Read About Our Engineering Standards', href: '/about' },
+      { label: 'Request Architecture Blueprint', href: '/support/architecture-blueprints' },
+    ],
+    followUps: [
+      'Do you offer post-launch support and bug warranties?',
+      'Who owns the code?',
+    ],
+  },
+
+  // 18. Post-Launch Maintenance & Support
+  {
+    id: 'maintenance_support',
+    title: 'Post-Launch Support & Maintenance',
+    keywords: ['maintenance', 'support', 'warranty', 'post launch', 'after launch', 'sla', 'ongoing support', 'update', 'bug fix', 'retainer'],
+    patterns: [
+      /after launch/i,
+      /post[\s-]?launch/i,
+      /maintenance( plan| contract)?/i,
+      /support( agreement| plan)?/i,
+      /warranty/i,
+    ],
+    answer:
+      `We don't disappear after shipping! We offer structured post-launch support to ensure your product remains healthy:\n\n- **30-Day Launch Warranty**: Free bug-fixing warranty after initial release to guarantee production stability.\n- **Ongoing Maintenance Retainers**: Proactive OS/framework upgrades, third-party API changes, security patches, and cloud monitoring.\n- **Feature Iteration Pods**: Seamless transition into sprint-based feature expansion as your user base grows.\n- **Guaranteed Response SLAs**: Priority support with direct engineering emergency contacts.`,
+    routes: [
+      { label: 'Discuss Maintenance Options', href: '/contact' },
+      { label: 'Request a Project Quote', href: '/downloads/request-quote' },
+    ],
+    followUps: [
+      'What are your monthly support rates?',
+      'Can we hire dedicated engineers?',
+    ],
+  },
+
+  // 19. Pricing, Cost & Quote Inquiries
   {
     id: 'pricing-quote',
     title: 'Pricing & Project Quotes',
@@ -235,7 +493,121 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
     ],
   },
 
-  // 9. Project Process & Getting Started
+  // 20. Payment Terms & Milestone Schedules
+  {
+    id: 'payment_terms',
+    title: 'Payment Terms & Milestone Structure',
+    keywords: ['payment terms', 'milestone payments', 'upfront', 'deposit', 'escrow', 'payment schedule', 'how do we pay', 'invoicing'],
+    patterns: [
+      /how (do|does) payment(s)? work/i,
+      /payment (terms|schedule|structure)/i,
+      /do (i|we) pay (all )?upfront/i,
+      /milestones?/i,
+    ],
+    answer:
+      `No, we never demand 100% upfront payment! We use fair, milestone-based schedules linked to tangible deliverables:\n\n- **Fixed-Scope Projects**: Typically structured into milestones (e.g. 30% kickoff deposit, 40% mid-project milestone review, 30% upon final acceptance & production deployment).\n- **Dedicated Pods**: Invoiced bi-weekly or monthly on verified sprint deliverables.\n- **Currency & Invoicing**: Secure international wire transfer, credit card via Stripe, or bank transfer in USD, EUR, GBP, or INR.`,
+    routes: [
+      { label: 'Discuss Project Engagement Terms', href: '/contact' },
+      { label: 'Request a Quote', href: '/downloads/request-quote' },
+    ],
+    followUps: [
+      'Who owns the code during development?',
+      'Can we sign an NDA first?',
+    ],
+  },
+
+  // 21. Discounts & Budget Negotiation
+  {
+    id: 'discounts_budget',
+    title: 'Discounts & Flexible Scoping',
+    keywords: ['discount', 'cheap', 'cheaper', 'negotiate', 'tight budget', 'lower price', 'can you reduce', 'deal'],
+    patterns: [
+      /can (i|we) get a discount/i,
+      /is (the )?price negotiable/i,
+      /(tight|limited|low) budget/i,
+      /can you do it cheaper/i,
+    ],
+    answer:
+      `While our rates reflect senior engineering craftsmanship, we are very flexible with **scope tailoring**:\n\n- **Phase 1 MVP Trimming**: If budget is constrained, we help you identify the 20% of features that deliver 80% of the business impact to launch within your budget.\n- **Long-Term Retainer Discounts**: We offer favorable tiered rate reductions for long-term dedicated engineering commitments (6+ months).\n- **Open Source & Equity Models**: For select high-potential startups, we consider custom commercial structures.\n\nTell us your target budget—we'll be honest about what can be built reliably!`,
+    routes: [
+      { label: 'Share Your Target Budget', href: '/contact' },
+      { label: 'Request Custom Proposal', href: '/downloads/request-quote' },
+    ],
+    followUps: [
+      'How much does a basic MVP cost?',
+      'How do we schedule a discovery call?',
+    ],
+  },
+
+  // 22. Guidance for Non-Technical Founders
+  {
+    id: 'non_technical_founders',
+    title: 'Guidance for Non-Technical Founders',
+    keywords: ['non technical', 'not technical', 'dont know coding', 'no technical background', 'first time founder', 'help me understand', 'guide me'],
+    patterns: [
+      /not (very )?technical/i,
+      /non[\s-]?technical/i,
+      /i don(')?t know (how to code|anything about tech)/i,
+      /i don(')?t know what tech stack/i,
+    ],
+    answer:
+      `You are in the right place! Many of our most successful clients are business domain experts without technical backgrounds:\n\n- **Plain English Architecture**: We explain technical trade-offs in clear business terms (speed, cost, scalability) with zero confusing jargon.\n- **Technical Decision Partnership**: We help you select the ideal databases, cloud providers, and frameworks so you avoid costly mistakes.\n- **Product Roadmap Definition**: We help structure your feature ideas into clear visual user stories and wireframes.\n- **Full Transparency**: You get regular video walkthroughs and staging demos at every sprint.`,
+    routes: [
+      { label: 'Book a Plain-English Discovery Call', href: '/contact' },
+      { label: 'Submit Your Idea for Review', href: '/downloads/request-quote' },
+    ],
+    followUps: [
+      'How do you handle client code ownership?',
+      'Can you build an MVP for my startup?',
+    ],
+  },
+
+  // 23. Why Wellbit vs Freelancers (Upwork/Fiverr)
+  {
+    id: 'agency_vs_freelancers',
+    title: 'Why Wellbit vs Freelancers (Upwork / Fiverr)',
+    keywords: ['upwork', 'fiverr', 'freelancer', 'freelancers', 'why wellbit', 'why choose you', 'better than freelance', 'agency vs freelancer'],
+    patterns: [
+      /why (should i )?choose (wellbit|you)/i,
+      /vs (freelance|freelancers|upwork|fiverr)/i,
+      /better than (a )?freelancer/i,
+    ],
+    answer:
+      `Great question! Working with individual freelancers often leads to ghosting, inconsistent code standards, and no architectural continuity. Here is why partnering with Wellbit is different:\n\n- 🏗️ **Institutional Reliability**: You get a cohesive squad backed by senior system architects, code reviewers, and DevOps engineers—not a lone coder.\n- 🛡️ **Accountability & Warranties**: Legally binding international contracts, mutual NDAs, milestone deliverables, and post-launch bug warranties.\n- ⚡ **Zero Vendor Lock-In**: We write modular, well-documented code adhering to enterprise standards so any future engineer can pick it up effortlessly.\n- 🚀 **Full-Stack Competence**: Seamless coordination between frontend, backend, cloud infra, and AI specialists under one roof.`,
+    routes: [
+      { label: 'Learn More About Wellbit', href: '/about' },
+      { label: 'Start a Project Conversation', href: '/contact' },
+    ],
+    followUps: [
+      'Who owns the code?',
+      'What is your project timeline?',
+    ],
+  },
+
+  // 24. Project Timelines & Speed
+  {
+    id: 'timeline-duration',
+    title: 'Project Timelines & Speed',
+    keywords: ['timeline', 'duration', 'how long', 'how fast', 'time', 'deadline', 'turnaround', 'mvp timeline', 'schedule'],
+    patterns: [
+      /how long (does|will) (it|a project|an mvp) take/i,
+      /how fast can (you|we) (build|deliver|launch)/i,
+      /timeline|turnaround/i,
+      /mvp timeline/i,
+    ],
+    answer:
+      `Our timelines depend on the scope, but here are typical benchmarks based on past projects:\n\n- ⚡ **Rapid MVPs**: 4 to 8 weeks from kickoff to production release (ideal for startups and new product initiatives).\n- 🚀 **Full-Featured Mobile/Web Platforms**: 2 to 4 months for complete multi-platform solutions with auth, payments, and dashboards.\n- 🧠 **Enterprise AI / Custom Microservices**: 3 to 6 weeks for targeted RAG retrieval or agent workflow pilots.\n\nWe provide milestone dates and sprint breakdowns before starting so you always know what to expect.`,
+    routes: [
+      { label: 'Discuss Your Target Launch Date', href: '/contact' },
+      { label: 'Request Timeline Estimate', href: '/downloads/request-quote' },
+    ],
+    followUps: [
+      'What services does Wellbit offer?',
+      'How much does an MVP cost?',
+    ],
+  },
+
+  // 25. Project Process & Getting Started
   {
     id: 'process-getting-started',
     title: 'How We Work & Engagement Process',
@@ -259,44 +631,43 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
     ],
   },
 
-  // 10. Project Timelines & MVP Duration
+  // 26. Meetings, Zoom, Google Meet & Scheduling
   {
-    id: 'timeline-duration',
-    title: 'Project Timelines & Speed',
-    keywords: ['timeline', 'duration', 'how long', 'how fast', 'time', 'deadline', 'turnaround', 'mvp timeline', 'schedule'],
+    id: 'meeting_scheduling',
+    title: 'Meetings & Video Consultations',
+    keywords: ['meeting', 'zoom', 'google meet', 'call', 'schedule', 'talk', 'video call', 'demo', 'calendar', 'book call'],
     patterns: [
-      /how long (does|will) (it|a project|an mvp) take/i,
-      /how fast can (you|we) (build|deliver|launch)/i,
-      /timeline|turnaround/i,
-      /mvp timeline/i,
+      /can we (have|schedule|book|do) a (call|meeting|zoom|google meet)/i,
+      /schedule (a )?(call|meeting|consultation)/i,
+      /video call/i,
+      /calendar/i,
     ],
     answer:
-      `Our timelines depend on the scope, but here are typical benchmarks based on past projects:\n\n- ⚡ **Rapid MVPs**: 4 to 8 weeks from kickoff to production release (ideal for startups and new product initiatives).\n- 🚀 **Full-Featured Mobile/Web Platforms**: 2 to 4 months for complete multi-platform solutions with auth, payments, and dashboards.\n- 🧠 **Enterprise AI / Custom Microservices**: 3 to 6 weeks for targeted RAG retrieval or agent workflow pilots.\n\nWe provide milestone dates and sprint breakdowns before starting so you always know what to expect.`,
+      `Yes, absolutely! We'd be thrilled to hop on a video call (Zoom or Google Meet) to discuss your vision:\n\n- **Discovery Call Focus**: We discuss your project goals, technical requirements, potential architectures, and rough timelines.\n- **No Sales Pressure**: You talk directly with engineering leadership who understand code and system architecture.\n\nSend a quick note via our contact form or email us at **m.hasanmzp@gmail.com**, and we'll reply with calendar booking links within a few hours!`,
     routes: [
-      { label: 'Discuss Your Target Launch Date', href: '/contact' },
-      { label: 'Request Timeline Estimate', href: '/downloads/request-quote' },
+      { label: 'Schedule a Meeting', href: '/contact' },
+      { label: 'Request a Written Estimate', href: '/downloads/request-quote' },
     ],
     followUps: [
-      'What services does Wellbit offer?',
-      'How much does an MVP cost?',
+      'What timezone do you operate in?',
+      'Can we sign an NDA before the call?',
     ],
   },
 
-  // 11. Contact, Phone, Email & Meeting
+  // 27. Contact, Phone & Email
   {
     id: 'contact-details',
-    title: 'Contact Information & Consultations',
-    keywords: ['contact', 'email', 'phone', 'call', 'reach', 'address', 'location', 'office', 'talk', 'whatsapp', 'inquiry', 'meeting', 'speak', 'touch'],
+    title: 'Contact Information & Inquiries',
+    keywords: ['contact', 'email', 'phone', 'call', 'reach', 'address', 'location', 'office', 'talk', 'whatsapp', 'inquiry', 'phone number', 'email address'],
     patterns: [
       /how (can|do) i (contact|reach|call|email|talk to) you/i,
       /contact (info|details|page)/i,
       /phone number/i,
       /email address/i,
-      /can we (have a )?(call|meeting|chat)/i,
-      /where is your office/i,
+      /whatsapp/i,
     ],
     answer:
-      `We'd love to chat! You can reach our engineering leads directly through any of these channels:\n\n- 📧 **Direct Email**: [m.hasanmzp@gmail.com](mailto:m.hasanmzp@gmail.com)\n- 📞 **Direct Phone**: [+91 8948626497](tel:+918948626497)\n- 📝 **Online Project Inquiry**: Available 24/7 on our Contact Page.\n\nWe typically respond within **2 to 4 business hours** to schedule a video discovery call.`,
+      `You can reach our engineering leads directly through any of these channels:\n\n- 📧 **Direct Email**: [m.hasanmzp@gmail.com](mailto:m.hasanmzp@gmail.com)\n- 📞 **Direct Phone / WhatsApp**: [+91 8948626497](tel:+918948626497)\n- 📝 **Online Project Inquiry**: Available 24/7 on our Contact Page.\n\nWe typically respond within **2 to 4 business hours**!`,
     routes: [
       { label: 'Go to Contact Page', href: '/contact' },
       { label: 'Request a Project Quote', href: '/downloads/request-quote' },
@@ -308,7 +679,7 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
     ],
   },
 
-  // 12. Location, Global Clients & Timezones
+  // 28. Location & Timezone Overlap
   {
     id: 'location-clients',
     title: 'Locations & Global Collaboration',
@@ -330,7 +701,7 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
     ],
   },
 
-  // 13. Privacy, IP & Client Code Ownership
+  // 29. Code Ownership, IP & NDAs
   {
     id: 'privacy-ownership',
     title: 'Code Ownership, NDAs & Data Security',
@@ -356,7 +727,7 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
     ],
   },
 
-  // 14. Technology Stack Specifics
+  // 30. Technology Stack
   {
     id: 'tech-stack',
     title: 'Supported Technology Stacks',
@@ -379,7 +750,7 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
     ],
   },
 
-  // 15. About Wellbit & Company Story
+  // 31. About Wellbit & Company Story
   {
     id: 'about-wellbit',
     title: 'About Wellbit Technologies',
@@ -403,7 +774,7 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
     ],
   },
 
-  // 16. Dedicated Developers / Team Augmentation
+  // 32. Dedicated Developers / Team Augmentation
   {
     id: 'team-augmentation',
     title: 'Hire Dedicated Engineers or Pods',
@@ -424,12 +795,35 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
       'What are your monthly rates?',
     ],
   },
+
+  // 33. Careers & Hiring
+  {
+    id: 'careers_jobs',
+    title: 'Careers & Working at Wellbit',
+    keywords: ['careers', 'jobs', 'hiring', 'internship', 'developer job', 'work with you', 'apply', 'career', 'openings'],
+    patterns: [
+      /are you hiring/i,
+      /careers?|jobs?|openings?/i,
+      /work at wellbit/i,
+      /internship/i,
+    ],
+    answer:
+      `We're always on the lookout for talented software engineers, DevOps specialists, and AI researchers who take pride in high-craft code!\n\nIf you're passionate about Go, Python, React Native, Kubernetes, or autonomous AI systems, send your resume, GitHub profile, and a note about what you love building to **m.hasanmzp@gmail.com**.`,
+    routes: [
+      { label: 'Send Resume via Contact Form', href: '/contact' },
+      { label: 'Explore Engineering Disciplines', href: '/#services-overview' },
+    ],
+    followUps: [
+      'What technologies do you use?',
+      'What is Wellbit\'s mission?',
+    ],
+  },
 ];
 
 // Fallback intelligent response when query is outside predefined topics
 export const FALLBACK_RESPONSE = {
   answer:
-    `That's a great question! While I don't have that exact detail in my immediate docs, Wellbit's engineering team specializes in custom software, mobile apps, cloud DevOps, and enterprise AI.\n\nWould you like me to connect you directly with one of our engineering leads, or can I point you toward one of our core services?`,
+    `That's an interesting question! While I'm specialized in Wellbit's software engineering, mobile apps, cloud infrastructure, and enterprise AI, our engineering leads can discuss custom requirements in detail.\n\nWould you like me to connect you with an engineering lead, or can I point you toward one of our core services?`,
   routes: [
     { label: 'Talk to an Engineering Lead', href: '/contact' },
     { label: 'Request a Project Quote', href: '/downloads/request-quote' },
@@ -442,7 +836,24 @@ export const FALLBACK_RESPONSE = {
   ],
 };
 
-// Matcher Algorithm with enhanced synonym and semantic scoring
+// Synonym mapping to normalize user intent before matching
+const SYNONYMS: Record<string, string[]> = {
+  figma: ['ui', 'ux', 'design', 'mockup', 'wireframe'],
+  design: ['ui', 'ux', 'figma', 'prototype', 'mockup'],
+  mvp: ['startup', 'prototype', 'idea', 'founder', 'fast launch'],
+  stripe: ['payment', 'billing', 'subscription', 'checkout', 'razorpay'],
+  payment: ['stripe', 'billing', 'checkout', 'razorpay', 'paypal'],
+  saas: ['subscription', 'web app', 'portal', 'dashboard'],
+  ecommerce: ['shop', 'store', 'marketplace', 'cart'],
+  zoom: ['call', 'meeting', 'meet', 'schedule', 'consultation'],
+  meeting: ['zoom', 'call', 'calendar', 'schedule', 'talk'],
+  discount: ['negotiate', 'budget', 'cheaper', 'price'],
+  upwork: ['freelancer', 'agency', 'fiverr'],
+  maintenance: ['support', 'sla', 'post launch', 'warranty', 'bug fix'],
+  uber: ['airbnb', 'clone', 'on demand', 'delivery app'],
+};
+
+// Matcher Algorithm with synonym expansion and fuzzy stem scoring
 export function findBestAnswer(query: string): {
   answer: string;
   routes?: RouteAction[];
@@ -471,11 +882,18 @@ export function findBestAnswer(query: string): {
     }
   }
 
-  // 2. Tokenize and Keyword Weight Scoring
+  // 2. Tokenize and Synonym Expansion
   const cleanTokens = trimmed
     .replace(/[^\w\s]/gi, ' ')
     .split(/\s+/)
     .filter(t => t.length > 2);
+
+  const expandedTokens = new Set<string>(cleanTokens);
+  for (const token of cleanTokens) {
+    if (SYNONYMS[token]) {
+      SYNONYMS[token].forEach(syn => expandedTokens.add(syn));
+    }
+  }
 
   let bestEntry: KnowledgeEntry | null = null;
   let highestScore = 0;
@@ -486,19 +904,19 @@ export function findBestAnswer(query: string): {
     for (const keyword of entry.keywords) {
       const lowerKeyword = keyword.toLowerCase();
 
-      // Exact substring match
+      // Exact substring match in query
       if (trimmed === lowerKeyword) {
-        score += 10;
+        score += 12;
       } else if (trimmed.includes(lowerKeyword)) {
         score += lowerKeyword.length > 4 ? 6 : 4;
       }
 
-      // Token match
-      for (const token of cleanTokens) {
+      // Check expanded tokens
+      for (const token of expandedTokens) {
         if (lowerKeyword === token) {
-          score += 4;
+          score += 5;
         } else if (lowerKeyword.includes(token) || token.includes(lowerKeyword)) {
-          score += 1.5;
+          score += 2;
         }
       }
     }
@@ -510,7 +928,7 @@ export function findBestAnswer(query: string): {
   }
 
   // Acceptance threshold for keyword matching
-  if (bestEntry && highestScore >= 3.5) {
+  if (bestEntry && highestScore >= 3) {
     return {
       answer: bestEntry.answer,
       routes: bestEntry.routes,
