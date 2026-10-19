@@ -12,7 +12,7 @@ import { STARTER_PROMPTS } from '@data/chatbotKnowledge';
       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
       <span class="relative inline-flex rounded-full size-2 bg-teal-500"></span>
     </span>
-    <span>Have a question? <span class="bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 via-blue-600 to-fuchsia-600">Ask Wellbit AI ✦</span></span>
+    <span>Have a question? <span class="bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 via-blue-600 to-fuchsia-600">Ask Nova ✦</span></span>
   </div>
 
   {/* Floating Trigger Button with Siri/Gemini Luminous Halo */}
@@ -20,7 +20,7 @@ import { STARTER_PROMPTS } from '@data/chatbotKnowledge';
     <button
       id="ai-chatbot-toggle"
       type="button"
-      aria-label="Open Wellbit AI Assistant"
+      aria-label="Open Nova AI Assistant"
       class="group relative flex items-center justify-center size-14 sm:size-15 rounded-full p-[2px] bg-gradient-to-r from-cyan-400 via-blue-500 via-indigo-500 to-fuchsia-500 bg-[length:200%_auto] animate-siri-border shadow-2xl shadow-blue-500/30 hover:shadow-indigo-500/50 hover:scale-105 active:scale-95 transition-all duration-300 focus:outline-hidden"
     >
       {/* Background ambient glow halo */}
@@ -55,7 +55,7 @@ import { STARTER_PROMPTS } from '@data/chatbotKnowledge';
   <div
     id="ai-chatbot-window"
     role="dialog"
-    aria-label="Wellbit AI Assistant"
+    aria-label="Nova AI Assistant"
     class="fixed bottom-22 sm:bottom-25 right-3 sm:right-6 z-50 hidden flex-col w-[calc(100vw-1.5rem)] sm:w-[420px] h-[580px] max-h-[82vh] rounded-3xl bg-white/95 backdrop-blur-2xl border border-slate-200/90 shadow-[0_25px_60px_-15px_rgba(7,16,36,0.25)] ring-1 ring-slate-900/5 overflow-hidden transition-all duration-300 origin-bottom-right"
   >
     {/* Header */}
@@ -74,8 +74,8 @@ import { STARTER_PROMPTS } from '@data/chatbotKnowledge';
 
         <div>
           <div class="flex items-center gap-1.5">
-            <h3 class="font-display font-bold text-sm tracking-tight text-white">Wellbit AI</h3>
-            <span class="text-[10px] font-mono uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-cyan-400/15 text-cyan-300 border border-cyan-400/20 font-semibold">Navigator</span>
+            <h3 class="font-display font-bold text-sm tracking-tight text-white">Nova</h3>
+            <span class="text-[10px] font-mono uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-cyan-400/15 text-cyan-300 border border-cyan-400/20 font-semibold">✦ Wellbit AI</span>
           </div>
           <p class="text-[11px] text-slate-300 flex items-center gap-1 font-medium">
             <span class="inline-block size-1.5 rounded-full bg-teal-400 animate-pulse"></span>
@@ -92,7 +92,7 @@ import { STARTER_PROMPTS } from '@data/chatbotKnowledge';
           type="button"
           title="Clear Conversation"
           aria-label="Clear Conversation"
-          class="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/70 transition-colors"
+          class="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/70 transition-colors cursor-pointer"
         >
           <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
@@ -104,7 +104,7 @@ import { STARTER_PROMPTS } from '@data/chatbotKnowledge';
           id="ai-close-modal"
           type="button"
           aria-label="Close Chat"
-          class="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/70 transition-colors"
+          class="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/70 transition-colors cursor-pointer"
         >
           <svg class="size-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -119,17 +119,17 @@ import { STARTER_PROMPTS } from '@data/chatbotKnowledge';
       class="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4 scroll-smooth select-text text-sm"
     >
       {/* Welcome Message Card */}
-      <div class="flex gap-2.5 items-start">
+      <div id="ai-welcome-card" class="flex gap-2.5 items-start">
         <div class="shrink-0 size-7 rounded-full bg-gradient-to-tr from-cyan-400 to-indigo-600 flex items-center justify-center text-white text-[11px] font-bold shadow-xs">
           ✦
         </div>
         <div class="flex-1 space-y-2">
           <div class="p-3.5 rounded-2xl rounded-tl-xs bg-slate-100/80 border border-slate-200/80 text-slate-800 leading-relaxed shadow-2xs">
             <p class="font-medium text-slate-900 mb-1">
-              Welcome to Wellbit Technologies! 👋
+              Hey there! I'm <strong class="text-indigo-600">Nova</strong> 👋
             </p>
             <p class="text-slate-600 text-[13px] leading-relaxed">
-              I'm your intelligent architectural copilot. Ask me anything about our software engineering, mobile apps, cloud infrastructure, AI solutions, or navigate straight to quotes and contact channels.
+              I'm your engineering copilot at Wellbit. Ask me anything about our custom software development, mobile & web apps, cloud infrastructure, or enterprise AI—I'll give you exact answers and direct links to get started!
             </p>
           </div>
 
@@ -164,7 +164,7 @@ import { STARTER_PROMPTS } from '@data/chatbotKnowledge';
           <span class="size-1.5 rounded-full bg-indigo-500 animate-bounce [animation-delay:0.2s]"></span>
           <span class="size-1.5 rounded-full bg-pink-500 animate-bounce [animation-delay:0.4s]"></span>
         </span>
-        <span>Wellbit AI is formulating answer...</span>
+        <span>Nova is formulating answer...</span>
       </div>
     </div>
 
@@ -176,7 +176,7 @@ import { STARTER_PROMPTS } from '@data/chatbotKnowledge';
             id="ai-user-input"
             type="text"
             autocomplete="off"
-            placeholder="Ask about services, AI, quotes, tech stack..."
+            placeholder="Ask Nova about services, AI, quotes, tech stack..."
             class="w-full pl-3.5 pr-3 py-2.5 text-xs sm:text-sm rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder:text-slate-400 focus:outline-hidden focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500/20 transition-all"
           />
         </div>
@@ -194,7 +194,7 @@ import { STARTER_PROMPTS } from '@data/chatbotKnowledge';
       </form>
 
       <div class="mt-2 flex items-center justify-between text-[10px] text-slate-400 px-1 font-mono">
-        <span>Instant enterprise knowledge</span>
+        <span>Instant answers & route links</span>
         <span>Press <kbd class="px-1 py-0.5 rounded bg-slate-100 border border-slate-200 text-slate-600 font-sans">Enter</kbd></span>
       </div>
     </div>
@@ -213,10 +213,19 @@ import { STARTER_PROMPTS } from '@data/chatbotKnowledge';
     timestamp: string;
   }
 
-  const STORAGE_KEY = 'wellbit_ai_chat_history_v1';
-  const SEEN_TOOLTIP_KEY = 'wellbit_ai_tooltip_dismissed';
+  const STORAGE_KEY = 'wellbit_ai_chat_history_v2';
+  const SEEN_TOOLTIP_KEY = 'wellbit_ai_tooltip_dismissed_v2';
 
   function initChatbot() {
+    const root = document.getElementById('wellbit-ai-chatbot-root');
+    if (!root) return;
+
+    // Prevent duplicate event listener registration if already initialized on this DOM element
+    if (root.dataset.initialized === 'true') {
+      return;
+    }
+    root.dataset.initialized = 'true';
+
     const toggleBtn = document.getElementById('ai-chatbot-toggle');
     const closeBtn = document.getElementById('ai-close-modal');
     const clearBtn = document.getElementById('ai-clear-chat');
@@ -227,12 +236,14 @@ import { STARTER_PROMPTS } from '@data/chatbotKnowledge';
     const tooltipEl = document.getElementById('ai-chatbot-tooltip');
     const chatForm = document.getElementById('ai-chat-form') as HTMLFormElement | null;
     const userInput = document.getElementById('ai-user-input') as HTMLInputElement | null;
+    const submitBtn = document.getElementById('ai-submit-button') as HTMLButtonElement | null;
     const messagesContainer = document.getElementById('ai-messages-container');
     const typingIndicator = document.getElementById('ai-typing-indicator');
 
     if (!toggleBtn || !windowEl || !messagesContainer) return;
 
     let isOpen = false;
+    let isSubmitting = false;
     let messages: ChatMessage[] = [];
 
     // Load saved conversation
@@ -249,8 +260,8 @@ import { STARTER_PROMPTS } from '@data/chatbotKnowledge';
     function renderMessages() {
       if (!messagesContainer) return;
 
-      // Keep welcome message intact (first child)
-      const welcomeBlock = messagesContainer.firstElementChild;
+      // Keep welcome card intact (first child)
+      const welcomeBlock = document.getElementById('ai-welcome-card');
       messagesContainer.innerHTML = '';
       if (welcomeBlock) {
         messagesContainer.appendChild(welcomeBlock);
@@ -352,9 +363,10 @@ import { STARTER_PROMPTS } from '@data/chatbotKnowledge';
           chip.type = 'button';
           chip.className = 'text-left text-[11px] px-2 py-1 rounded-lg bg-slate-50 border border-slate-200/80 text-slate-600 hover:border-cyan-400 hover:bg-cyan-50/50 hover:text-slate-900 transition-all cursor-pointer';
           chip.textContent = `↳ ${followUp}`;
-          chip.addEventListener('click', () => {
+          chip.addEventListener('click', (e) => {
+            e.stopPropagation();
             handleUserSubmit(followUp);
-          });
+          }, { once: true });
           followUpsWrap.appendChild(chip);
         });
 
@@ -393,85 +405,77 @@ import { STARTER_PROMPTS } from '@data/chatbotKnowledge';
     }
 
     async function handleUserSubmit(text: string) {
+      // Guard against double submission
+      if (isSubmitting) return;
       const query = text.trim();
       if (!query) return;
 
-      // Add user message
-      const userMsg: ChatMessage = {
-        id: `user-${Date.now()}`,
-        sender: 'user',
-        text: query,
-        timestamp: new Date().toISOString(),
-      };
+      isSubmitting = true;
+      if (submitBtn) submitBtn.disabled = true;
 
-      messages.push(userMsg);
-      appendMessageElement(userMsg);
-      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
-
-      if (userInput) userInput.value = '';
-
-      // Show typing indicator
-      if (typingIndicator) typingIndicator.classList.remove('hidden');
-      scrollToBottom();
-
-      // Formulate response (either via /api/chat or client-side engine)
       try {
-        const res = await fetch('/api/chat', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: query }),
-        });
+        // Add user message
+        const userMsg: ChatMessage = {
+          id: `user-${Date.now()}`,
+          sender: 'user',
+          text: query,
+          timestamp: new Date().toISOString(),
+        };
 
+        messages.push(userMsg);
+        appendMessageElement(userMsg);
+        sessionStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
+
+        if (userInput) userInput.value = '';
+
+        // Show typing indicator
+        if (typingIndicator) typingIndicator.classList.remove('hidden');
+        scrollToBottom();
+
+        // Query serverless API or fallback to local engine
         let data = null;
-        if (res.ok) {
-          data = await res.json();
+        try {
+          const res = await fetch('/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: query }),
+          });
+
+          if (res.ok) {
+            data = await res.json();
+          }
+        } catch {
+          data = null;
         }
 
-        // Fallback to client-side engine if API is unavailable
         if (!data || !data.success) {
           data = findBestAnswer(query);
         }
 
-        // Simulate natural typing delay (250-450ms)
-        setTimeout(() => {
-          if (typingIndicator) typingIndicator.classList.add('hidden');
+        // Simulate thoughtful typing response
+        await new Promise(resolve => setTimeout(resolve, 350));
 
-          const assistantMsg: ChatMessage = {
-            id: `assistant-${Date.now()}`,
-            sender: 'assistant',
-            text: data.answer,
-            routes: data.routes || [],
-            followUps: data.followUps || [],
-            timestamp: new Date().toISOString(),
-          };
+        if (typingIndicator) typingIndicator.classList.add('hidden');
 
-          messages.push(assistantMsg);
-          appendMessageElement(assistantMsg);
-          sessionStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
-        }, 320);
-      } catch (err) {
-        // Instant client fallback
-        const localData = findBestAnswer(query);
-        setTimeout(() => {
-          if (typingIndicator) typingIndicator.classList.add('hidden');
+        const assistantMsg: ChatMessage = {
+          id: `assistant-${Date.now()}`,
+          sender: 'assistant',
+          text: data.answer,
+          routes: data.routes || [],
+          followUps: data.followUps || [],
+          timestamp: new Date().toISOString(),
+        };
 
-          const assistantMsg: ChatMessage = {
-            id: `assistant-${Date.now()}`,
-            sender: 'assistant',
-            text: localData.answer,
-            routes: localData.routes || [],
-            followUps: localData.followUps || [],
-            timestamp: new Date().toISOString(),
-          };
-
-          messages.push(assistantMsg);
-          appendMessageElement(assistantMsg);
-          sessionStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
-        }, 200);
+        messages.push(assistantMsg);
+        appendMessageElement(assistantMsg);
+        sessionStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
+      } finally {
+        isSubmitting = false;
+        if (submitBtn) submitBtn.disabled = false;
       }
     }
 
-    // Attach event listeners
+    // Attach event listeners safely
     toggleBtn.addEventListener('click', () => toggleChat());
     closeBtn?.addEventListener('click', () => toggleChat(false));
 
@@ -483,19 +487,21 @@ import { STARTER_PROMPTS } from '@data/chatbotKnowledge';
 
     chatForm?.addEventListener('submit', (e) => {
       e.preventDefault();
-      if (userInput) {
+      if (userInput && userInput.value.trim()) {
         handleUserSubmit(userInput.value);
       }
     });
 
-    // Starter prompt chips
-    document.querySelectorAll('.ai-prompt-chip').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const prompt = (e.currentTarget as HTMLElement).getAttribute('data-prompt');
+    // Starter prompt chips delegation
+    const promptsList = document.getElementById('ai-starter-prompts-list');
+    promptsList?.addEventListener('click', (e) => {
+      const target = (e.target as HTMLElement).closest('.ai-prompt-chip') as HTMLElement | null;
+      if (target) {
+        const prompt = target.getAttribute('data-prompt');
         if (prompt) {
           handleUserSubmit(prompt);
         }
-      });
+      }
     });
 
     // Close on Escape key
@@ -525,11 +531,9 @@ import { STARTER_PROMPTS } from '@data/chatbotKnowledge';
     renderMessages();
   }
 
-  // Support Astro View Transitions and standard page loads
+  // Bind to astro:page-load for View Transitions and standard page loads
   document.addEventListener('astro:page-load', initChatbot);
   if (document.readyState === 'complete' || document.readyState === 'interactive') {
     initChatbot();
-  } else {
-    document.addEventListener('DOMContentLoaded', initChatbot);
   }
 </script>
