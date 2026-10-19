@@ -1,6 +1,7 @@
 ---
 import Navbar from '@sections/Navbar.astro';
 import Footer from '@sections/Footer.astro';
+import AIChatbot from '@common/AIChatbot.astro';
 import { ClientRouter } from 'astro:transitions';
 import { SEO, type Props as SEOProps } from 'astro-seo';
 import type { WithContext, Thing } from 'schema-dts';
@@ -253,5 +254,7 @@ const jsonLdGraph = {
     </main>
 
     {!hideFooter && <Footer />}
+
+    {!hideFooter && <AIChatbot />}
   </body>
 </html>
