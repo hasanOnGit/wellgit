@@ -853,21 +853,13 @@ const SYNONYMS: Record<string, string[]> = {
   uber: ['airbnb', 'clone', 'on demand', 'delivery app'],
 };
 
-// Matcher Algorithm with synonym expansion and fuzzy stem scoring
-export function findBestAnswer(query: string): {
+// Internal Standard Matcher Algorithm
+function findStandardAnswer(trimmed: string): {
   answer: string;
   routes?: RouteAction[];
   followUps?: string[];
   matchedTitle?: string;
 } {
-  const trimmed = query.trim().toLowerCase();
-  if (!trimmed) {
-    return {
-      ...FALLBACK_RESPONSE,
-      answer: "Hey! What would you like to know about Wellbit? Ask me about our custom software, mobile apps, cloud infrastructure, AI solutions, or project pricing!",
-    };
-  }
-
   // 1. Direct Regex Pattern Matching (Highest Precision)
   for (const entry of KNOWLEDGE_BASE) {
     for (const pattern of entry.patterns) {
@@ -938,4 +930,65 @@ export function findBestAnswer(query: string): {
   }
 
   return FALLBACK_RESPONSE;
+}
+
+// Matcher Algorithm with synonym expansion and special personalization
+export function findBestAnswer(query: string): {
+  answer: string;
+  routes?: RouteAction[];
+  followUps?: string[];
+  matchedTitle?: string;
+} {
+  const trimmed = query.trim().toLowerCase();
+  if (!trimmed) {
+    return {
+      ...FALLBACK_RESPONSE,
+      answer: "Hey! What would you like to know about Wellbit? Ask me about our custom software, mobile apps, cloud infrastructure, AI solutions, or project pricing!",
+    };
+  }
+
+  // Special Lovable Greeting for Ariba
+  const isAriba = /\bariba\b/i.test(query) || trimmed.includes('ariba');
+  if (isAriba) {
+    // Check if she asked a question along with mentioning her name
+    const strippedQuery = trimmed.replace(/\bariba\b/gi, '').replace(/[^\w\s]/gi, ' ').trim();
+
+    let specificAnswer = '';
+    let routes: RouteAction[] = [
+      { label: 'Explore with Love 💖', href: '/#services-overview' },
+      { label: 'Reach Out Anytime 💌', href: '/contact' },
+    ];
+    let followUps = [
+      'Tell me something sweet 🌸',
+      'What can you build for me? 💫',
+      'How much love is there for Ariba? ❤️',
+    ];
+
+    if (strippedQuery.length > 3) {
+      const subResult = findStandardAnswer(strippedQuery);
+      if (subResult && subResult.answer !== FALLBACK_RESPONSE.answer) {
+        specificAnswer = subResult.answer;
+        if (subResult.routes) routes = subResult.routes;
+        if (subResult.followUps) followUps = subResult.followUps;
+      }
+    }
+
+    if (specificAnswer) {
+      return {
+        answer: `Hi Ariba, Alot of Love from Ammu\n\nIt is so wonderful to hear from you, dearest! Here is everything you need to know:\n\n${specificAnswer}\n\nWhatever you need, you have our full support, warmth, and all the love in the world! 🌸💖`,
+        routes,
+        followUps,
+        matchedTitle: 'Special Love for Ariba',
+      };
+    }
+
+    return {
+      answer: `Hi Ariba, Alot of Love from Ammu\n\nIt brings the biggest smile to see you here! You are so deeply cherished, precious, and loved beyond words. Always remember that you have endless love, warmth, and blessings surrounding you every single moment. 🌸💖\n\nWhenever you need anything at all—whether you want to build something wonderful, learn, or just explore—I'm right here for you with all my heart!\n\nHow is your day going, lovely?`,
+      routes,
+      followUps,
+      matchedTitle: 'Special Love for Ariba',
+    };
+  }
+
+  return findStandardAnswer(trimmed);
 }
