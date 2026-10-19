@@ -432,28 +432,11 @@ import { STARTER_PROMPTS } from '@data/chatbotKnowledge';
         if (typingIndicator) typingIndicator.classList.remove('hidden');
         scrollToBottom();
 
-        // Query serverless API or fallback to local engine
-        let data = null;
-        try {
-          const res = await fetch('/api/chat', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ message: query }),
-          });
-
-          if (res.ok) {
-            data = await res.json();
-          }
-        } catch {
-          data = null;
-        }
-
-        if (!data || !data.success) {
-          data = findBestAnswer(query);
-        }
+        // Instant evaluation via bundled knowledge engine (avoids 308 redirects & server latency)
+        const data = findBestAnswer(query);
 
         // Simulate thoughtful typing response
-        await new Promise(resolve => setTimeout(resolve, 350));
+        await new Promise(resolve => setTimeout(resolve, 380));
 
         if (typingIndicator) typingIndicator.classList.add('hidden');
 
