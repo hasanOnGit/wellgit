@@ -23,6 +23,13 @@ export const featuresMenu = [
           'Terraform IaC, Kubernetes clusters, zero-downtime CI/CD pipelines, and 99.99% SRE observability.',
         href: '/services/cloud-devops',
       },
+      {
+        icon: 'cog',
+        title: 'Enterprise SAP Solutions & S/4HANA',
+        description:
+          'S/4HANA migrations, SAP BTP integrations, custom Fiori apps, and Clean Core development.',
+        href: '/services/sap-solutions',
+      },
     ],
   },
   {

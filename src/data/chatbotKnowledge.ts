@@ -756,9 +756,8 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
     title: 'About Wellbit Technologies',
     keywords: ['about', 'company', 'who is wellbit', 'story', 'mission', 'founded', 'team', 'values', 'why wellbit'],
     patterns: [
-      /about( wellbit)?/i,
-      /who is wellbit/i,
-      /what is wellbit/i,
+      /\babout (wellbit|the company|your company|your team)\b/i,
+      /^(who|what) is wellbit/i,
       /why (should i|choose) wellbit/i,
     ],
     answer:
@@ -818,6 +817,39 @@ export const KNOWLEDGE_BASE: KnowledgeEntry[] = [
       'What is Wellbit\'s mission?',
     ],
   },
+
+  // 34. Enterprise SAP Solutions & S/4HANA Consulting
+  {
+    id: 'sap-solutions',
+    title: 'Enterprise SAP Solutions & S/4HANA Transformation',
+    keywords: [
+      'sap', 's4hana', 's/4hana', 'btp', 'fiori', 'abap', 'cpi', 'erp', 'ecc', 'migration',
+      'integration suite', 'sac', 'clean core', 'sap consulting', 'hana', 'sap partner',
+      'enterprise erp', 'ui5', 'sapui5', 'sap cloud', 'sap ams'
+    ],
+    patterns: [
+      /\bsap\b/i,
+      /s\/?4hana/i,
+      /sap btp/i,
+      /fiori|sapui5/i,
+      /abap/i,
+      /clean core/i,
+      /ecc to s\/?4/i,
+      /sap (migration|consulting|implementation|integration)/i,
+    ],
+    answer:
+      `Yes! We provide comprehensive **Enterprise SAP Solutions** focused on modern, agile digital core engineering:\n\n- **SAP S/4HANA Cloud & On-Premise Migration**: Greenfield, Brownfield, and Selective Data Transitions with zero-downtime cutover methodologies.\n- **Clean Core Strategy**: Keep standard SAP pristine while building scalable extensions on SAP BTP (Business Technology Platform) to prevent technical debt.\n- **SAP BTP & Integration Suite (CPI)**: Seamless bi-directional integrations linking SAP with Salesforce, custom web/mobile apps, Kafka streams, and third-party SaaS.\n- **Modern SAP Fiori & Custom UI5**: Replace clunky SAP GUI screens with intuitive, responsive role-based applications for desktop and mobile.\n- **ABAP RAP & CDS Modernization**: High-performance RESTful ABAP Programming (RAP), Core Data Services, and OData V4 services.\n- **24/7 SLA-Backed AMS Support**: Continuous functional and technical hypercare post go-live.`,
+    routes: [
+      { label: 'Explore Enterprise SAP Solutions', href: '/services/sap-solutions' },
+      { label: 'Schedule SAP Architecture Call', href: '/contact' },
+      { label: 'Request SAP Project Quote', href: '/downloads/request-quote' },
+    ],
+    followUps: [
+      'How does Clean Core S/4HANA migration work?',
+      'Can you integrate SAP with our custom web app?',
+      'Do you offer SAP AMS support?',
+    ],
+  },
 ];
 
 // Fallback intelligent response when query is outside predefined topics
@@ -851,6 +883,10 @@ const SYNONYMS: Record<string, string[]> = {
   upwork: ['freelancer', 'agency', 'fiverr'],
   maintenance: ['support', 'sla', 'post launch', 'warranty', 'bug fix'],
   uber: ['airbnb', 'clone', 'on demand', 'delivery app'],
+  sap: ['s4hana', 'btp', 'fiori', 'abap', 'erp', 'cpi'],
+  s4hana: ['sap', 'btp', 'migration', 'erp'],
+  fiori: ['sap', 'ui5', 'sapui5', 'frontend'],
+  abap: ['sap', 'rap', 'cds', 'coding'],
 };
 
 // Internal Standard Matcher Algorithm

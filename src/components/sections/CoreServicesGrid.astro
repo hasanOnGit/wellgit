@@ -70,6 +70,23 @@ const pillars = [
     // Bespoke SVG representation for AI neural flow
     diagramType: 'ai',
   },
+  {
+    id: 'sap-solutions',
+    badge: 'ENTERPRISE ERP & DIGITAL CORE',
+    badgeColor: 'border-amber-200 bg-amber-50 text-amber-800',
+    title: 'Enterprise SAP Solutions & S/4HANA',
+    description:
+      'Accelerate enterprise digital core modernization with seamless SAP S/4HANA migrations, SAP BTP integrations, custom Fiori/UI5 applications, Clean Core ABAP/RAP development, and 24/7 AMS support.',
+    href: '/services/sap-solutions',
+    ctaText: 'Explore SAP Solutions',
+    metrics: [
+      { value: 'Clean Core', label: 'architecture strategy' },
+      { value: 'Zero Downtime', label: 'cutover guarantee' },
+    ],
+    techStack: ['SAP S/4HANA', 'SAP BTP', 'Fiori / UI5', 'Integration Suite (CPI)', 'ABAP RAP', 'SAP Analytics Cloud'],
+    // Bespoke SVG representation for SAP architecture flow
+    diagramType: 'sap',
+  },
 ];
 ---
 
@@ -96,11 +113,13 @@ const pillars = [
       </p>
     </div>
 
-    {/* 4-Pillar Grid */}
+    {/* 5-Pillar Grid */}
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
       {
         pillars.map((pillar) => (
-          <div class="group relative flex flex-col justify-between rounded-3xl border border-white/80 bg-white/80 backdrop-blur-xl p-7 sm:p-9 shadow-[0_8px_30px_rgb(11,23,48,0.06)] hover:shadow-[0_16px_40px_rgb(13,148,136,0.12)] hover:border-teal-400/80 hover:-translate-y-1 transition-all duration-300">
+          <div class={`group relative flex flex-col justify-between rounded-3xl border border-white/80 bg-white/80 backdrop-blur-xl p-7 sm:p-9 shadow-[0_8px_30px_rgb(11,23,48,0.06)] hover:shadow-[0_16px_40px_rgb(13,148,136,0.12)] hover:border-teal-400/80 hover:-translate-y-1 transition-all duration-300 ${
+            pillar.id === 'sap-solutions' ? 'lg:col-span-2 bg-gradient-to-br from-white via-amber-50/15 to-white hover:border-amber-400/80' : ''
+          }`}>
             {/* Top Row: Badge & Diagram Accent */}
             <div>
               <div class="flex items-center justify-between gap-4 mb-5">
@@ -176,6 +195,19 @@ const pillars = [
                       <span class="rounded bg-slate-200 px-2 py-0.5 text-slate-800 text-[11px]">Guardrails</span>
                     </div>
                     <span class="hidden sm:inline-block text-[11px] text-indigo-700 font-bold">Zero Drift</span>
+                  </div>
+                )}
+
+                {pillar.diagramType === 'sap' && (
+                  <div class="flex items-center justify-between gap-2 text-slate-600">
+                    <div class="flex items-center gap-2">
+                      <span class="flex size-7 items-center justify-center rounded-lg bg-amber-600 text-white font-bold text-[10px]">ERP</span>
+                      <span class="text-slate-400 font-bold">➔</span>
+                      <span class="rounded bg-amber-100 px-2 py-0.5 text-amber-800 text-[11px] font-semibold">SAP BTP &amp; CPI</span>
+                      <span class="text-slate-400 font-bold">➔</span>
+                      <span class="rounded bg-slate-200 px-2 py-0.5 text-slate-800 text-[11px]">Fiori &amp; Custom Apps</span>
+                    </div>
+                    <span class="hidden sm:inline-block text-[11px] text-amber-700 font-bold">Clean Core</span>
                   </div>
                 )}
               </div>
