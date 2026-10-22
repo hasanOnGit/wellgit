@@ -117,12 +117,13 @@ const cloudPillars = [
             <svg class="w-full h-64 text-slate-700" viewBox="0 0 360 220" fill="none" xmlns="http://www.w3.org/2000/svg">
               {/* Cloudflare Edge */}
               <rect x="20" y="10" width="320" height="35" rx="6" class="fill-slate-900 text-white" />
-              <text x="75" y="32" class="fill-teal-400 text-[10px] font-bold font-mono">CLOUDFLARE EDGE &bull; DDoS & SSL TERMINATION</text>
+              <text x="180" y="32" text-anchor="middle" class="fill-teal-400 text-[10px] font-bold font-mono">CLOUDFLARE EDGE &bull; DDoS &amp; SSL TERMINATION</text>
 
               {/* Ingress Router */}
               <rect x="120" y="65" width="120" height="30" rx="4" class="fill-teal-50 stroke-teal-500" stroke-width="1.2" />
-              <text x="135" y="84" class="fill-teal-900 text-[9px] font-bold font-mono">INGRESS CONTROLLER</text>
+              <text x="180" y="84" text-anchor="middle" class="fill-teal-900 text-[9px] font-bold font-mono">INGRESS CONTROLLER</text>
               <path d="M180 45 L180 65" stroke="#0d9488" stroke-width="1.5" />
+              <path d="M180 95 L180 115" stroke="#0d9488" stroke-width="1.5" />
 
               {/* K8s Pods Group */}
               <rect x="20" y="115" width="320" height="55" rx="6" class="fill-slate-50 stroke-slate-300" stroke-width="1.2" stroke-dasharray="3 3" />
@@ -130,21 +131,22 @@ const cloudPillars = [
 
               {/* Pod 1 */}
               <rect x="35" y="135" width="80" height="26" rx="4" class="fill-white stroke-teal-500" stroke-width="1.2" />
-              <text x="45" y="152" class="fill-slate-800 text-[8px] font-mono font-bold">POD 1: APP</text>
-              <circle cx="102" cy="148" r="3" fill="#14b8a6" class="animate-ping" />
+              <text x="47" y="152" class="fill-slate-800 text-[8px] font-mono font-bold">POD 1: APP</text>
+              <circle cx="101" cy="148" r="3" fill="#14b8a6" class="animate-ping" />
 
               {/* Pod 2 */}
               <rect x="140" y="135" width="80" height="26" rx="4" class="fill-white stroke-teal-500" stroke-width="1.2" />
-              <text x="150" y="152" class="fill-slate-800 text-[8px] font-mono font-bold">POD 2: APP</text>
-              <circle cx="207" cy="148" r="3" fill="#14b8a6" class="animate-ping" />
+              <text x="152" y="152" class="fill-slate-800 text-[8px] font-mono font-bold">POD 2: APP</text>
+              <circle cx="206" cy="148" r="3" fill="#14b8a6" class="animate-ping" />
 
               {/* Pod 3 */}
               <rect x="245" y="135" width="80" height="26" rx="4" class="fill-white stroke-blue-500" stroke-width="1.2" />
-              <text x="255" y="152" class="fill-slate-800 text-[8px] font-mono font-bold">POD 3: CACHE</text>
+              <text x="257" y="152" class="fill-slate-800 text-[8px] font-mono font-bold">POD 3: CACHE</text>
+              <circle cx="311" cy="148" r="3" fill="#3b82f6" class="animate-ping" />
 
               {/* Database Layer */}
               <rect x="90" y="185" width="180" height="28" rx="4" class="fill-teal-50 stroke-teal-600" stroke-width="1.2" />
-              <text x="108" y="203" class="fill-teal-900 text-[9px] font-bold font-mono">POSTGRESQL MULTI-AZ REPLICA</text>
+              <text x="180" y="203" text-anchor="middle" class="fill-teal-900 text-[9px] font-bold font-mono">POSTGRESQL MULTI-AZ REPLICA</text>
               <path d="M180 170 L180 185" stroke="#0d9488" stroke-width="1.2" />
             </svg>
 
